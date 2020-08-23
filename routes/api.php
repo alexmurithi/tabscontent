@@ -35,4 +35,9 @@ Route::group(['middleware'=>'api','prefix'=>'admin'],function(){
   Route::get('workflows','Api\AdminController@getWorkFlows');
   Route::get('words_count','Api\AdminController@getWordsCount');
   Route::get('delivery_time','Api\AdminController@getDeliveryTime');
+  Route::get('content_pricing','Api\AdminController@getContentPricing');
+});
+
+Route::group(['middleware'=>'api','prefix'=>'content'],function(){
+ Route::post('files','Api\ContentController@uploadFiles');
 });

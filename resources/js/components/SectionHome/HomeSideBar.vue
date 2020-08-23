@@ -14,7 +14,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <router-link to="/app/dashboard" class="link-item">
+        <router-link to="/app/employer" class="link-item">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </router-link>

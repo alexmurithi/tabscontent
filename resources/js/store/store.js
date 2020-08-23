@@ -12,6 +12,7 @@ export const store =new Vuex.Store({
       workFlows:[],
       wordsCount:[],
       deliveryTime:[],
+      contentPricing:[],
    },
    getters:{
 
@@ -34,6 +35,9 @@ export const store =new Vuex.Store({
     },
     deliveryTime:state=>{
       return state.deliveryTime
+    },
+    contentPricing:state=>{
+      return state.contentPricing
     }
 
    },
@@ -57,6 +61,9 @@ export const store =new Vuex.Store({
 
     deliveryTime:(state,payload)=>{
       state.deliveryTime =payload
+    },
+    contentPricing:(state,payload)=>{
+      state.contentPricing =payload
     }
    },
    actions:{
@@ -124,6 +131,17 @@ export const store =new Vuex.Store({
          }).catch((err)=>{
            console.log(err)
          })
-     }
+     },
+     contentPricing:({commit})=>{
+      axios.get(`/api/admin/content_pricing`)
+        .then((res)=>{
+          if(res.status ==200){
+            commit('contentPricing',res.data)
+          }
+        }).catch((err)=>{
+          console.log(err)
+        })
+    },
+    
    }
 });

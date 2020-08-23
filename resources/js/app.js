@@ -10,9 +10,15 @@ import {router} from './router/router.js';
 import {store} from './store/store.js';
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
+import common from './common.js';
 
 
 Vue.use(ViewUI);
+Vue.mixin(common);
+
+router.afterEach(route => {
+  ViewUI.LoadingBar.finish();
+});
 
 
 

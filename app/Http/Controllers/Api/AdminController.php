@@ -10,7 +10,7 @@ use App\ContentType;
 use App\WorkType;
 use App\WordsCount;
 use App\ContentDelivery;
-
+use App\ContentPrice;
 class AdminController extends Controller
 {
     public function getUsers(){
@@ -42,5 +42,10 @@ class AdminController extends Controller
     public function getDeliveryTime(){
       $deliveryTime =ContentDelivery::orderBy('id','ASC')->get();
       return response()->json($deliveryTime);
+    }
+
+    public function getContentPricing(){
+      $content_pricing =ContentPrice::orderBy('id','ASC')->get();
+      return response()->json($content_pricing);
     }
 }

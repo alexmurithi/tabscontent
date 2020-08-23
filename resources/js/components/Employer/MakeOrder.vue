@@ -1,5 +1,5 @@
 <template>
-   <div class="container-fluid">
+   <div class="container-fluid" ref="makeOrder">
       <!-- Page Heading -->
        
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -12,9 +12,9 @@
                 <div class="card-header py-3">
                     
                     <Steps :current="current">
-                      <Step title="Document details"></Step>
+                      <Step title="Content details"></Step>
                       <Step title="Instructions"></Step>
-                      <Step title="Upload files"></Step>
+                      <Step title="Upload file"></Step>
                       <Step title="Payment"></Step>
                       <Step title="Finish"></Step>
                     </Steps>
@@ -67,7 +67,7 @@
                                             <Option
                                             v-for="(words,index) in wordsCount"
                                             :key="index"
-                                            :value="words.id"
+                                            :value="words.wordsCount"
                                             >{{words.wordsCount}} Words</Option>
                                             
                                         </Select>
@@ -77,13 +77,13 @@
                     
                             <Row :gutter="32">
                               <Col span="24">
-                                  <FormItem label="Delivery Option" label-position="top">
+                                  <FormItem label="Delivery Time" label-position="top">
                                         <Select v-model="documentForm.delivery" placeholder="please deliveryTime">
                                             <Option
                                             v-for="(time,index) in deliveryTime"
                                             :key="index" 
                                             :value="time.id"
-                                            >{{time.deliveryTime}}</Option>
+                                            >{{time.deliveryTime}} hours</Option>
                                             
                                         </Select>
                                 </FormItem>
@@ -108,29 +108,92 @@
                                 api-key="no-api-key"
                                 :init="{
                                   height: 300,
-                                  menubar: insert,
+                                  menubar: false,
                                   plugins: [
                                     'advlist autolink lists link image charmap print preview anchor',
                                     'searchreplace visualblocks code fullscreen',
                                     'insertdatetime media table paste code help wordcount'
                                   ],
                                   toolbar:
-                                    'preview link undo redo | formatselect | bold italic backcolor | \
+                                    'preview  undo redo | formatselect | bold italic backcolor | \
                                     alignleft aligncenter alignright alignjustify | \
-                                    bullist numlist outdent indent | removeformat | help'
+                                    bullist numlist outdent indent | help' 
                                 }"
                               />
                            </Col>
                         </Row>
                    </Form>
                    <!--end Form for step 2 --->
+
+                 
+
+                   <!--- Form for step 3 -->
+                     <Form :model="form3" @submit.prevent="" v-show="current==2">
+                       <Row :gutter="32">
+                         <Col span="24">
+                              <!-- Collapsable Instructions Card -->
+                          <div class="card shadow mb-4">
+                            <!-- Card Header - Accordion -->
+                            <a href="#uploadRequirements" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                              <h6 class="m-0 font-weight-bold text-secondary">Click here to view the requirements</h6>
+                            </a>
+                            <!-- Card Content - Collapse -->
+                            <div class="collapse" id="uploadRequirements">
+                              <div class="card-body">
+                                <List border>
+                                  <ListItem>The file must be of type jpeg, jpg, png, pdf & docx</ListItem>
+                                  <ListItem>The file should not exceed 3Mbs</ListItem>
+                                  <ListItem>Only one file can be uploaded</ListItem>
+                                </List>
+                              </div>
+                            </div>
+                          </div>
+                         </Col>
+                         <Col span="24">
+                          <Upload
+                                
+                                  type="drag"
+                                  :headers="{'x-csrf-token':token,'X-Requested-With': 'XMLHttpRequest'}"
+                                  :on-exceeded-size="handleMaxSize"
+                                  :max-size="3048"
+                                  :on-success="handleSuccess"
+                                  :on-error="handleError"
+                                  :format="['pdf','docx','png','jpg','jpeg']"
+                                  :on-format-error="handleFormatError"
+                                  
+
+                                  
+                                  action="/api/content/files">
+                                  <div style="padding: 20px 0">
+                                      <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                                      <p>Click or drag your file here to upload</p>
+                                      
+                                  </div>
+
+                                  
+                          </Upload>
+                       </Col>
+                       </Row>
+                     </Form>
+                   <!--- End Form for step 3 --->
                   
+                   <!-- Form paypal step 4 -->
+                   <Form :model="formPaypal" @submit.prevent="" v-show="current==3">
+                      <Row :gutter="32">
+                        <Col span="24">
+                          <div class="mx-auto" ref="paypal"></div>
+                        </Col>
+                      </Row>
+                   </Form>
+                   <!-- End Form paypal step 4 -->
 
                    <Divider dashed />
                   <Row :gutter="32">
                               <Col span="24">
-                                <label for="Total Amount" label-position="top">Total Amount</label>
-                                  <Input prefix="logo-usd" disabled  />
+                              <label>Total Amount</label>
+                                <div class="alert alert-primary">
+                                 
+                                </div>
                               
                               </Col>
                   </Row>
@@ -155,6 +218,35 @@ import {mapGetters} from 'vuex';
 export default {
   
    name:'make-order',
+   created(){
+      this.token =window.Laravel.csrfToken
+      this.$router.push({ path:this.$route.path, query: { step: this.current+1 } })
+     
+   },
+  
+  
+    //includes paypal script tag in the body//
+  mounted:function(){
+    const script =document.createElement("script");
+    script.src="https://www.paypal.com/sdk/js?client-id=AXT-1yDXEmB4c8oK8MiFWnOYnTprWVaxoYrvux4otWnThYPiOFct4SIPf8kUl1lTXJUtOP1III8OzOzU";
+    script.addEventListener("load",this.setLoaded);
+    document.body.appendChild(script);   
+    
+      
+  },
+
+ computed:{
+    ...mapGetters([
+    'languages',
+    'contentTypes',
+    'workFlows',
+    'wordsCount',
+    'deliveryTime',
+    'contentPricing'
+          ]),
+          
+   
+      },
   
     components: {
       'editor': Editor,
@@ -164,10 +256,14 @@ export default {
                 return {
                     current: 0,
                     // nextDisabled:true,
-                    
+                    token:{},
+                    loaded:false,
                     previousDisabled:false,
                     totalAmount:0.00 + " USD",
+                    uploadList:[],
+                    upload:{
 
+                    },
                     documentForm: {
                         contentType: '',
                         workflowType: '',
@@ -178,66 +274,116 @@ export default {
                     form2:{
                       instructions:''
                     },
-                  
+                    form3:{
+                     
+                    },
+                    formPaypal:{
+
+                    }
                     
                 }
             }, 
 
         methods: {
-            next () {
-                if (this.current == 4) {
-                  //call finishing method here//
-                    this.current = 0;
-                } else {
-                    this.current += 1;
-                }
+                        next () {
+                            this.$router.push({ path:this.$route.path, query: { step: this.current+2 } })
+                            if (this.current == 4) {
+                              //call finishing method here//
+                                this.current = 0;
+                            } else {
+                                this.current += 1;
+                               
+                                              }
 
-            },
-            previous(){
-              
-              if(this.current ==0){
-                this.current =4;
-              }else{
-                this.current-=1;
-              }
-            },
-            thisNext(){
-                        if(
-                this.documentForm.contentType==""
-                || this.documentForm.workflowType==""
-                || this.documentForm.language ==""
-                || this.documentForm.delivery ==""
-                || this.documentForm.wordsAmount ==""
-                ){
-                return this.nextDisabled =true;
-              }else{
-               return  this.nextDisabled =false
-              }
-            },
+                        },
+                        previous(){
+                          this.$router.push({ path:this.$route.path, query: { step: this.current} })
+                          if(this.current ==0){
+                            this.current =4;
+                          }else{
+                            this.current-=1;
+                          }
+                        },
+                        thisNext(){
+                                    if(
+                            this.documentForm.contentType==""
+                            || this.documentForm.workflowType==""
+                            || this.documentForm.language ==""
+                            || this.documentForm.delivery ==""
+                            || this.documentForm.wordsAmount ==""
+                            ){
+                            return this.nextDisabled =true;
+                          }else{
+                          return  this.nextDisabled =false
+                          }
+                        },
 
-            amountToPay:function(){
-              if(this.documentForm.wordsAmount == '100 -300 words'){
-                return "100 USD"
-              }
-            }
-            
-          
-        },
-        computed:{
-         ...mapGetters([
-           'languages',
-           'contentTypes',
-           'workFlows',
-           'wordsCount',
-           'deliveryTime'
-         ])
-        },
-        
-        mounted:function(){
-         
-        }
-        
-        
+                        amountToPay:function(){
+                          if(this.documentForm.wordsAmount == '100 -300 words'){
+                            return "100 USD"
+                          }
+                        },
+                        handleFormatError (file) {
+                            this.$Notice.warning({
+                                title: 'The file format is incorrect',
+                                desc: 'File format of ' + file.name + ' is incorrect, please select pdf.'
+                            });
+                        },
+                        handleSuccess (res, file) {
+                          this.upload =res;
+                        },
+                        handleError(res,file){
+                          console.log(file)
+                          this.$Notice.warning({
+                                title: 'The file format is incorrect',
+                                desc: `${file.errors.file.length ? file.errors.file[0] : 'OOPS! Something went wrong!'}`
+                            });
+                      },
+                      handleMaxSize (file) {
+                            this.$Notice.warning({
+                                title: 'Exceeding file size limit',
+                                desc: 'File  ' + file.name + ' is too large, no more than 3M.'
+                            });
+                     },
+
+                     
+                    setLoaded: function() {
+                          this.loaded = true;
+                          window.paypal
+                            .Buttons({
+                              createOrder: (data, actions) => {
+                                return actions.order.create({
+                                  purchase_units: [
+                                    {
+                                      description: "description",
+                                      amount: {
+                                        currency_code: "USD",
+                                        value: 100
+                                      }
+                                    }
+                                  ]
+                                });
+                              },
+                              onApprove: async (data, actions) => {
+                                const order = await actions.order.capture();
+                                // this.data;
+                                // this.paidFor = true;
+                                console.log(order);
+                              },
+                              onError: err => {
+                                console.log(err);
+                              }
+                            })
+                            .render(this.$refs.paypal);
+                        
+                    },
+                     
+                     
+     
+                       
+
+                    },
+           
 }
 </script>
 

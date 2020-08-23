@@ -19,21 +19,26 @@ export const router =new VueRouter({
        component:Welcome
      },
      {
-       path: '/app',
+       path: '/app/employer',
        component:Home,
        children:[
-        {
-          path:'dashboard',
-          component:HomePageContent,
+         {
+           path:'',
+           component:HomePageContent
+         },
+        {   
+          path:'make-order',
+          name:'make-order',
+          component:MakeOrder, 
         },
-        {
-          path:'employer/make-order',
-          component:MakeOrder
-        }
+        
+       
        ]
      },
+    
+     
      {
-       path:'/admin',
+       path:'/app/admin',
        component:Admin,
        children:[
 
