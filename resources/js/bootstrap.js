@@ -28,6 +28,7 @@ window.axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-url
 // window.axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 
+
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
     if (token) {

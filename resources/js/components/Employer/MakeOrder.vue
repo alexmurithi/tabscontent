@@ -220,6 +220,7 @@ export default {
    name:'make-order',
    created(){
       this.token =window.Laravel.csrfToken
+      
       this.$router.push({ path:this.$route.path, query: { step: this.current+1 } })
      
    },
@@ -242,7 +243,8 @@ export default {
     'workFlows',
     'wordsCount',
     'deliveryTime',
-    'contentPricing'
+    'contentPricing',
+    
           ]),
           
    

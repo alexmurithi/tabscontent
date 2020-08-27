@@ -1,24 +1,45 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import { getLocalUser } from '../helper/auth.js';
 
 Vue.use(Vuex);
+const user =getLocalUser();
+
 
 export const store =new Vuex.Store({
    state:{
-      users:[],
-      languages:[],
-      contentTypes:[],
-      workFlows:[],
-      wordsCount:[],
-      deliveryTime:[],
-      contentPricing:[],
+    currentUser :user,
+    isLoggedIn: !!user,
+    loading:false,
+    auth_error:null,
+    users:[],
+    languages:[],
+    contentTypes:[],
+    workFlows:[],
+    wordsCount:[],
+    deliveryTime:[],
+    contentPricing:[],
+     
    },
    getters:{
-
-    users:state=>{
-      return state.users;
+        loading:state=>{
+          return state.loading
+      },
+      isLoggedIn:state=>{
+          return state.isLoggedIn
+      },
+      currentUser(state) {
+        return state.currentUser;
     },
+      authErrors:state=>{
+        return state.auth_error
+    },
+
+      users:state=>{
+        return state.users;
+      },
+   
     contentTypes:state=>{
       return state.contentTypes
     },
@@ -38,10 +59,36 @@ export const store =new Vuex.Store({
     },
     contentPricing:state=>{
       return state.contentPricing
-    }
-
+    },
+    //Authentication//
+  
    },
    mutations:{
+      login:state=>{
+        state.loading=true;
+        state.auth_error=null;
+    },
+
+    loginSuccess(state, payload) {
+        state.auth_error = null;
+        state.isLoggedIn = true;
+        state.loading = false;
+        state.currentUser = Object.assign({}, payload.user, {token: payload.access_token});
+
+        localStorage.setItem("user", JSON.stringify(state.currentUser));
+    },
+
+    loginFailed(state, payload) {
+        state.loading = false;
+        state.auth_error = payload.error;
+    },
+
+    logout:state=>{
+        localStorage.removeItem("user");
+        state.currentUser =null;
+        state.isLoggedIn=false;
+    },
+    
      getUsers:(state,payload)=>{
       state.users=payload
      },
@@ -64,9 +111,16 @@ export const store =new Vuex.Store({
     },
     contentPricing:(state,payload)=>{
       state.contentPricing =payload
-    }
+    },
+     
+
+   //Authentication //
+  
    },
    actions:{
+    login:context=>{
+      context.commit("login");
+  },
      getUsers:({commit})=>{
        axios.get(`/api/admin/users`)
         .then((res)=>{
@@ -142,6 +196,9 @@ export const store =new Vuex.Store({
           console.log(err)
         })
     },
-    
+   
+    //Authentication //
+   
+
    }
 });

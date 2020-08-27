@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Client | Author</div>
+        <div class="sidebar-brand-text mx-3"> {{currentUser.firstName}}</div>
       </a>
 
       <!-- Divider -->
@@ -120,8 +120,13 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
   name:'home-side-bar',
+  computed:{
+    ...mapGetters(['currentUser']),
+  }
+
 }
 </script>
 

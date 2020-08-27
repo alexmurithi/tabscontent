@@ -31,6 +31,7 @@ class AuthController extends Controller
 
         if ($token = $this->guard()->attempt($credentials)) {
             return $this->respondWithToken($token);
+            // return response()->json($this->guard()->user()->with('role')->get())->respondWithToken($token);
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);
@@ -43,7 +44,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json($this->guard()->user()->with('role')->get());
+        return response()->json($this->guard()->user());
     }
 
     /**
@@ -79,6 +80,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
+            'user'=>$this->guard()->user(),
             'token_type' => 'bearer',
             'expires_in' => $this->guard()->factory()->getTTL() * 60
         ]);

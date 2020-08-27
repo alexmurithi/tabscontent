@@ -15,7 +15,9 @@
             this.$store.dispatch('workFlows');
             this.$store.dispatch('wordsCount');
             this.$store.dispatch('deliveryTime');
-             this.$store.dispatch('contentPricing');
+            this.$store.dispatch('contentPricing');
+            
+
         }
     }
 </script>

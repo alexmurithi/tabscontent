@@ -9,6 +9,10 @@ import Admin from '../components/Admin.vue';
 import HomePageContent from '../components/SectionHome/HomePageContent.vue';
 import MakeOrder from '../components/Employer/MakeOrder.vue';
 
+import Authentication from '../components/Authentication.vue';
+import Login from '../components/Auth/login.vue';
+import Signup from '../components/Auth/Signup.vue';
+
 Vue.use(VueRouter);
 
 export const router =new VueRouter({
@@ -19,17 +23,44 @@ export const router =new VueRouter({
        component:Welcome
      },
      {
+       path:'/auth',
+       component:Authentication,
+       children:[
+         {
+           path:'login',
+           name:'login',
+           component:Login,
+          
+         },
+         {
+           path:'signup',
+           component:Signup,
+           
+         }
+       ]
+
+     },
+     {
        path: '/app/employer',
        component:Home,
+       meta: {
+        requiresAuth: true,
+      
+    },
+       
        children:[
          {
            path:'',
-           component:HomePageContent
+           name:'employer-dashboard',
+           component:HomePageContent,
+           
+          
          },
         {   
           path:'make-order',
           name:'make-order',
-          component:MakeOrder, 
+          component:MakeOrder,
+          
         },
         
        

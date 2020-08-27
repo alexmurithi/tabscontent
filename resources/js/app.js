@@ -11,7 +11,9 @@ import {store} from './store/store.js';
 import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 import common from './common.js';
+import {initialize} from './helper/general.js';
 
+initialize(store, router);
 
 Vue.use(ViewUI);
 Vue.mixin(common);
@@ -19,6 +21,8 @@ Vue.mixin(common);
 router.afterEach(route => {
   ViewUI.LoadingBar.finish();
 });
+
+
 
 
 
