@@ -107,7 +107,7 @@
 
 <script>
 export default {
-  name:'home-page-content',
+  name:'employer-page-content',
 }
 </script>
  <style scoped>

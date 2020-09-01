@@ -14,6 +14,7 @@ export const store =new Vuex.Store({
     loading:false,
     auth_error:null,
     users:[],
+   
     languages:[],
     contentTypes:[],
     workFlows:[],
@@ -35,7 +36,7 @@ export const store =new Vuex.Store({
       authErrors:state=>{
         return state.auth_error
     },
-
+   
       users:state=>{
         return state.users;
       },
@@ -88,6 +89,8 @@ export const store =new Vuex.Store({
         state.currentUser =null;
         state.isLoggedIn=false;
     },
+
+  
     
      getUsers:(state,payload)=>{
       state.users=payload
@@ -196,8 +199,6 @@ export const store =new Vuex.Store({
           console.log(err)
         })
     },
-   
-    //Authentication //
    
 
    }

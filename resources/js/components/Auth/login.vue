@@ -30,7 +30,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <Button type="primary" long @click="authenticate">Login</Button>
+                    <Button type="primary" long @click="authenticate" :loading="loading">{{loading ? 'Logging in ...' : 'Login'}}</Button>
                     <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Google
@@ -62,6 +62,7 @@
 
 <script>
 import {login} from '../../helper/auth.js';
+import {mapGetters} from 'vuex';
 export default {
   name:'login',
   data:function(){
@@ -72,6 +73,9 @@ export default {
       },
       error:null,
     }
+  },
+  computed:{
+   ...mapGetters(['loading']),
   },
   methods:{
      authenticate() {

@@ -74,13 +74,13 @@
 <script>
 import HomeSideBar from './SectionHome/HomeSideBar.vue';
 import HomeTopBar from  './SectionHome/HomeTopBar.vue';
-import HomePageContent from './SectionHome/HomePageContent.vue';
+import EmployerPageContent from './SectionHome/EmployerPageContent.vue';
 export default {
    name:'home',
    components:{
      HomeSideBar,
      HomeTopBar,
-     HomePageContent
+     EmployerPageContent,
    },
    methods:{
      logout:function(){
