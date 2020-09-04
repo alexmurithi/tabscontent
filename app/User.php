@@ -61,4 +61,7 @@ class User extends Authenticatable implements JWTSubject
     public function role(){
       return $this->belongsTo('App\Role');
     }
+    public function contentOrders(){
+        return $this->hasMany('App\ContentOrder');
+    }
 }

@@ -15,11 +15,12 @@ class CreateContentOrdersTable extends Migration
     {
         Schema::create('content_orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('content_type_id');
-            $table->integer('workflow_type_id');
-            $table->integer('language_id');
-            $table->integer('amount_of_words_id');
-            $table->integer('delivery_time_id');
+            $table->string('content_type');
+            $table->string('workflow_type');
+            $table->string('language');
+            $table->string('amount_of_words');
+            $table->string('urgency');
+            $table->string('title')->nullable();
             $table->string('amount_paid');
             $table->text('instructions')->nullable();
             $table->integer('upload_id')->nullable();

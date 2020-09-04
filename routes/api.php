@@ -40,4 +40,6 @@ Route::group(['middleware'=>'api','prefix'=>'admin'],function(){
 
 Route::group(['middleware'=>'api','prefix'=>'content'],function(){
  Route::post('files','Api\ContentController@uploadFiles');
+ Route::post('submit_order','Api\ContentController@submitContentOrder');
+ Route::get('content_orders','Api\ContentController@getContentOrders');
 });

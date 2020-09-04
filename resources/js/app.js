@@ -12,11 +12,16 @@ import ViewUI from 'view-design';
 import 'view-design/dist/styles/iview.css';
 import common from './common.js';
 import {initialize} from './helper/general.js';
-
+import Swal from 'vue-sweetalert2'
 initialize(store, router);
-
+Vue.use(Swal)
 Vue.use(ViewUI);
 Vue.mixin(common);
+
+router.beforeEach((to, from, next) => {
+  ViewUI.LoadingBar.start();
+  next();
+});
 
 router.afterEach(route => {
   ViewUI.LoadingBar.finish();

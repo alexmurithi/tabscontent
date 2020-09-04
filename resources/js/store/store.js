@@ -21,8 +21,11 @@ export const store =new Vuex.Store({
     wordsCount:[],
     deliveryTime:[],
     contentPricing:[],
+    contentOrders:[]
      
    },
+   //GETTERS//
+
    getters:{
         loading:state=>{
           return state.loading
@@ -61,9 +64,14 @@ export const store =new Vuex.Store({
     contentPricing:state=>{
       return state.contentPricing
     },
-    //Authentication//
+    contentOrders:state=>{
+      return state.contentOrders
+    }
   
    },
+
+   //MUTATIONS//
+
    mutations:{
       login:state=>{
         state.loading=true;
@@ -95,6 +103,8 @@ export const store =new Vuex.Store({
      getUsers:(state,payload)=>{
       state.users=payload
      },
+   
+     //CONTENT MUTATIONS//
 
      getLanguages:(state,payload)=>{
        state.languages =payload
@@ -115,11 +125,14 @@ export const store =new Vuex.Store({
     contentPricing:(state,payload)=>{
       state.contentPricing =payload
     },
-     
+    
+    contentOrders:(state,payload)=>{
+      state.contentOrders =payload.data
+    }
 
-   //Authentication //
-  
    },
+   //ACTIONS//
+
    actions:{
     login:context=>{
       context.commit("login");
@@ -200,6 +213,16 @@ export const store =new Vuex.Store({
         })
     },
    
-
+    contentOrders:({commit})=>{
+      axios.get(`/api/content/content_orders`)
+        .then((res)=>{
+          if(res.status==200){
+            commit('contentOrders',res)
+          }
+        }).catch((err)=>{
+          console.log("contentOrders err: "+err)
+        })
+    }
+   
    }
 });

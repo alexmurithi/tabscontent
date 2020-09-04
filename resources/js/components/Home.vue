@@ -6,6 +6,7 @@
 
     <!-- Sidebar -->
       <home-side-bar/>
+      
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->

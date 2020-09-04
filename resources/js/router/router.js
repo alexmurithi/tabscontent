@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 // Import Routes //
 import Welcome from '../components/Welcome.vue';
 import Home from '../components/Home.vue';
+
 import Admin from '../components/Admin.vue';
 
 import HomePageContent from '../components/SectionHome/EmployerPageContent.vue';
@@ -13,6 +14,8 @@ import Authentication from '../components/Authentication.vue';
 import Login from '../components/Auth/login.vue';
 import Signup from '../components/Auth/Signup.vue';
 
+import AdminDashBoard from '../components/SectionAdmin/PageContent.vue';
+import AdminContentOrders from '../components/SectionAdmin/Orders/Content.vue';
 import NotFound from '../components/NotFound.vue';
 
 
@@ -81,7 +84,14 @@ export const router =new VueRouter({
        path:'/app/admin',
        component:Admin,
        children:[
-
+          {
+            path:'',
+            component:AdminDashBoard
+          },
+          {
+            path:'orders/content',
+            component:AdminContentOrders
+          }
        ]
      },
      

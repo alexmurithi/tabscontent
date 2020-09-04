@@ -19,7 +19,8 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-          <page-content/>
+          <!-- <page-content/> -->
+          <router-view/>
         <!-- /.container-fluid -->
 
       </div>

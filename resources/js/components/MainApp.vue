@@ -16,6 +16,7 @@
             this.$store.dispatch('wordsCount');
             this.$store.dispatch('deliveryTime');
             this.$store.dispatch('contentPricing');
+            this.$store.dispatch('contentOrders');
            
 
         }
