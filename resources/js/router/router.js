@@ -3,12 +3,13 @@ import VueRouter from 'vue-router';
 
 // Import Routes //
 import Welcome from '../components/Welcome.vue';
-import Home from '../components/Home.vue';
+import Employer from '../components/Employer.vue';
 
 import Admin from '../components/Admin.vue';
 
-import HomePageContent from '../components/SectionHome/EmployerPageContent.vue';
-import ContentOrder from '../components/Orders/Content.vue';
+import EmployerPageContent from '../components/SectionEmployer/EmployerPageContent.vue';
+import EmployerContentOrder from '../components/SectionEmployer/Orders/Content.vue';
+import EmployerAcademicOrder from '../components/SectionEmployer/Orders/Academic.vue';
 
 import Authentication from '../components/Authentication.vue';
 import Login from '../components/Auth/login.vue';
@@ -53,7 +54,7 @@ export const router =new VueRouter({
      },
      {
        path: '/app/employer',
-       component:Home,
+       component:Employer,
        meta: {
         requiresAuth: true,
         // requiresEmployer:true
@@ -64,15 +65,19 @@ export const router =new VueRouter({
          {
            path:'',
            name:'employer-dashboard',
-           component:HomePageContent,
+           component:EmployerPageContent,
            
           
          },
         {   
           path:'make-order/content',
           name:'make-order',
-          component:ContentOrder,
+          component:EmployerContentOrder,
           
+        },
+        {
+           path:'make-order/academic',
+           component:EmployerAcademicOrder,
         },
         
        

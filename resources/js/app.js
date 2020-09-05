@@ -9,6 +9,8 @@ window.Vue = require('vue');
 import {router} from './router/router.js';
 import {store} from './store/store.js';
 import ViewUI from 'view-design';
+import Vue from 'vue'
+
 import 'view-design/dist/styles/iview.css';
 import common from './common.js';
 import {initialize} from './helper/general.js';
@@ -17,6 +19,7 @@ initialize(store, router);
 Vue.use(Swal)
 Vue.use(ViewUI);
 Vue.mixin(common);
+
 
 router.beforeEach((to, from, next) => {
   ViewUI.LoadingBar.start();
