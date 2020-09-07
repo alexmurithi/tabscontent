@@ -6,6 +6,7 @@
     </div>
 
     <div class="row">
+     
         <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-9">
             <div class="card shadow mb-4">
                <div class="card-header py-3" id="orderAcademicCard">
@@ -21,18 +22,19 @@
                </div>
 
                <div class="card-body">
-                   <Form @submit.prevent="">
+                
+
+                   <Form @submit.prevent="" v-show="this.current==0">
                       <Row :gutter="32">
                           <Col :xs="24" :sm="24" :md="12" :lg="12">
                             <FormItem label="Service" label-position="top">
                                 
-                               <Select v-model="service" placeholder="Select Service">
-                                 <Option>
-                                     Essay
+                               <Select v-model="service" placeholder="Select Service" filterable>
+                                 <Option :value="service.name" v-for="(service,index) in academic_services" :key="index">
+                                    {{service.name}}
                                  </Option>
-                                 <Option>
-                                     Book Review
-                                 </Option>
+                                
+                                
                                </Select>
 
                              </FormItem>
@@ -40,9 +42,9 @@
                           <Col :xs="24" :sm="24" :md="12" :lg="12">
                             <FormItem label="Category" label-position="top">
                                 
-                               <Select v-model="category" placeholder="Select Category">
-                                 <Option>Engineering</Option>
-                                 <Option>Medical</Option>
+                               <Select v-model="category" placeholder="Select Category" filterable>
+                                 <Option v-for="(category,index) in academic_categories" :key="index" :value="category.category">{{category.category}}</Option>
+                                 
                                </Select>
 
                              </FormItem>
@@ -53,10 +55,13 @@
                         <Col :xs="24" :sm="24" :md="12" :lg="12">
                           <FormItem label="Education Level" label-position="top">
                                 
-                               <Select v-model="edulevel" placeholder="Select Education Level">
-                                 <Option>Undergraduate</Option>
-                                 <Option>Master</Option>
-                                 <Option>Phd</Option>
+                               <Select v-model="edulevel" placeholder="Select Education Level" filterable>
+                                 <Option 
+                                 v-for="(edulevel,index) in academic_edulevels"
+                                 :key="index"
+                                  :value="edulevel.edulevel">
+                                  </Option>
+                                
                                </Select>
 
                              </FormItem>
@@ -64,39 +69,38 @@
 
                         <Col :xs="24" :sm="24" :md="12" :lg="12">
                           <FormItem label="No. of Pages" label-position="top"> 
-                              <Input v-model="pages">
-                                <span slot="prepend" @click="decrement()"><Icon type="md-remove-circle" /></span>
-                                <span slot="append" @click="increment()"><Icon type="ios-add-circle" /></span>
+                              <Input v-model="pages" type="number" min="0">
+                                <span slot="prepend" @click="removePage" style="cursor:pointer"><Icon type="md-remove-circle" /></span>
+                                <span slot="append" @click="addPage" style="cursor:pointer"><Icon type="ios-add-circle" /></span>
                               </Input>
                           </FormItem> 
                         </Col>
 
                       </Row>
                        
-                      <Row :gutter="32">
-                          <Col span="24">
-                            <FormItem label="Topic" label-position="top">
-                              <Input placeholder="Your Topic" v-model="topic"/>
-                           </FormItem>
-                          </Col>
-                      </Row>
+                      
 
                       <Row :gutter="32">
                           <Col span="12">
-                            <FormItem label="Urgency" label-position="top">
+                            <FormItem label="Urgency" label-position="top" filterable>
                               <Select v-model="urgency" placeholder="Select     Urgency">
-                                 <Option>12 hours</Option>
-                                 <Option>4 days</Option>
-                                 <Option>7 days</Option>
+                                 <Option
+                                  v-for="(urgency,index) in academic_urgency"
+                                  :key="index"
+                                  :value="urgency.urgency"
+                                  >
+                                  {{urgency.urgency}}
+                                  </Option>
+                                
                                </Select>
                            </FormItem>
                           </Col>
 
                         <Col span="12">
                           <FormItem label="Sources" label-position="top">
-                              <Input v-model="sources">
-                                 <span slot="prepend" style="cursor:pointer" @click="minusSource"><Icon type="md-remove" /></span>
-                                <span slot="append" style="cursor:pointer" @click="addSource"><Icon type="md-add-circle" /></span>
+                              <Input v-model="sources" type="number">
+                                 <span slot="prepend" style="cursor:pointer" @click="removeSource"><Icon type="md-remove-circle" /></span>
+                                <span slot="append" style="cursor:pointer" @click="addSource" ><Icon type="md-add-circle" /></span>
                               </Input>
                           </FormItem>
                         </Col>
@@ -107,10 +111,15 @@
                       <Row :gutter="32">
                           <Col span="8">
                             <FormItem label="Paper Format" label-position="top">
-                              <Select v-model="paperFormat" placeholder="Select     Paper Format">
-                                 <Option>APA</Option>
-                                 <Option>Chicago</Option>
-                                 <Option>MLA</Option>
+                              <Select v-model="paperFormat" placeholder="Select  Paper Format" filterable>
+                                 <Option
+                                  v-for="(format,index) in academic_paperformats"
+                                  :key="index"
+                                  :value="format.paper_format"
+                                  >
+                                   {{format.paper_format}}
+                                 </Option>
+                                
                                </Select>
                            </FormItem>
                           </Col>
@@ -118,8 +127,14 @@
                         <Col span="8">
                           <FormItem label="Spacing" label-position="top">
                               <Select v-model="spacing" placeholder="Select     Spacing">
-                                 <Option>Double Space</Option>
-                                 <Option>Single Space</Option>
+                                 <Option
+                                  v-for="(spacing,index) in academic_spacing"
+                                  :key="index"
+                                  :value="spacing.spacing"
+                                 >
+                                 {{spacing.spacing}}
+                                 </Option>
+                               
                                  
                                </Select>
                            </FormItem>
@@ -128,9 +143,13 @@
                          <Col span="8">
                           <FormItem label="Language" label-position="top">
                               <Select v-model="language" placeholder="Select     Language">
-                                 <Option>English(US)</Option>
-                                 <Option>English(Uk)</Option>
-                                 
+                                 <Option
+                                  v-for="(language,index) in academic_languages"
+                                  :key="index"
+                                  :value="language.language"
+                                 >
+                                  {{language.language}}
+                                 </Option>
                                </Select>
                            </FormItem>
                         </Col>
@@ -138,10 +157,107 @@
                       </Row>
 
                    </Form>
+                   
+                   <Form v-show="this.current==1">
+                     <Row :gutter="32" v-show="this.current==1">
+                          <Col span="24">
+                            <FormItem label="Topic" label-position="top">
+                              <Input placeholder="Your Topic" v-model="topic"/>
+                           </FormItem>
+                          </Col>
+                          
+                          `<Col span="24">
+                            <label>Instructions</label>
+                            <editor
+                            :init="{
+                              height: 300,
+                              menubar: false,
+                              plugins: [
+                                'advlist autolink lists link image charmap print preview anchor',
+                                'searchreplace visualblocks code fullscreen',
+                                'insertdatetime media table paste code help wordcount'
+                              ],
+                              toolbar:
+                                'undo redo | formatselect | link|bold italic underline | code| \
+                                alignleft aligncenter alignright alignjustify | \
+                                bullist numlist outdent indent '
+                            }"
+                          />
+                          
+                          </Col>`
+
+                      </Row>
+                   </Form>
+                   
+                   <Form v-show="this.current==2">
+                     <Row :gutter="32">
+                       <Col span="24">
+                         <Alert closable banner split="false">
+                            Requirements
+
+                             <template slot="desc">
+                               <List>
+                                <ListItem>1. Upload file size limit is 3Mibs.</ListItem>
+                                <ListItem>2. Only one file can be uploaded.</ListItem>
+                                <ListItem>3. Only files of format (png, jpeg, jpg pdf, docx) are accepted.</ListItem>
+                               </List>
+                              </template>
+                           </Alert>
+                       </Col>
+
+                        <Col span="24">
+                          <Upload
+
+                                  type="drag"
+                                  :headers="{'x-csrf-token':token,'X-Requested-With': 'XMLHttpRequest'}"
+                                  :on-exceeded-size="handleMaxSize"
+                                  :max-size="3048"
+                                  :on-success="handleSuccess"
+                                  :on-error="handleError"
+                                  :format="['pdf','docx','png','jpg','jpeg']"
+                                  :on-format-error="handleFormatError"
+
+
+
+                                  action="/api/academic/file">
+                                  <div style="padding: 20px 0">
+                                      <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                                      <p>Click or drag your file here to upload</p>
+
+                                  </div>
+
+
+                          </Upload>
+                       </Col>
+
+                     </Row>
+                   </Form>
+
+                   <Form v-show="this.current==3">
+                     <Row :gutter="32" v-if="!paidFor">
+                       <Col span="24">
+                           <Alert type="info" show-icon>
+                              <span slot="desc"><strong>Pay ${{Number(totalCost*tax).toFixed(2)}} USD</strong>, 14% service fee included. <br>Please Click on the <strong>Paypal</strong> button below to make payment.</span>
+                            </Alert>
+                       </Col>
+                       <Col span="24">
+                         <div class="mx-auto" ref="paypal"></div>
+                       </Col>
+                     </Row>
+                     <Row :gutter="32" v-else>
+                       <Col span="24">
+                        <Alert type="success" show-icon>
+                              Success
+                                <span slot="desc">Thank You <strong>{{currentUser.firstName}}</strong> for choosing to work with us! <br> We have received your <strong>${{Number(totalCost*tax).toFixed(2)}} USD</strong> payment. Click continue to submit your content order request.</span>
+                            </Alert>
+                       </Col>
+                     </Row>
+                   </Form>
+
                </div>
                <div class="card-footer">
-                   <Button type="primary" >Back</Button>
-                    <Button type="primary">Continue</Button>
+                   <Button type="primary">Back</Button>
+                    <Button type="primary" @click="next">Continue</Button>
                </div>
 
             </div>
@@ -157,7 +273,7 @@
                            <Col span="24">
                              <Input v-model="academicCoupon" placeholder="Enter Coupon">
                             
-                            <span  slot="append" style="cursor:pointer;" @click="applyAcCoupon">Apply Code</span>
+                            <span  slot="append" style="cursor:pointer;">Apply Code</span>
                         </Input>
                            </Col>
                        </Row>
@@ -165,8 +281,8 @@
                        <Row :gutter="32">
                            <Col span="24">
                             <Alert type="info" show-icon banner> 
-                          Total Price
-                         <span slot="desc"> <strong>$20.43 USD</strong></span>
+                          <strong>Total Cost</strong>
+                         <span slot="desc"> <strong>${{priceCost}} USD</strong></span>
                         </Alert>
                            </Col>
                        </Row>
@@ -182,28 +298,175 @@
 </template>
 
 <script>
+import Editor from '@tinymce/tinymce-vue';
+import {mapGetters} from 'vuex';
 export default {
 name:'employer-academic',
-data() {
+mounted(){
+  const script =document.createElement("script");
+    script.src="https://www.paypal.com/sdk/js?client-id=AXT-1yDXEmB4c8oK8MiFWnOYnTprWVaxoYrvux4otWnThYPiOFct4SIPf8kUl1lTXJUtOP1III8OzOzU";
+    script.addEventListener("load",this.setLoaded);
+    document.body.appendChild(script);
+  this.$router.push({ path:this.$route.path, query: { step: this.current+1 } }).catch((er)=>{})
+},
+created(){
+      this.token =window.Laravel.csrfToken
+      
+
+   },
+data:function(){
     return {
-      pages: 1
+     pages:1,
+     current:0,
+     academicCoupon:'',
+     category:'',
+     service:'',
+     edulevel:'',
+     topic:'',
+     urgency:'',
+     sources:1,
+     paperFormat:'',
+     language:'',
+     spacing:'',
+     totalCost:0,
+     tax:1.14,
+     upload:[],
+     paidFor:false,
+     token:{},
     };
+  },
+  components:{
+    editor:Editor,
   },
 
  
 
 methods: {
-    increment() {
-      this.pages++;
+    addPage:function() {
+      if(Math.sign(this.pages)==-1){
+        this.pages =this.pages*-1
+        this.pages++
+      }else{
+       this.pages++;
+      }
+      
+      
     },
-    decrement() {
+    removePage:function(){
       if (this.pages === 1) {
-        alert("Negative quantity not allowed");
+       this.warning("Number of pages cannot be Negavite!");
       } else {
         this.pages--;
       }
-    }
+    },
+
+    addSource:function(){
+      if(Math.sign(this.sources)==-1){
+        this.sources =this.sources*-1
+        this.sources++
+      }else{
+       this.sources++;
+      }
+    },
+    removeSource:function(){
+      if (this.sources === 1) {
+        this.warning("Sources cannot be less than 1");
+      } else {
+        this.sources--;
+      }
+    },
+   next(){
+     this.$router.push({ path:this.$route.path, query: { step: this.current+2 } })
+     if(this.current!=4){
+       this.current+=1
+     }
+    },
+
+    handleFormatError (file) {
+        this.$Notice.warning({
+        title: 'The file format is incorrect',
+        desc: 'File format of ' + file.name + ' is incorrect, please select pdf.'
+        });
+   },
+    handleSuccess (res, file) {
+      this.upload =res;
+    },
+    handleError(res,file){
+        console.log(file)
+        this.$Notice.warning({
+        title: 'The file format is incorrect',
+        desc: `${file.errors.file.length ? file.errors.file[0] : 'OOPS! Something went wrong!'}`
+        });
+    },
+
+    handleMaxSize (file) {
+        this.$Notice.warning({
+        title: 'Exceeding file size limit',
+        desc: 'File  ' + file.name + ' is too large, no more than 3M.'
+        });
+    },
+    setLoaded: function() {
+                          this.loaded = true;
+                          window.paypal
+                            .Buttons({
+                              createOrder: (data, actions) => {
+                                return actions.order.create({
+                                  purchase_units: [
+                                    {
+                                      description: 'Payment for Academic Content for; ' + this.service + ' As ' + this.category,
+                                      amount: {
+                                        currency_code: "USD",
+                                        value: Number(this.totalCost*this.tax).toFixed(2)
+                                      }
+                                    }
+                                  ]
+                                });
+                              },
+                              onApprove: async (data, actions) => {
+                                const order = await actions.order.capture();
+                                // this.data;
+                                this.paidFor = true;
+
+                                console.log(order);
+                              },
+                              onError: err => {
+                                console.log(err);
+                              }
+                            })
+                            .render(this.$refs.paypal);
+
+                    },
+    
   },
+
+ computed:{
+   ...mapGetters([
+     'academic_categories',
+     'academic_services',
+     'academic_languages',
+     'academic_edulevels',
+     'academic_paperformats',
+     'academic_services',
+     'academic_spacing',
+     'academic_urgency',
+     'currentUser'
+   ]),
+
+   priceCost:function(){
+      var price_per_page=11
+      var price_college=13
+      var price_undergraduate=15
+      var price_masters =20
+      this.totalCost =Number(this.pages*price_per_page).toFixed(2)
+
+      return this.totalCost
+      if(this.edulevel=="Undergraduate"){
+        return this.pages*price_undergraduate
+      }
+      
+     }
+   }
+ 
 
 
 }

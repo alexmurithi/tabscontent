@@ -43,3 +43,14 @@ Route::group(['middleware'=>'api','prefix'=>'content'],function(){
  Route::post('submit_order','Api\ContentController@submitContentOrder');
  Route::get('content_orders','Api\ContentController@getContentOrders');
 });
+
+Route::group(['middleware'=>'api','prefix'=>'academic'],function(){
+  Route::get('services','Api\AcademicController@services');
+  Route::get('categories','Api\AcademicController@categories');
+  Route::get('languages','Api\AcademicController@languages');
+  Route::get('paperformats','Api\AcademicController@paperformats');
+  Route::get('spacing','Api\AcademicController@spacing');
+  Route::get('urgency','Api\AcademicController@urgency');
+  Route::get('edulevels','Api\AcademicController@edulevels');
+  Route::post('file','Api\AcademicController@uploadFile');
+});

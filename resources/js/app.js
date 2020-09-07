@@ -8,16 +8,17 @@ window.Vue = require('vue');
 // import routes //
 import {router} from './router/router.js';
 import {store} from './store/store.js';
-import ViewUI from 'view-design';
-import Vue from 'vue'
 
+import Vue from 'vue'
+import ViewUI from 'view-design';
+import locale from 'view-design/dist/locale/en-US';
 import 'view-design/dist/styles/iview.css';
 import common from './common.js';
 import {initialize} from './helper/general.js';
 import Swal from 'vue-sweetalert2'
 initialize(store, router);
 Vue.use(Swal)
-Vue.use(ViewUI);
+Vue.use(ViewUI,{ locale });
 Vue.mixin(common);
 
 

@@ -21,7 +21,15 @@ export const store =new Vuex.Store({
     wordsCount:[],
     deliveryTime:[],
     contentPricing:[],
-    contentOrders:[]
+    contentOrders:[],
+
+    academic_categories:[],
+    academic_languages:[],
+    academic_paperformats:[],
+    academic_services:[],
+    academic_spacing:[],
+    academic_urgency:[],
+    academic_edulevels:[]
      
    },
    //GETTERS//
@@ -66,7 +74,33 @@ export const store =new Vuex.Store({
     },
     contentOrders:state=>{
       return state.contentOrders
+    },
+
+    //ACADEMIC//
+
+    academic_categories:state=>{
+      return state.academic_categories
+    },
+    academic_languages:state=>{
+      return state.academic_languages
+    },
+    academic_paperformats:state=>{
+      return state.academic_paperformats
+    },
+    academic_services:state=>{
+      return state.academic_services
+    },
+    academic_spacing:state=>{
+      return state.academic_spacing
+    },
+    academic_urgency:state=>{
+      return state.academic_urgency
+    },
+
+    academic_edulevels:state=>{
+      return state.academic_edulevels
     }
+
   
    },
 
@@ -128,6 +162,29 @@ export const store =new Vuex.Store({
     
     contentOrders:(state,payload)=>{
       state.contentOrders =payload.data
+    },
+
+    //ACADEMIC//
+    academicCategories:(state,payload)=>{
+      state.academic_categories =payload
+    },
+    academicServices:(state,payload)=>{
+      state.academic_services =payload
+    },
+    academicLanguages:(state,payload)=>{
+      state.academic_languages =payload
+    },
+    academicPaperformats:(state,payload)=>{
+      state.academic_paperformats =payload
+    },
+    academicSpacing:(state,payload)=>{
+      state.academic_spacing=payload
+    },
+    academicUrgency:(state,payload)=>{
+      state.academic_urgency=payload
+    },
+    academicEdulevels:(state,payload)=>{
+      state.academic_edulevels=payload
     }
 
    },
@@ -222,7 +279,86 @@ export const store =new Vuex.Store({
         }).catch((err)=>{
           console.log("contentOrders err: "+err)
         })
-    }
+    },
+
+    //ACADEMIC//
+    academicServices:({commit})=>{
+       axios.get('/api/academic/services')
+         .then((res)=>{
+           if(res.status==200){
+             commit('academicServices',res.data)
+           }
+         }).catch((err)=>{
+           console.log("Academic Services "+err)
+         })
+    },
+
+    academicCategories:({commit})=>{
+      axios.get('/api/academic/categories')
+        .then((res)=>{
+          if(res.status==200){
+            commit('academicCategories',res.data)
+          }
+        }).catch((err)=>{
+          console.log("Academic Categories "+err)
+        })
+   },
+
+   academicLanguages:({commit})=>{
+    axios.get('/api/academic/languages')
+      .then((res)=>{
+        if(res.status==200){
+          commit('academicLanguages',res.data)
+        }
+      }).catch((err)=>{
+        console.log("Academic Languages "+err)
+      })
+ },
+
+ academicPaperformats:({commit})=>{
+  axios.get('/api/academic/paperformats')
+    .then((res)=>{
+      if(res.status==200){
+        commit('academicPaperformats',res.data)
+      }
+    }).catch((err)=>{
+      console.log("Academic Paperformats "+err)
+    })
+},
+
+academicSpacing:({commit})=>{
+  axios.get('/api/academic/spacing')
+    .then((res)=>{
+      if(res.status==200){
+        commit('academicSpacing',res.data)
+      }
+    }).catch((err)=>{
+      console.log("Academic Spacing "+err)
+    })
+},
+
+academicUrgency:({commit})=>{
+  axios.get('/api/academic/urgency')
+    .then((res)=>{
+      if(res.status==200){
+        commit('academicUrgency',res.data)
+      }
+    }).catch((err)=>{
+      console.log("Academic Urgency "+err)
+    })
+},
+
+academicEdulevels:({commit})=>{
+  axios.get('/api/academic/edulevels')
+    .then((res)=>{
+      if(res.status==200){
+        commit('academicEdulevels',res.data)
+      }
+    }).catch((err)=>{
+      console.log("Academic Edulevels "+err)
+    })
+},
+
    
    }
 });
