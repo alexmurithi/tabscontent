@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentPricesTable extends Migration
+class AddOddsColumnToAcademicEdulevels extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateContentPricesTable extends Migration
      */
     public function up()
     {
-        Schema::create('content_prices', function (Blueprint $table) {
-            $table->id();
-            $table->string('amount_of_words');
-            $table->string('delivery_time');
-            $table->float('price');
-            $table->timestamps();
+        Schema::table('academic_edulevels', function (Blueprint $table) {
+            $table->decimal('odds',3,2);
         });
     }
 
@@ -29,6 +25,8 @@ class CreateContentPricesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content_prices');
+        Schema::table('academic_edulevels', function (Blueprint $table) {
+            $table->dropColumn('odds');
+        });
     }
 }

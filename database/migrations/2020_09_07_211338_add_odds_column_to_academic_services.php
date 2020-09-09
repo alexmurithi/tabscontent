@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAcademicLanguagesTable extends Migration
+class AddOddsColumnToAcademicServices extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateAcademicLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('academic_languages', function (Blueprint $table) {
-            $table->id();
-            $table->string('language');
-            $table->timestamps();
+        Schema::table('academic_services', function (Blueprint $table) {
+            $table->decimal('odds',3,2);
         });
     }
 
@@ -27,6 +25,8 @@ class CreateAcademicLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_languages');
+        Schema::table('academic_services', function (Blueprint $table) {
+            $table->dropColumn('odds');
+        });
     }
 }

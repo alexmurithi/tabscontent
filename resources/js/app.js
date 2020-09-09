@@ -20,6 +20,7 @@ initialize(store, router);
 Vue.use(Swal)
 Vue.use(ViewUI,{ locale });
 Vue.mixin(common);
+Vue.config.productionTip = false
 
 
 router.beforeEach((to, from, next) => {
@@ -30,6 +31,8 @@ router.beforeEach((to, from, next) => {
 router.afterEach(route => {
   ViewUI.LoadingBar.finish();
 });
+
+
 
 
 

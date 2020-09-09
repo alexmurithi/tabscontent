@@ -152,7 +152,7 @@
           </div>
         </div>
       </section>     
-      <!-- <section class="customer-feedback" id="feedback-section">
+      <section class="customer-feedback" id="feedback-section">
         <div class="row">
           <div class="col-12 text-center pb-5">
             <h2>What our customers have to say</h2>
@@ -260,7 +260,7 @@
               </div>
           </div>
         </div>
-      </section> -->
+      </section>
       <section class="contact-us" id="contact-section">
         <div class="contact-us-bgimage grid-margin" >
           <div class="pb-4">
@@ -354,5 +354,5 @@ export default {
 </script>
 
 <style scoped>
-
+   
 </style>

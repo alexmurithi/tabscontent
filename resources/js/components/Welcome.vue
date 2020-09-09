@@ -23,6 +23,6 @@ export default {
 }
 </script>
 
-<style scoped>
- 
+<style scoped lang="scss">
+   @import '/assets/css/style.min.css';
 </style>

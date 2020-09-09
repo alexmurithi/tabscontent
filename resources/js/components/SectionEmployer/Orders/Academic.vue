@@ -30,7 +30,7 @@
                             <FormItem label="Service" label-position="top">
                                 
                                <Select v-model="service" placeholder="Select Service" filterable>
-                                 <Option :value="service.name" v-for="(service,index) in academic_services" :key="index">
+                                 <Option :value="service" v-for="(service,index) in academic_services" :key="index">
                                     {{service.name}}
                                  </Option>
                                 
@@ -43,7 +43,7 @@
                             <FormItem label="Category" label-position="top">
                                 
                                <Select v-model="category" placeholder="Select Category" filterable>
-                                 <Option v-for="(category,index) in academic_categories" :key="index" :value="category.category">{{category.category}}</Option>
+                                 <Option v-for="(category,index) in academic_categories" :key="index" :value="category">{{category.category}}</Option>
                                  
                                </Select>
 
@@ -59,7 +59,8 @@
                                  <Option 
                                  v-for="(edulevel,index) in academic_edulevels"
                                  :key="index"
-                                  :value="edulevel.edulevel">
+                                  :value="edulevel">
+                                  {{edulevel.edulevel}}
                                   </Option>
                                 
                                </Select>
@@ -69,7 +70,7 @@
 
                         <Col :xs="24" :sm="24" :md="12" :lg="12">
                           <FormItem label="No. of Pages" label-position="top"> 
-                              <Input v-model="pages" type="number" min="0">
+                              <Input v-model="pages" type="number" min="0" @input="inputPages">
                                 <span slot="prepend" @click="removePage" style="cursor:pointer"><Icon type="md-remove-circle" /></span>
                                 <span slot="append" @click="addPage" style="cursor:pointer"><Icon type="ios-add-circle" /></span>
                               </Input>
@@ -87,7 +88,7 @@
                                  <Option
                                   v-for="(urgency,index) in academic_urgency"
                                   :key="index"
-                                  :value="urgency.urgency"
+                                  :value="urgency"
                                   >
                                   {{urgency.urgency}}
                                   </Option>
@@ -130,7 +131,7 @@
                                  <Option
                                   v-for="(spacing,index) in academic_spacing"
                                   :key="index"
-                                  :value="spacing.spacing"
+                                  :value="spacing"
                                  >
                                  {{spacing.spacing}}
                                  </Option>
@@ -256,8 +257,8 @@
 
                </div>
                <div class="card-footer">
-                   <Button type="primary">Back</Button>
-                    <Button type="primary" @click="next">Continue</Button>
+                   <Button type="primary" @click="previous" v-show="!current==0">Back</Button>
+                    <Button type="primary" @click="next" :disabled="nextDisabled()">Continue</Button>
                </div>
 
             </div>
@@ -278,11 +279,20 @@
                            </Col>
                        </Row>
                         <br>
-                       <Row :gutter="32">
+                       <Row :gutter="32" v-show="current<=2">
                            <Col span="24">
                             <Alert type="info" show-icon banner> 
                           <strong>Total Cost</strong>
                          <span slot="desc"> <strong>${{priceCost}} USD</strong></span>
+                        </Alert>
+                           </Col>
+                       </Row>
+
+                       <Row :gutter="32" v-show="current==3">
+                           <Col span="24">
+                            <Alert type="info" show-icon banner> 
+                          <strong>Total Cost</strong><span>, 14% service fee included.</span>
+                         <span slot="desc"> <strong>${{Number.parseFloat(totalCost*tax).toFixed(2)}} USD</strong></span>
                         </Alert>
                            </Col>
                        </Row>
@@ -333,25 +343,63 @@ data:function(){
      upload:[],
      paidFor:false,
      token:{},
+     isNextDisabled:false,
+     
     };
   },
+  
   components:{
     editor:Editor,
+  },
+
+  watch:{
+    pages:function(newVal,oldVal){
+      //converts -negative values to positive//
+      if(Math.sign(newVal)==-1){
+        this.pages =newVal*-1
+        // if the number of pages is not defined, sets the value of pages to 1//
+      }else if(!this.pages){
+        this.pages +=1
+      }
+      // removes any dots//
+      else{
+       var d =this.pages
+       var s = d + ''
+       s =s.replace('.', '');
+       s = parseInt(s);
+       this.pages =s
+      }
+      
+    },
+
+    sources:function(newVal,oldVal){
+      //converts -negative values to positive//
+      if(Math.sign(newVal)==-1){
+        this.sources =newVal*-1
+        // if the number of pages is not defined, sets the value of pages to 1//
+      }else if(!this.sources){
+        this.sources +=1
+      }
+      // removes any dots//
+      else{
+       var d =this.sources
+       var s = d + ''
+       s =s.replace('.', '');
+       s = parseInt(s);
+       this.sources =s
+      }
+    }
   },
 
  
 
 methods: {
     addPage:function() {
-      if(Math.sign(this.pages)==-1){
-        this.pages =this.pages*-1
-        this.pages++
-      }else{
-       this.pages++;
-      }
-      
-      
+      this.pages++     
     },
+
+  
+    
     removePage:function(){
       if (this.pages === 1) {
        this.warning("Number of pages cannot be Negavite!");
@@ -380,6 +428,23 @@ methods: {
      if(this.current!=4){
        this.current+=1
      }
+    },
+
+    nextDisabled(){
+      if(this.current==0){
+        if(!this.service || !this.category || !this.edulevel || !this.urgency || !this.spacing || this.totalCost<=0 || !this.language || !this.paperFormat){
+         return  this.isNextDisabled=true
+        }else{
+         return  this.isNextDisabled=false
+        }
+      }
+    },
+
+    previous(){
+      this.$router.push({ path:this.$route.path, query: { step: this.current} })
+      if(this.current !=0){
+         this.current-=1;
+      }
     },
 
     handleFormatError (file) {
@@ -452,17 +517,32 @@ methods: {
      'currentUser'
    ]),
 
-   priceCost:function(){
-      var price_per_page=11
-      var price_college=13
-      var price_undergraduate=15
-      var price_masters =20
-      this.totalCost =Number(this.pages*price_per_page).toFixed(2)
 
-      return this.totalCost
-      if(this.edulevel=="Undergraduate"){
-        return this.pages*price_undergraduate
-      }
+   priceCost:function(){
+     let price_perpage =9.9
+     if(this.service && this.category && this.edulevel && this.urgency && this.spacing){
+       let service_odds =this.service.odds
+       let category_odds =this.category.odds
+       let edulevel_odds =this.edulevel.odds
+       let urgency_odds =this.urgency.odds
+       let spacing_odds =this.spacing.odds
+       let total_odds =parseFloat(service_odds)
+       +parseFloat(category_odds)
+        +parseFloat(edulevel_odds)
+         +parseFloat(urgency_odds) +parseFloat(spacing_odds)
+       this.totalCost=Number(price_perpage*this.pages*total_odds).toFixed(2)
+       return this.totalCost
+        
+     }else if(!this.pages){
+       this.totalCost =Number(0).toFixed(2)
+       return this.totalCost
+     }
+     else{
+       this.totalCost=Number.parseFloat(price_perpage*this.pages).toFixed(2)
+     return this.totalCost
+     }
+    
+      
       
      }
    }
