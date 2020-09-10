@@ -6,176 +6,69 @@
     </div>
 
     <div class="row">
-        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-9">
-            <div class="card shadow mb-4">
-               <div class="card-header py-3" id="orderAcademicCard">
-                 <Row type="flex">
-                  <Steps :current="current">
-                      <Step title="Paper details"></Step>
+       <div class="col">
+         <div style="background:#eee;padding: 20px">
+            <Card :bordered="false">
+                <div slot="title">
+                   <Steps :current="current">
+                      <Step title="Paper Details"></Step>
                       <Step title="Instructions"></Step>
                       <Step title="Upload file"></Step>
                       <Step title="Payment"></Step>
-                      <Step title="Finish"></Step>
-                  </Steps>
-                  </Row>
-               </div>
+                   </Steps>
+                </div>
 
-               <div class="card-body">
-                   <Form @submit.prevent="">
-                      <Row :gutter="32">
-                          <Col :xs="24" :sm="24" :md="12" :lg="12">
-                            <FormItem label="Service" label-position="top">
-                                
-                               <Select v-model="service" placeholder="Select Service">
-                                 <Option>
-                                     Essay
-                                 </Option>
-                                 <Option>
-                                     Book Review
-                                 </Option>
-                               </Select>
+              
+                  <Row :gutter="32">
+                  <Form>
+                      <Col :xs="24" :sm="24" :md="12" :lg="9">
+                        <FormItem label="Type of Paper" lable-position="top">
+                        <Select size="large">
+                          <Option>Addmission Essay</Option>
+                        </Select>
+                        </FormItem>
+                      </Col>
 
-                             </FormItem>
-                          </Col>
-                          <Col :xs="24" :sm="24" :md="12" :lg="12">
-                            <FormItem label="Category" label-position="top">
-                                
-                               <Select v-model="category" placeholder="Select Category">
-                                 <Option>Engineering</Option>
-                                 <Option>Medical</Option>
-                               </Select>
+                      <Col :xs="24" :sm="24" :md="12" :lg="9">
+                        <FormItem label="Category" lable-position="top">
+                        <Select size="large">
+                          <Option>Accounting</Option>
+                        </Select>
+                        </FormItem>
+                      </Col>
 
-                             </FormItem>
-                          </Col>
-                      </Row>
-
-                      <Row :gutter="32">
-                        <Col :xs="24" :sm="24" :md="12" :lg="12">
-                          <FormItem label="Education Level" label-position="top">
-                                
-                               <Select v-model="edulevel" placeholder="Select Education Level">
-                                 <Option>Undergraduate</Option>
-                                 <Option>Master</Option>
-                                 <Option>Phd</Option>
-                               </Select>
-
-                             </FormItem>
-                        </Col>
-
-                        <Col :xs="24" :sm="24" :md="12" :lg="12">
-                          <FormItem label="No. of Pages" label-position="top"> 
-                              <Input v-model="pages">
-                                <span slot="prepend" @click="decrement()"><Icon type="md-remove-circle" /></span>
-                                <span slot="append" @click="increment()"><Icon type="ios-add-circle" /></span>
-                              </Input>
-                          </FormItem> 
-                        </Col>
-
-                      </Row>
-                       
-                      <Row :gutter="32">
-                          <Col span="24">
-                            <FormItem label="Topic" label-position="top">
-                              <Input placeholder="Your Topic" v-model="topic"/>
-                           </FormItem>
-                          </Col>
-                      </Row>
-
-                      <Row :gutter="32">
-                          <Col span="12">
-                            <FormItem label="Urgency" label-position="top">
-                              <Select v-model="urgency" placeholder="Select     Urgency">
-                                 <Option>12 hours</Option>
-                                 <Option>4 days</Option>
-                                 <Option>7 days</Option>
-                               </Select>
-                           </FormItem>
-                          </Col>
-
-                        <Col span="12">
-                          <FormItem label="Sources" label-position="top">
-                              <Input v-model="sources">
-                                 <span slot="prepend" style="cursor:pointer" @click="minusSource"><Icon type="md-remove" /></span>
-                                <span slot="append" style="cursor:pointer" @click="addSource"><Icon type="md-add-circle" /></span>
-                              </Input>
-                          </FormItem>
-                        </Col>
-
-                      </Row>
-                      
-
-                      <Row :gutter="32">
-                          <Col span="8">
-                            <FormItem label="Paper Format" label-position="top">
-                              <Select v-model="paperFormat" placeholder="Select     Paper Format">
-                                 <Option>APA</Option>
-                                 <Option>Chicago</Option>
-                                 <Option>MLA</Option>
-                               </Select>
-                           </FormItem>
-                          </Col>
-
-                        <Col span="8">
-                          <FormItem label="Spacing" label-position="top">
-                              <Select v-model="spacing" placeholder="Select     Spacing">
-                                 <Option>Double Space</Option>
-                                 <Option>Single Space</Option>
-                                 
-                               </Select>
-                           </FormItem>
-                        </Col>
-
-                         <Col span="8">
-                          <FormItem label="Language" label-position="top">
-                              <Select v-model="language" placeholder="Select     Language">
-                                 <Option>English(US)</Option>
-                                 <Option>English(Uk)</Option>
-                                 
-                               </Select>
-                           </FormItem>
-                        </Col>
-
-                      </Row>
-
-                   </Form>
-               </div>
-               <div class="card-footer">
-                   <Button type="primary" >Back</Button>
-                    <Button type="primary">Continue</Button>
-               </div>
-
-            </div>
-        </div>
-        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-3">
-            <Row :gutter="32">
-              <div class="card shadow">
-                   <div class="card-header py-3">
-                       <strong>PRICING</strong>
-                   </div>
-                   <div class="card-body">
-                       <Row :gutter="32">
-                           <Col span="24">
-                             <Input v-model="academicCoupon" placeholder="Enter Coupon">
-                            
-                            <span  slot="append" style="cursor:pointer;" @click="applyAcCoupon">Apply Code</span>
+                      <Col :xs="24" :sm="24" :md="24" :lg="6">
+                       <FormItem :label="'Pages:'+ ' '+  words*pages + ' '+ ' Words'" lable-position="top">
+                        <Input size="large" type="number" number v-model="pages">
+                           <span slot="prepend"><Icon type="md-remove" /></span>
+                          <span slot="append"><Icon type="md-add" /></span>
                         </Input>
-                           </Col>
-                       </Row>
-                        <br>
-                       <Row :gutter="32">
-                           <Col span="24">
-                            <Alert type="info" show-icon banner> 
-                          Total Price
-                         <span slot="desc"> <strong>$20.43 USD</strong></span>
-                        </Alert>
-                           </Col>
-                       </Row>
-                       
-                        
-                   </div>
-              </div>
-            </Row>
-        </div>
+                        </FormItem>
+                      </Col>
+
+                  </Form>
+                  </Row>
+
+                  <Row :gutter="32">
+                    <Col span="24">
+                      <Tabs type="card">
+                        <TabPane label="HighSchool">
+                          <Col :sm="24" :lg="8">
+                            
+                          </Col>
+                        </TabPane>
+                        <TabPane label="Undergraduate(yrs 1-2)">标签二的内容</TabPane>
+                        <TabPane label="Undergraduate(yrs 3-4)">标签三的内容</TabPane>
+                        <TabPane label="Masters">标签三的内容</TabPane>
+                        <TabPane label="PhD">标签三的内容</TabPane>
+                      </Tabs>
+                    </Col>
+                  </Row>
+                
+
+            </Card>
+         </div>
+       </div>
     </div>
 
  </div>
@@ -186,7 +79,9 @@ export default {
 name:'employer-academic',
 data() {
     return {
-      pages: 1
+      pages: 1,
+      words:275,
+      
     };
   },
 
