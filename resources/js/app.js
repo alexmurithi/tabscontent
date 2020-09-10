@@ -11,8 +11,9 @@ import {store} from './store/store.js';
 
 import Vue from 'vue'
 import ViewUI from 'view-design';
-import locale from 'view-design/dist/locale/en-US';
+
 import 'view-design/dist/styles/iview.css';
+import locale from 'view-design/dist/locale/en-US';
 import common from './common.js';
 import {initialize} from './helper/general.js';
 import Swal from 'vue-sweetalert2'

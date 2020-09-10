@@ -9,7 +9,7 @@ import Admin from '../components/Admin.vue';
 
 import EmployerPageContent from '../components/SectionEmployer/EmployerPageContent.vue';
 import EmployerContentOrder from '../components/SectionEmployer/Orders/Content.vue';
-import EmployerAcademicOrder from '../components/SectionEmployer/Orders/Academic.vue';
+
 
 import Authentication from '../components/Authentication.vue';
 import Login from '../components/Auth/login.vue';
@@ -75,10 +75,7 @@ export const router =new VueRouter({
           component:EmployerContentOrder,
           
         },
-        {
-           path:'make-order/academic',
-           component:EmployerAcademicOrder,
-        },
+       
         
        
        ]
