@@ -15,6 +15,8 @@ import Authentication from '../components/Authentication.vue';
 import Login from '../components/Auth/login.vue';
 import Signup from '../components/Auth/Signup.vue';
 
+import MyContentOrders from '../components/SectionEmployer/Orders/MyContentOrders.vue'
+
 import AdminDashBoard from '../components/SectionAdmin/PageContent.vue';
 import AdminContentOrders from '../components/SectionAdmin/Orders/Content.vue';
 import NotFound from '../components/NotFound.vue';
@@ -75,6 +77,12 @@ export const router =new VueRouter({
           component:EmployerContentOrder,
           
         },
+
+        {
+          path:':id/my-orders',
+          name:'my-orders',
+          component:MyContentOrders
+        }
        
         
        

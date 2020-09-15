@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Upload;
 use App\ContentOrder;
+use App\Content_LevelA_Price;
 
 class ContentController extends Controller
+
 {
+  
+
     public function uploadFiles(Request $request){
       $this->validate($request,[
         'file'=>'required|mimes:jpeg,jpg,pdf,png,docx'
@@ -28,17 +32,21 @@ class ContentController extends Controller
       }
     }
     public function submitContentOrder(Request $request){
+      
+       $latestOrder =ContentOrder::orderBy('created_at','DESC')->first();
 
       $request_order = ContentOrder::create([
         'content_type'=>$request->contentType,
         'workflow_type'=>$request->workflowType,
         'language'=>$request->language,
         'amount_of_words'=>$request->words,
-        'urgency'=>$request->deliveryTime,
+        'urgency'=>$request->deadline,
         'amount_paid'=>$request->amountPaid,
         'instructions'=>$request->instructions,
         'upload_id'=>$request->upload_id,
         'user_id'=>$request->user_id,
+        // 'order_id' => '#'.str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT),
+        'order_id'=>'#ORDR'.'_'.$request->user_id.'_'.str_pad($latestOrder->id+1,3,"0",STR_PAD_LEFT),
 
       ]);
 
@@ -54,5 +62,15 @@ class ContentController extends Controller
     public function getContentOrders(){
        $content_orders =ContentOrder::orderBy('id','DESC')->with('user','upload')->get();
        return response()->json($content_orders); 
+    }
+
+    public function getLevelAPrices(){
+      $prices =Content_LevelA_Price::orderBy('id','ASC')->get();
+      return response()->json($prices);
+    }
+
+    public function getUserOrders($id){
+      $user_orders =ContentOrder::where('user_id',$id)->orderBy('created_at','DESC')->get();
+      return response()->json($user_orders);
     }
 }

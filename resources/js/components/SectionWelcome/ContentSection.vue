@@ -1,350 +1,430 @@
 <template>
-  <div class="content-wrapper">
-    <div class="container">
-      <section class="features-overview" id="features-section" >
-        <div class="content-header">
-          <h2>How does it works</h2>
-          <h6 class="section-subtitle text-muted">One theme that serves as an easy-to-use operational toolkit<br>that meets customer's needs.</h6>
-        </div>
-        <div class="d-md-flex justify-content-between">
-          <div class="grid-margin d-flex justify-content-start">
-            <div class="features-width">
-              <img src="images/Group12.svg" alt="" class="img-icons">
-              <h5 class="py-3">Speed<br>Optimisation</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>  
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-center">
-            <div class="features-width">
-              <img src="images/Group7.svg" alt="" class="img-icons">
-              <h5 class="py-3">SEO and<br>Backlinks</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-end">
-            <div class="features-width">
-              <img src="images/Group5.svg" alt="" class="img-icons">
-              <h5 class="py-3">Content<br>Marketing</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
-          </div>
-        </div>
-      </section>     
-      <section class="digital-marketing-service" id="digital-marketing-section">
-        <div class="row align-items-center">
-          <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
-            <h3 class="m-0">We Offer a Full Range<br>of Digital Marketing Services!</h3>
-            <div class="col-lg-7 col-xl-6 p-0">
-              <p class="py-4 m-0 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <p class="font-weight-medium text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer</p>
-            </div>    
-          </div>
-          <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-            <img src="images/Group1.png" alt="" class="img-fluid">
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
-            <img src="images/Group2.png" alt="" class="img-fluid">
-          </div>
-          <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
-            <h3 class="m-0">Leading Digital Agency<br>for  Business Solution.</h3>
-            <div class="col-lg-9 col-xl-8 p-0">
-              <p class="py-4 m-0 text-muted">Power-packed with impressive features and well-optimized, this template is designed to provide the best performance in all circumstances.</p>
-              <p class="pb-2 font-weight-medium text-muted">Its smart features make it a powerful stand-alone website building tool.</p>
-            </div>
-            <button class="btn btn-info">Readmore</button>
-          </div>
-        </div>
-      </section>     
-      <section class="case-studies" id="case-studies-section">
-        <div class="row grid-margin">
-          <div class="col-12 text-center pb-5">
-            <h2>Our case studies</h2>
-            <h6 class="section-subtitle text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum.</h6>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card mb-3 mb-lg-0" data-aos="zoom-in">
-            <div class="card color-cards">
-              <div class="card-body p-0">
-                <div class="bg-primary text-center card-contents">
-                  <div class="card-image">
-                    <img src="images/Group95.svg" class="case-studies-card-img" alt="">
-                  </div>  
-                  <div class="card-desc-box d-flex align-items-center justify-content-around">
-                    <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Online marketing</h6>
-                      <button class="btn btn-white">Read More</button>
-                    </div>
-                  </div>
-                </div>   
-                <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Online Marketing</h6>
-                    <p>Seo, Marketing</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="card color-cards">
-              <div class="card-body p-0">
-                <div class="bg-warning text-center card-contents">
-                  <div class="card-image">
-                      <img src="images/Group108.svg" class="case-studies-card-img" alt="">
-                  </div>  
-                  <div class="card-desc-box d-flex align-items-center justify-content-around">
-                    <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Web Development</h6>
-                      <button class="btn btn-white">Read More</button>
-                    </div>
-                  </div>
-                </div>   
-                <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Web Development</h6>
-                    <p>Developing, Designing</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
-            <div class="card color-cards">
-              <div class="card-body p-0">
-                <div class="bg-violet text-center card-contents">
-                  <div class="card-image">
-                      <img src="images/Group126.svg" class="case-studies-card-img" alt="">
-                  </div>  
-                  <div class="card-desc-box d-flex align-items-center justify-content-around">
-                    <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Web Designing</h6>
-                      <button class="btn btn-white">Read More</button>
-                    </div>
-                  </div>
-                </div>   
-                <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Web Designing</h6>
-                    <p>Designing, Developing</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 stretch-card" data-aos="zoom-in" data-aos-delay="600">
-            <div class="card color-cards">
-              <div class="card-body p-0">
-                <div class="bg-success text-center card-contents">
-                  <div class="card-image">
-                      <img src="images/Group115.svg" class="case-studies-card-img" alt="">
-                  </div>  
-                  <div class="card-desc-box d-flex align-items-center justify-content-around">
-                    <div>
-                      <h6 class="text-white pb-2 px-3">Know more about Software Development</h6>
-                      <button class="btn btn-white">Read More</button>
-                    </div>
-                  </div>
-                </div>   
-                <div class="card-details text-center pt-4">
-                    <h6 class="m-0 pb-1">Software Development</h6>
-                    <p>Developing, Designing</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>     
-      <section class="customer-feedback" id="feedback-section">
-        <div class="row">
-          <div class="col-12 text-center pb-5">
-            <h2>What our customers have to say</h2>
-            <h6 class="section-subtitle text-muted m-0">Lorem ipsum dolor sit amet, tincidunt vestibulum.</h6>
-          </div>
-          <div class="owl-carousel owl-theme grid-margin">
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face2.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Tony Martinez</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face3.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Sophia Armstrong</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face20.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face15.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face16.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face1.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Tony Martinez</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face2.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Tony Martinez</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face3.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Sophia Armstrong</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="card customer-cards">
-                <div class="card-body">
-                  <div class="text-center">
-                    <img src="images/face20.jpg" width="89" height="89" alt="" class="img-customer">
-                    <p class="m-0 py-3 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-                    <div class="content-divider m-auto"></div>
-                    <h6 class="card-title pt-3">Cody Lambert</h6>
-                    <h6 class="customer-designation text-muted m-0">Marketing Manager</h6>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-      </section>
-      <section class="contact-us" id="contact-section">
-        <div class="contact-us-bgimage grid-margin" >
-          <div class="pb-4">
-            <h4 class="px-3 px-md-0 m-0" data-aos="fade-down">Do you have any projects?</h4>
-            <h4 class="pt-1" data-aos="fade-down">Contact us</h4>
-          </div>
-          <div data-aos="fade-up">
-            <button class="btn btn-rounded btn-outline-danger">Contact us</button>
-          </div>          
-        </div>
-      </section>
-      <section class="contact-details" id="contact-details-section">
-        <div class="row text-center text-md-left">
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
-            <img src="images/Group2.svg" alt="" class="pb-2">
-            <div class="pt-2">
-              <p class="text-muted m-0">mikayla_beer@feil.name</p>
-              <p class="text-muted m-0">906-179-8309</p>
-            </div>         
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
-            <h5 class="pb-2">Get in Touch</h5>
-            <p class="text-muted">Don’t miss any updates of our new templates and extensions.!</p>
-            <form>
-              <input type="text" class="form-control" id="Email" placeholder="Email id">
-            </form>
-            <div class="pt-3">
-              <button class="btn btn-dark">Subscribe</button>
-            </div>   
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
-            <h5 class="pb-2">Our Guidelines</h5>
-            <a href="#"><p class="m-0 pb-2">Terms</p></a>   
-            <a href="#" ><p class="m-0 pt-1 pb-2">Privacy policy</p></a> 
-            <a href="#"><p class="m-0 pt-1 pb-2">Cookie Policy</p></a> 
-            <a href="#"><p class="m-0 pt-1">Discover</p></a> 
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 grid-margin">
-              <h5 class="pb-2">Our address</h5>
-              <p class="text-muted">518 Schmeler Neck<br>Bartlett. Illinois</p>
-              <div class="d-flex justify-content-center justify-content-md-start">
-                <a href="#"><span class="mdi mdi-facebook"></span></a>
-                <a href="#"><span class="mdi mdi-twitter"></span></a>
-                <a href="#"><span class="mdi mdi-instagram"></span></a>
-                <a href="#"><span class="mdi mdi-linkedin"></span></a>
-              </div>
-          </div>
-        </div>  
-      </section>
-      <footer class="border-top">
-        <p class="text-center text-muted pt-4">Copyright © 2019<a href="https://www.bootstrapdash.com/" class="px-1">Bootstrapdash.</a>All rights reserved.</p>
-      </footer>
-      <!-- Modal for Contact - us Button -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Contact Us</h4>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="Name">Name</label>
-                  <input type="text" class="form-control" id="Name" placeholder="Name">
-                </div>
-                <div class="form-group">
-                  <label for="Email">Email</label>
-                  <input type="email" class="form-control" id="Email-1" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <label for="Message">Message</label>
-                  <textarea class="form-control" id="Message" placeholder="Enter your Message"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-success">Submit</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> 
-  </div>
+  <div class="page-body-wrapper">
+			<section id="home" class="home">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="main-banner">
+								<div class="d-sm-flex justify-content-between">
+									<div data-aos="zoom-in-up">
+										<div class="banner-title">
+												<h3 class="font-weight-medium">In need of Custom content? Worry no More!
+											</h3>
+										</div>
+										<p class="mt-3">We provide any custom content for your website, artilces, Blog Posts and many more. 
+
+											<br>
+											Our prices are friendly and affordable!
+										</p>
+										<a href="#" class="btn btn-secondary mt-3">Order Content Now!</a>
+									</div>
+									<div class="mt-5 mt-lg-0">
+										<img src="images/group.png" alt="marsmello" class="img-fluid" data-aos="zoom-in-up">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="our-services" id="services">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							
+							<h3 class="font-weight-medium text-dark mb-5">Our Services</h3>
+						</div>
+					</div>
+					<div class="row" data-aos="fade-up">
+						<div class="col-sm-4 text-center text-lg-left">
+							<div class="services-box" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+								<img src="images/integrated-marketing.svg" alt="integrated-marketing" data-aos="zoom-in">
+								<h6 class="text-dark mb-3 mt-4 font-weight-medium">Article Writing
+								</h6>
+								<p>Lorem ipsum dolor sit amet, 
+									pretium pretium tempor.Lorem ipsum 
+								</p>
+							</div>
+						</div>
+						<div class="col-sm-4 text-center text-lg-left">
+							<div class="services-box"   data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+								<img src="images/design-development.svg" alt="design-development" data-aos="zoom-in">
+								<h6 class="text-dark mb-3 mt-4 font-weight-medium">
+									WordPress Managenemnt
+								</h6>
+								<p>Lorem ipsum dolor sit amet, 
+									pretium pretium tempor.Lorem ipsum 
+								</p>
+							</div>
+						</div>
+						<div class="col-sm-4 text-center text-lg-left">
+							<div class="services-box" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+								<img src="images/digital-strategy.svg" alt="digital-strategy" data-aos="zoom-in">
+								<h6 class="text-dark mb-3 mt-4 font-weight-medium">Blog Posts
+								</h6>
+								<p>Lorem ipsum dolor sit amet, 
+									pretium pretium tempor.Lorem ipsum 
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="row" data-aos="fade-up">
+						<div class="col-sm-4 text-center text-lg-left">
+							<div class="services-box  pb-lg-0" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+								<img src="images/digital-marketing.svg" alt="digital-marketing" data-aos="zoom-in">
+								<h6 class="text-dark mb-3 mt-4 font-weight-medium">Article-Writing
+								</h6>
+								<p>Lorem ipsum dolor sit amet, 
+									pretium pretium tempor.Lorem ipsum 
+								</p>
+							</div>
+						</div>
+						<div class="col-sm-4 text-center text-lg-left">
+							<div class="services-box pb-lg-0" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+								<img src="images/growth-strategy.svg" alt="growth-strategy" data-aos="zoom-in">
+								<h6 class="text-dark mb-3 mt-4 font-weight-medium">
+									Proofreading
+								</h6>
+								<p>Lorem ipsum dolor sit amet, 
+									pretium pretium tempor.Lorem ipsum 
+								</p>
+							</div>
+						</div>
+						<div class="col-sm-4 text-center text-lg-left">
+							<div class="services-box pb-0" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+								<img src="images/saving-strategy.svg" alt="saving-strategy" data-aos="zoom-in">
+								<h6 class="text-dark mb-3 mt-4 font-weight-medium">Data Entry
+								</h6>
+								<p>Lorem ipsum dolor sit amet, 
+									pretium pretium tempor.Lorem ipsum 
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="our-process" id="about">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-6 my-4" data-aos="fade-up">
+							<h5 class="text-dark">Our work process</h5>
+							<h3 class="font-weight-medium text-dark">Discover New Idea With Us!</h3>
+							<h5 class="text-dark mb-3">Imagination will take us everywhere</h5>
+							<p class="font-weight-medium mb-4">Lorem ipsum dolor sit amet, <br> 
+								pretium pretium tempor.Lorem ipsum dolor sit amet, consectetur
+							</p>
+							<div class="d-flex justify-content-start mb-3">
+								<img src="images/tick.png" alt="tick" class="mr-3 tick-icon"  >
+								<p class="mb-0">Lorem ipsum dolor sit amet, pretium pretium</p>
+							</div>
+							<div class="d-flex justify-content-start mb-3">
+								<img src="images/tick.png" alt="tick" class="mr-3 tick-icon"  >
+								<p class="mb-0">Lorem ipsum dolor sit amet, pretium pretium</p>
+							</div>
+							<div class="d-flex justify-content-start">
+								<img src="images/tick.png" alt="tick" class="mr-3 tick-icon"  >
+								<p class="mb-0">Lorem ipsum dolor sit amet, pretium pretium</p>
+							</div>
+						</div>
+						<div class="col-sm-6 text-right" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+							<img src="images/idea.png" alt="idea" class="img-fluid">
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="our-projects" id="projects">
+				<div class="container">
+					<div class="row mb-5">
+						<div class="col-sm-12">
+							<div class="d-sm-flex justify-content-between align-items-center mb-2">
+								<h3 class="font-weight-medium text-dark ">Let's See Our Latest Project</h3>
+								<div><a href="#" class="btn btn-outline-primary">View more</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mb-5" data-aos="fade-up">
+					<div class="owl-carousel-projects owl-carousel owl-theme">
+						<div class="item">
+							<img src="images/carousel/slider1.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider2.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider3.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider4.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider5.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider1.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider2.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider3.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider4.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider5.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider1.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider2.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider3.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider4.jpg" alt="slider">
+						</div>
+						<div class="item">
+							<img src="images/carousel/slider5.jpg" alt="slider">
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row pt-5 mt-5 pb-5 mb-5">
+						<div class="col-sm-3">
+							<div class="d-flex py-3 my-3 my-lg-0 justify-content-center" data-aos="fade-down">
+								<img src="images/satisfied-client.svg" alt="satisfied-client" class="mr-3">
+								<div>
+									<h4 class="font-weight-bold text-dark mb-0"><span class="scVal">0</span>%</h4>
+									<h5 class="text-dark mb-0">Satisfied clients</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="d-flex py-3 my-3 my-lg-0 justify-content-center" data-aos="fade-up">
+								<img src="images/finished-project.svg" alt="satisfied-client" class="mr-3">
+								<div>
+									<h4 class="font-weight-bold text-dark mb-0"><span class="fpVal">0</span></h4>
+									<h5 class="text-dark mb-0">Finished Project</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="d-flex py-3 my-3 my-lg-0 justify-content-center" data-aos="fade-down">
+								<img src="images/team-members.svg" alt="Team Members" class="mr-3">
+								<div>
+									<h4 class="font-weight-bold text-dark mb-0"><span class="tMVal">0</span></h4>
+									<h5 class="text-dark mb-0">Team Members</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="d-flex py-3 my-3 my-lg-0 justify-content-center" data-aos="fade-up">
+								<img src="images/our-blog-posts.svg" alt="Our Blog Posts" class="mr-3">
+								<div>
+									<h4 class="font-weight-bold text-dark mb-0"><span class="bPVal">0</span></h4>
+									<h5 class="text-dark mb-0">Our Blog Posts</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="testimonial" id="testimonial">
+				<div class="container">
+					<div class="row  mt-md-0 mt-lg-4">
+						<div class="col-sm-6 text-white" data-aos="fade-up">
+							<p class="font-weight-bold mb-3">Testimonials</p>
+							<h3 class="font-weight-medium">Our customers are our <br>biggest fans</h3>
+							<ul class="flipster-custom-nav">
+								<li class="flipster-custom-nav-item">
+									<a href="javascript:;" class="flipster-custom-nav-link" title="0"></a>
+								</li>
+								<li class="flipster-custom-nav-item">
+									<a href="javascript:;" class="flipster-custom-nav-link"  title="1"></a>
+								</li>
+								<li class="flipster-custom-nav-item">
+									<a href="javascript:;" class="flipster-custom-nav-link active" title="2"></a>
+								</li>
+								<li class="flipster-custom-nav-item">
+									<a href="javascript:;" class="flipster-custom-nav-link"  title="3"></a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-sm-6" data-aos="fade-up">
+							<div id="testimonial-flipster">
+								<ul>
+									<li>
+										<div class="testimonial-item">
+											<img src="images/testimonial/testimonial1.jpg" alt="icon" class="testimonial-icons">
+											<p>Lorem ipsum dolor sit amet, consectetur
+												pretium pretium tempor.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium
+											</p>
+											<h6 class="testimonial-author">Mark Spenser</h6>
+											<p class="testimonial-destination">Accounts</p>
+										</div>
+									</li>
+									<li>
+										<div class="testimonial-item">
+											<img src="images/testimonial/testimonial2.jpg" alt="icon" class="testimonial-icons">
+											<p>Lorem ipsum dolor sit amet, consectetur
+												pretium pretium tempor.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium
+											</p>
+											<h6 class="testimonial-author">Tua Manuera</h6>
+											<p class="testimonial-destination">Director,Dj market</p>
+										</div>
+									</li>
+									<li>
+										<div class="testimonial-item">
+											<img src="images/testimonial/testimonial3.jpg" alt="icon" class="testimonial-icons">
+											<p>Lorem ipsum dolor sit amet, consectetur
+												pretium pretium tempor.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium
+											</p>
+											<h6 class="testimonial-author">Sarah Philip</h6>
+											<p class="testimonial-destination">Chief Accountant</p>
+										</div>
+									</li>
+									<li>
+										<div class="testimonial-item">
+											<img src="images/testimonial/testimonial4.jpg" alt="icon" class="testimonial-icons">
+											<p>Lorem ipsum dolor sit amet, consectetur
+												pretium pretium tempor.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium
+											</p>
+											<h6 class="testimonial-author">Mark Spenser</h6>
+											<p class="testimonial-destination">Director,Dj market</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="clients pt-5 mt-5"  data-aos="fade-up" data-aos-offset="-400">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="d-sm-flex justify-content-between align-items-center">
+								<img src="images/deloit.svg" alt="deloit" class="p-2 p-lg-0" data-aos="fade-down"  data-aos-offset="-400">
+								<img src="images/erricson.svg" alt="erricson" class="p-2 p-lg-0" data-aos="fade-up"  data-aos-offset="-400">
+								<img src="images/netflix.svg" alt="netflix" class="p-2 p-lg-0" data-aos="fade-down"  data-aos-offset="-400">
+								<img src="images/instagram.svg" alt="instagram" class="p-2 p-lg-0" data-aos="fade-up"  data-aos-offset="-400">
+								<img src="images/coinbase.svg" alt="coinbase" class="p-2 p-lg-0" data-aos="fade-down"  data-aos-offset="-400">
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="pricing-list" id="plans">
+				<div class="container">
+					<div class="row" data-aos="fade-up" data-aos-offset="-500">
+						<div class="col-sm-12">
+							<div class="d-sm-flex justify-content-between align-items-center mb-2">
+								<div>
+									<h3 class="font-weight-medium text-dark ">Checkout Pricing Plan</h3>
+									<h5 class="text-dark ">Lorem ipsum dolor sit amet, consectetur pretium pretium tempor. Lorem ipsum dolor </h5>
+								</div>
+								<div class="mb-5 mb-lg-0 mt-3 mt-lg-0">
+									<div class="d-flex align-items-center">
+										<p class="mr-2 font-weight-medium monthly text-active check-box-label">Monthly</p>
+										<label class="toggle-switch toggle-switch">
+										<input type="checkbox" checked  id="toggle-switch">
+										<span class="toggle-slider round"></span>
+										</label>
+										<p class="ml-2 font-weight-medium yearly check-box-label">Yearly</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row"  data-aos="fade-up" data-aos-offset="-300">
+						<div class="col-sm-4">
+							<div class="pricing-box">
+								<img src="images/starter.svg" alt="starter">
+								<h6 class="font-weight-medium title-text">Starter Business</h6>
+								<h1 class="text-amount mb-4 mt-2">$23</h1>
+								<ul class="pricing-list">
+									<li>Create a free website</li>
+									<li>Connect Domain</li>
+									<li>Business and ecommerce</li>
+									<li>Idea for smaller professional websites</li>
+									<li>Web space</li>
+								</ul>
+								<a href="#" class="btn btn-outline-primary">Puchase Now</a>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="pricing-box selected">
+								<img src="images/proffessional.svg" alt="starter">
+								<h6 class="font-weight-medium title-text">Professional</h6>
+								<h1 class="text-amount mb-4 mt-2">$45</h1>
+								<ul class="pricing-list">
+									<li>Create a free website</li>
+									<li>Connect Domain</li>
+									<li>Business and ecommerce</li>
+									<li>Idea for smaller professional websites</li>
+									<li>Web space</li>
+								</ul>
+								<a href="#" class="btn btn-primary">Puchase Now</a>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="pricing-box">
+								<img src="images/premium.svg" alt="starter">
+								<h6 class="font-weight-medium title-text">Premium</h6>
+								<h1 class="text-amount mb-4 mt-2">$87</h1>
+								<ul class="pricing-list">
+									<li>Create a free website</li>
+									<li>Connect Domain</li>
+									<li>Business and ecommerce</li>
+									<li>Idea for smaller professional websites</li>
+									<li>Web space</li>
+								</ul>
+								<a href="#" class="btn btn-outline-primary">Puchase Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="contactus" id="contact">
+				<div class="container">
+					<div class="row mb-5 pb-5">
+						<div class="col-sm-5" data-aos="fade-up" data-aos-offset="-500">
+							<img src="images/contact.jpg" alt="contact" class="img-fluid">
+						</div>
+						<div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500">
+							<h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Got A Problem</h3>
+							<h5 class="text-dark mb-5">Lorem ipsum dolor sit amet, consectetur pretium</h5>
+							<form>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" id="name" placeholder="Name*">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input type="email" class="form-control" id="mail" placeholder="Email*">
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<div class="form-group">
+											<textarea name="message" id="message" class="form-control" placeholder="Message*" rows="5"></textarea>
+										</div>
+									</div>
+									<div class="col-sm-12">
+										<a href="#" class="btn btn-secondary">SEND</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 </template>
 
 <script>
@@ -354,5 +434,5 @@ export default {
 </script>
 
 <style scoped>
-   
+  
 </style>

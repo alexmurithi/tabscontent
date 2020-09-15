@@ -14,23 +14,12 @@ export const store =new Vuex.Store({
     loading:false,
     auth_error:null,
     users:[],
-   
+    workFlows:[],
     languages:[],
     contentTypes:[],
-    workFlows:[],
-    wordsCount:[],
-    deliveryTime:[],
-    contentPricing:[],
     contentOrders:[],
-
-    academic_categories:[],
-    academic_languages:[],
-    academic_paperformats:[],
-    academic_services:[],
-    academic_spacing:[],
-    academic_urgency:[],
-    academic_edulevels:[]
-     
+    levelAprice:[],
+    userContOrders:[]
    },
    //GETTERS//
 
@@ -63,44 +52,20 @@ export const store =new Vuex.Store({
     workFlows:state=>{
       return state.workFlows
     },
-    wordsCount:state=>{
-      return state.wordsCount
-    },
-    deliveryTime:state=>{
-      return state.deliveryTime
-    },
-    contentPricing:state=>{
-      return state.contentPricing
-    },
+  
     contentOrders:state=>{
       return state.contentOrders
     },
 
-    //ACADEMIC//
+    //Content Pricing//
+   
+    levelAprice:state=>{
+     return state.levelAprice
+   },
 
-    academic_categories:state=>{
-      return state.academic_categories
-    },
-    academic_languages:state=>{
-      return state.academic_languages
-    },
-    academic_paperformats:state=>{
-      return state.academic_paperformats
-    },
-    academic_services:state=>{
-      return state.academic_services
-    },
-    academic_spacing:state=>{
-      return state.academic_spacing
-    },
-    academic_urgency:state=>{
-      return state.academic_urgency
-    },
-
-    academic_edulevels:state=>{
-      return state.academic_edulevels
-    }
-
+   userContOrders:state=>{
+     return state.userContOrders
+   }
   
    },
 
@@ -149,44 +114,20 @@ export const store =new Vuex.Store({
      workFlows:(state,payload)=>{
        state.workFlows =payload
      },
-     wordsCount:(state,payload)=>{
-       state.wordsCount =payload
-     },
-
-    deliveryTime:(state,payload)=>{
-      state.deliveryTime =payload
-    },
-    contentPricing:(state,payload)=>{
-      state.contentPricing =payload
-    },
+    
     
     contentOrders:(state,payload)=>{
       state.contentOrders =payload.data
     },
 
-    //ACADEMIC//
-    academicCategories:(state,payload)=>{
-      state.academic_categories =payload
+    //Content Pricing//
+    levelAprice:(state,payload)=>{
+      state.levelAprice =payload
     },
-    academicServices:(state,payload)=>{
-      state.academic_services =payload
-    },
-    academicLanguages:(state,payload)=>{
-      state.academic_languages =payload
-    },
-    academicPaperformats:(state,payload)=>{
-      state.academic_paperformats =payload
-    },
-    academicSpacing:(state,payload)=>{
-      state.academic_spacing=payload
-    },
-    academicUrgency:(state,payload)=>{
-      state.academic_urgency=payload
-    },
-    academicEdulevels:(state,payload)=>{
-      state.academic_edulevels=payload
+    userContentOrders:(state,payload)=>{
+      state.userContOrders =payload
     }
-
+   
    },
    //ACTIONS//
 
@@ -281,84 +222,28 @@ export const store =new Vuex.Store({
         })
     },
 
-    //ACADEMIC//
-    academicServices:({commit})=>{
-       axios.get('/api/academic/services')
-         .then((res)=>{
-           if(res.status==200){
-             commit('academicServices',res.data)
-           }
-         }).catch((err)=>{
-           console.log("Academic Services "+err)
-         })
-    },
-
-    academicCategories:({commit})=>{
-      axios.get('/api/academic/categories')
+    //Content Pricing//
+     level_A_Price:({commit})=>{
+      axios.get(`/api/content/levelAprice`)
         .then((res)=>{
           if(res.status==200){
-            commit('academicCategories',res.data)
+            commit('levelAprice',res.data)
           }
         }).catch((err)=>{
-          console.log("Academic Categories "+err)
+          console.log("levelAprice err: "+err)
         })
-   },
+     },
 
-   academicLanguages:({commit})=>{
-    axios.get('/api/academic/languages')
-      .then((res)=>{
-        if(res.status==200){
-          commit('academicLanguages',res.data)
-        }
-      }).catch((err)=>{
-        console.log("Academic Languages "+err)
-      })
- },
-
- academicPaperformats:({commit})=>{
-  axios.get('/api/academic/paperformats')
-    .then((res)=>{
-      if(res.status==200){
-        commit('academicPaperformats',res.data)
-      }
-    }).catch((err)=>{
-      console.log("Academic Paperformats "+err)
-    })
-},
-
-academicSpacing:({commit})=>{
-  axios.get('/api/academic/spacing')
-    .then((res)=>{
-      if(res.status==200){
-        commit('academicSpacing',res.data)
-      }
-    }).catch((err)=>{
-      console.log("Academic Spacing "+err)
-    })
-},
-
-academicUrgency:({commit})=>{
-  axios.get('/api/academic/urgency')
-    .then((res)=>{
-      if(res.status==200){
-        commit('academicUrgency',res.data)
-      }
-    }).catch((err)=>{
-      console.log("Academic Urgency "+err)
-    })
-},
-
-academicEdulevels:({commit})=>{
-  axios.get('/api/academic/edulevels')
-    .then((res)=>{
-      if(res.status==200){
-        commit('academicEdulevels',res.data)
-      }
-    }).catch((err)=>{
-      console.log("Academic Edulevels "+err)
-    })
-},
-
+     userContentOrders:({commit,state})=>{
+       axios.get(`/api/content/${state.currentUser.id}/userOrders`)
+         .then((res)=>{
+           if(res.status==200){
+             commit('userContentOrders',res.data)
+           }
+         }).catch((err)=>{
+           console.log("userContentOrders err: "+err)
+         })
+     }
    
    }
 });

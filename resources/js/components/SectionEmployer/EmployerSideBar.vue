@@ -48,7 +48,7 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>My Orders</span>
@@ -62,10 +62,16 @@
             <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Divider -->
-      <!-- <hr class="sidebar-divider"> -->
+      <hr class="sidebar-divider">
+
+     <li class="nav-item">
+        <router-link  :to="{name:'my-orders',params:{id:currentUser.id}}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>My Orders</span></router-link>
+      </li>
 
       <!-- Heading -->
       <!-- <div class="sidebar-heading">

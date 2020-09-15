@@ -16,7 +16,8 @@ class ContentOrder extends Model
         'amount_paid',
         'instructions',
         'upload_id',
-        'user_id'
+        'user_id',
+        'order_id'
     ];
     public function user(){
         return $this->belongsTo('App\User');
