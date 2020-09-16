@@ -31,7 +31,7 @@
      
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <Icon type="md-cart" />
           <span>Request Order</span>
@@ -41,11 +41,10 @@
             <h6 class="px-1 collapse-header">What are you looking for?</h6>
              <router-link to="/app/employer/make-order/content" class="collapse-item"><Icon type="ios-create" /> Content/ Article</router-link>
               <router-link to="#" class="collapse-item"><Icon type="ios-create" /> Academic/ Research</router-link>
-            <!-- <a class="text-white collapse-item" href="buttons.html">Content</a>
-            <a class="text-white collapse-item" href="cards.html">Academic /Research </a> -->
+           
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <!-- <li class="nav-item">
@@ -65,13 +64,20 @@
       </li> -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <!-- <hr class="sidebar-divider"> -->
 
      <li class="nav-item">
-        <router-link  :to="{name:'my-orders',params:{id:currentUser.id}}">
+        <router-link class="nav-link"  to="/app/employer/make-order/content">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Request Order</span></router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link"  :to="{name:'my-orders',params:{id:currentUser.id}}">
           <i class="fas fa-fw fa-table"></i>
           <span>My Orders</span></router-link>
       </li>
+
+      
 
       <!-- Heading -->
       <!-- <div class="sidebar-heading">
@@ -120,6 +126,8 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
 
+      
+
 </ul>
 </template>
 
@@ -129,6 +137,11 @@ export default {
   name:'employer-side-bar',
   computed:{
     ...mapGetters(['currentUser']),
+  },
+  data:function(){
+    return{
+     
+    }
   }
 
 }

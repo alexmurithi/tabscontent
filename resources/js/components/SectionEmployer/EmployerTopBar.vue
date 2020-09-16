@@ -169,14 +169,31 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <div class="dropdown-item" @click="openLogoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
-                </a>
+                </div>
               </div>
             </li>
 
           </ul>
+
+           <Modal v-model="logoutModal" width="360">
+              <p slot="header" style="color:#f60;text-align:center">
+                  <Icon type="ios-information-circle"></Icon>
+                  <span>Logout Confirmation</span>
+              </p>
+              <div style="text-align:center">
+                  <p>Are You Sure You Want to Logout?</p>
+                   <p>Click on the Logout Button to Logout</p>
+              </div>
+              <div slot="footer">
+                  <Button type="error" size="large" long 
+                  :loading="modal_loading" 
+                  :disabled="modal_loading"
+                  @click="logout">{{modal_loading ? 'loading...' : 'Logout'}}</Button>
+              </div>
+           </Modal>
 
         </nav>
 </template>
@@ -185,8 +202,38 @@
 import {mapGetters} from 'vuex';
 export default {
   name:'employer-top-bar',
+  data:function(){
+    return{
+      logoutModal:false,
+      modal_loading:false,
+    }
+  },
   computed:{
     ...mapGetters(['currentUser']),
+  },
+  methods:{
+    openLogoutModal:function(){
+      this.logoutModal=true
+    },
+    logout:function(){
+      this.modal_loading=true
+      axios.post(`/api/auth/logout`)
+        .then((res)=>{
+          if(res.status==200){
+          
+          this.$store.commit('logout')
+          this.modal_loading=false
+          this.logoutModal=false
+          this.$router.push({path:'/'})
+          }
+          
+        }).catch((err)=>{
+          console.log("logout err"+err.response.status)
+        })
+        
+      // this.$store.dispatch('logout');
+      // this.$router.push({path:'/'});
+    }
   }
 }
 </script>

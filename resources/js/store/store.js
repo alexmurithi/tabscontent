@@ -135,6 +135,16 @@ export const store =new Vuex.Store({
     login:context=>{
       context.commit("login");
   },
+  // logout:({commit})=>{
+  //   axios.post(`/api/auth/logout`)
+  //     .then((res)=>{
+  //       if(res.status==200){
+  //         commit('logout')
+  //       }
+  //     }).catch((err)=>{
+  //       console.log( "Logout ERR "+err)
+  //     })
+  // },
      getUsers:({commit})=>{
        axios.get(`/api/admin/users`)
         .then((res)=>{
