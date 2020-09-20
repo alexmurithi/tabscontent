@@ -16,7 +16,18 @@ export function initialize(store, router) {
              }else{
                next('/')
              }
-      }else{
+      }else if(to.path =='/app/register-employer'){
+           if(currentUser==null){
+             next()
+           }else{
+             if(currentUser.role_id==4){
+               next('/app/employer/make-order/content')
+             }else{
+               next()
+             }
+           }
+      }
+      else{
         next()
       }
   });

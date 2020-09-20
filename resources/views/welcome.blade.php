@@ -32,14 +32,13 @@
      
     
       <script src="{{asset('js/app.js')}}" defer></script>
-     
-     
+      <script src="{{asset('assets/js/owl.carousel.js')}}" defer></script>
       <script src="{{asset('assets/js/aos.js')}}" defer></script>
       <script src="{{asset('assets/js/template.js')}}" defer></script>
        <script src="{{asset('assets/js/jquery.easing.min.js')}}" defer></script>
        <script src="{{asset('assets/js/sb-admin-2.min.js')}}" defer></script> 
       <script src="{{asset('assets/js/jquery.flipster.min.js')}}" defer></script>
-      <script src="{{asset('assets/js/owl.carousel.js')}}" defer></script>
+      
           
     </body>
      

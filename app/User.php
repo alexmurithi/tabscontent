@@ -5,6 +5,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\PasswordResetNotification;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -64,4 +65,13 @@ class User extends Authenticatable implements JWTSubject
     public function contentOrders(){
         return $this->hasMany('App\ContentOrder');
     }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new PasswordResetNotification($token));
+    }
+
+ 
+
+
 }

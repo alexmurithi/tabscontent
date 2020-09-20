@@ -25,6 +25,12 @@ Route::group([
   Route::post('logout', 'Api\AuthController@logout');
   Route::post('refresh', 'Api\AuthController@refresh');
   Route::post('me', 'Api\AuthController@me');
+  Route::post('register-employer', 'Api\AuthController@registerEmployer');
+   // Send reset password mail
+   Route::post('forgot-password', 'Api\ForgotPasswordController@sendResetLinkEmail');
+        
+   // handle reset password form process
+   Route::post('reset-password', 'Api\ResetPasswordController@reset');
 
 });
 

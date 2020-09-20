@@ -16,7 +16,10 @@
 											<br>
 											Our prices are friendly and affordable!
 										</p>
-										<a href="#" class="btn btn-secondary mt-3">Order Content Now!</a>
+										<router-link :to="{name:'register-employer',path:'/app/register-employer'}" class="btn btn-secondary mt-3">
+                                          Order Content Now!
+										</router-link>
+										<!-- <a href="#" class="btn btn-secondary mt-3">Order Content Now!</a> -->
 									</div>
 									<div class="mt-5 mt-lg-0">
 										<img src="images/group.png" alt="marsmello" class="img-fluid" data-aos="zoom-in-up">

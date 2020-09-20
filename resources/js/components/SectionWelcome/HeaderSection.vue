@@ -12,7 +12,11 @@
 					</div>
 					<ul class="navbar-nav ml-auto align-items-center">
 						<li class="nav-item active">
-							<a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+							<router-link :to="{name:'home',path:'/'}" class="nav-link">
+							  Home
+                               <span class="sr-only">(current)</span>
+							</router-link>
+							<!-- <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a> -->
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#services">Services</a>
@@ -29,9 +33,13 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#plans">Pricing</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link btn btn-success" href="#">Login</a>
+						<li class="nav-item" v-show="!isLoggedIn">
+							<router-link class="nav-link btn-success" :to="{name:'login',path:'/auth/login'}">
+                              Login
+							</router-link>
+							<!-- <a class="nav-link btn btn-success" href="#">Login</a> -->
 						</li>
+						
 					</ul>
 				</div>
 			</div>
@@ -39,8 +47,12 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
-  name:'header-section'
+  name:'header-section',
+  computed:{
+	  ...mapGetters(['isLoggedIn']),
+  }
 }
 </script>
 

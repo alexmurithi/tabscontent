@@ -19,25 +19,22 @@
                   </div>
                   <form class="user" @submit.prevent="authenticate">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" v-model="user.email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                    
+                       <Input type="email" placeholder="email" size="large" v-model="user.email">
+                       
+                       </Input>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" v-model="user.password">
+                      
+                      <Input type="password" password placeholder="password" size="large" v-model="user.password">
+                      
+                      </Input>
                     </div>
                     <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
+                      <Checkbox v-model="user.remember" name="remember">Remember Me</Checkbox>
                     </div>
                     <Button type="primary" long @click="authenticate" :loading="loading">{{loading ? 'Logging in ...' : 'Login'}}</Button>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
+                    
                   </form>
                   <hr>
                   <div class="text-center">
@@ -56,7 +53,7 @@
 
     </div>
 
-  </div>
+      </div>
  
 </template>
 
@@ -69,23 +66,24 @@ export default {
     return{
       user:{
         email:'',
-        password:''
+        password:'',
+        remember:false
       },
       error:null,
-      loading:false,
+      
     }
   },
   computed:{
-   ...mapGetters(['loading']),
+   ...mapGetters(['loading','authErrors']),
   },
   methods:{
      authenticate() {
-                this.$store.dispatch('login');
-                login(this.$data.user)
+                     this.$store.dispatch('login');
+                      login(this.$data.user)
                     .then((res) => {
                         this.$store.commit("loginSuccess", res);
                           if(this.$store.getters.currentUser.role_id==4){
-                             this.$router.push({path: '/app/employer'});
+                             this.$router.push({path: '/app/employer/make-order/content'});
                             
                           }else{
                               this.$router.push({path: '/'});
@@ -94,7 +92,16 @@ export default {
                     })
                     .catch((error) => {
                         this.$store.commit("loginFailed", {error});
+                        // this.errors(this.authErrors.error)
+                        for(let i in this.authErrors){
+                  this.$Notice.warning({
+                      title:'Warning!',
+                      desc:this.authErrors[i][0]
+                  })
+                }
                     });
+             
+               
             }
   },
   created(){

@@ -25,7 +25,7 @@ class AddWordsColumn extends Migration
      */
     public function down()
     {
-        Schema::table('content_level_a_prices', function (Blueprint $table) {
+        Schema::table('content__level_a__prices', function (Blueprint $table) {
             $table->dropColumn('words');
         });
     }

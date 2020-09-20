@@ -14,12 +14,16 @@ import EmployerContentOrder from '../components/SectionEmployer/Orders/Content.v
 import Authentication from '../components/Authentication.vue';
 import Login from '../components/Auth/login.vue';
 import Signup from '../components/Auth/Signup.vue';
+import ForgotPassword from '../components/Auth/ForgotPassword.vue';
+import ResetPassword from '../components/Auth/ResetPassword.vue';
 
 import MyContentOrders from '../components/SectionEmployer/Orders/MyContentOrders.vue'
 
 import AdminDashBoard from '../components/SectionAdmin/PageContent.vue';
 import AdminContentOrders from '../components/SectionAdmin/Orders/Content.vue';
 import NotFound from '../components/NotFound.vue';
+
+import RegisterEmployer from '../components/SectionEmployer/RegisterEmployer';
 
 
 Vue.use(VueRouter);
@@ -29,6 +33,7 @@ export const router =new VueRouter({
    routes:[
      {
        path: '/',
+       name:'home',
        component:Welcome
      },
      {
@@ -45,6 +50,16 @@ export const router =new VueRouter({
            name:'login',
            component:Login,
           
+         },
+         {
+           path:'forgot-password',
+           name:'forgot-password',
+           component:ForgotPassword
+         },
+         {
+           path:'reset-password',
+           name:'reset-password-form',
+           component:ResetPassword
          },
          {
            path:'signup',
@@ -88,7 +103,12 @@ export const router =new VueRouter({
        
        ]
      },
-    
+     {
+       path:'/app/register-employer',
+       name:'register-employer',
+       component:RegisterEmployer,
+       requiresAuth:false
+     },
      
      {
        path:'/app/admin',
