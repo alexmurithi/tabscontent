@@ -13,9 +13,8 @@
             this.$store.dispatch('getUsers');
             this.$store.dispatch('getContentTypes');
             this.$store.dispatch('workFlows');
-            
             this.$store.dispatch('contentOrders');
-            this.$store.dispatch('level_A_Price');
+            this.$store.dispatch('getContentDetails');
            
 
         }

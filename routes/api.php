@@ -48,7 +48,7 @@ Route::group(['middleware'=>'api','prefix'=>'content'],function(){
  Route::post('files','Api\ContentController@uploadFiles');
  Route::post('submit_order','Api\ContentController@submitContentOrder');
  Route::get('content_orders','Api\ContentController@getContentOrders');
- Route::get('levelAprice','Api\ContentController@getLevelAPrices');
+ Route::get('details','Api\ContentController@getContentDetails');
  Route::get('{id}/userOrders','Api\ContentController@getUserOrders');
 });
 

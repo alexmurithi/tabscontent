@@ -1,8 +1,8 @@
 <template>
   <div>
     <header-section/>
-    <div class="container">
-          <Row :gutter="32">
+   <section class="home">
+       <Row :gutter="32">
           <Col :xs="{span:24}" :sm="{span:24}" :md="{span:24}" :lg="{span:12,offset:6}">
          <div style="background:#eee;padding: 20px">
             <Card  :padding="10" shadow >
@@ -35,8 +35,10 @@
          </div>
           </Col>
 
-        </Row>
-    </div>
+          </Row>
+   </section>
+         
+    
   </div>
 </template>
 
@@ -71,7 +73,7 @@ export default {
       }).then((res)=>{
         if(res.status==200){
           this.loading=false
-          this.success("Success, Your password was updated successfully!")
+          this.$store.commit('logout')
           this.$router.push({path:'/auth/login'})
         }
       }).catch((err)=>{
@@ -94,6 +96,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@media (min-width: 991px){
+  .home{
+  background: url();
+  padding-top: 135px;
+}
+}
 
+
+
+ 
+sidebar-overlay .home {
+    padding-top: 0px;
+    background-position: 0px -121px;
+}
 </style>

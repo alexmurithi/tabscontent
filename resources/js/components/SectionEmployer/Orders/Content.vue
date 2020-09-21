@@ -51,7 +51,7 @@
                             </Row>
 
                             <Row :gutter="32">
-                                <Col span="24">
+                                <Col span="12">
                                     <FormItem label="Language" label-position="top">
                                         <Select v-model="documentForm.language" placeholder="please select  language" size="large"
 
@@ -62,141 +62,130 @@
                                     </FormItem>
                                 </Col>
 
+                                <Col span="12">
+                                    <FormItem label="Words" label-position="top">
+                                     
+                                        <Select  placeholder="Amount of Words" size="large"
+                                         v-model="contentDetailsByWord"
+                                        >
+                                         
+                                            <Option  v-for="(contentLevel,index) in contentDetails" :key="index" :value="contentLevel">{{contentLevel.words}} Words</Option>
+
+                                        </Select>
+                                    </FormItem>
+                                </Col>
+
                             </Row>
 
 
                             </FormItem>
 
-                          <Row :gutter="32">
-                    <Col span="24">
-                      <Tabs type="card">
-                        <TabPane label="100-300 Words">
-                          <carousel 
-                          :nav="false" 
-                          :rtl="true" 
-                          :items="4" 
-                          :margin="10"
-                          v-if="levelAprice && levelAprice.length"
-                          > 
+                          <Row :gutter="32" v-show="contentDetailsByWord">
+                            <Col span="20" offset="2">
+                               <carousel 
+                                  :nav="false" 
+                                  :rtl="true" 
+                                  :items="4" 
+                                  :margin="10"
+                                  :width="150"
+                                  :responsive="{0:{items:1,nav:false},600:{items:4,nav:false}}"
+                                  v-if="contentDetailsByWord && contentDetailsByWord.content_details &&contentDetailsByWord.content_details.length"
+                                  > 
 
-                          <label v-for="(contentLevelA,index) in levelAprice" :key="index"   id="pricing_card" @click="setActive(index)" :class="{active:index===active}">
-                             
-                              <Card :padding="10" class="text-center" :bordered="false"  style="background:#f8f8f9;">
-                                
-                                  <p style="font-weight:bold"><span>$</span>
-                                      <span style="font-size:2rem">{{Number(contentLevelA.price).toFixed(2)}}</span></p> 
+                                  <label v-for="(content,index) in contentDetailsByWord.content_details" :key="index"   id="pricing_card" @click="setActive(index)" :class="{active:index===active}">
+                                    
+                                      <Card :padding="10" class="text-center" :bordered="false"  style="background:#17233d;">
+                                        
+                                          <p style="font-weight:bold;"><span style="color:white">$</span>
+                                              <span style="font-size:0.8rem; color:white">{{Number(content.price).toFixed(2)}}</span></p> 
 
-                                     <p style="text-align:center"> <label class="content_levelA_input text-center">
-                                       
-                                        <input type="radio" name="radio" v-model="contentLevelADetails" :value="contentLevelA" >
-                                        <span class="checkmark"></span>
-                                      </label></p>
+                                            <p style="text-align:center"> <label class="content_levelA_input text-center">
+                                              
+                                                <input type="radio" name="radio">
+                                                <span class="checkmark"></span>
+                                              </label></p>
 
-                                      <p style="font-weight:bold">
-                                         
-                                         <span style="font-size:1.8rem">{{contentLevelA.deadline}}</span><span>Hours</span>
-                                      </p>
-                                
-                                      
-                              </Card>
-                            
-                          </label> 
+                                              <p style="font-weight:bold">
+                                                
+                                                <span style="font-size:0.8rem; color:white">{{content.deadline}}</span><span style="color:white;font-size:0.8rem"> Hours</span>
+                                              </p>
+                                        
+                                              
+                                      </Card>
+                                    
+                                  </label> 
 
-       
-                          </carousel>
-                          
-                          <div class="mx-auto p-2" v-else>
-                               <Spin fix size="large"></Spin>
-                              
-                          </div>
-                          
-                          <Row v-if="levelAprice && levelAprice.length">
-                           <Divider dashed/>
-                          <Col span="10" offset="2">
-                            <div style="line-height:10px; font-weight:bold">
-                              <span>Total price: </span>
-                              <span style="color:#5cadff">$</span>
-                              <span style="font-size:1.8rem; color:#5cadff">{{Number(contentLevelADetails.price).toFixed(2)}}</span>
-                            </div>
-                          </Col>
-
-                          <Col span="12">
-                            <Button type="primary" @click="next" :disabled="nextDisabled()" v-show="this.current!=4">Continue</Button>
-                          </Col>
-
+              
+                                  </carousel>
+                            </Col>
+                             <Col span="20" offset="2">
+                                    <Button type="primary" @click="next" :disabled="nextDisabled()" v-show="this.current!=4">Continue</Button>
+                                  </Col>
                           </Row>
-                        </TabPane>
-                        <TabPane label="301-600 Words">
-                          <carousel :nav="false" :rtl="true" :items="4" :margin="10">
-                              <div class="item">
+
+                          <!--<Row :gutter="32">
+                            <Col span="24">
+                              <Tabs type="card">
+                                <TabPane label="100-300 Words">
+                                  <carousel 
+                                  :nav="false" 
+                                  :rtl="true" 
+                                  :items="4" 
+                                  :margin="10"
+                                  v-if="contentlevelA && contentlevelA.length"
+                                  > 
+
+                                  <label v-for="(levelA,index) in contentlevelA" :key="index"   id="pricing_card" @click="setActive(index)" :class="{active:index===active}">
+                                    
+                                      <Card :padding="10" class="text-center" :bordered="false"  style="background:#17233d;">
+                                        
+                                          <p style="font-weight:bold;"><span style="color:white">$</span>
+                                              <span style="font-size:2rem; color:white">{{Number(levelA.price).toFixed(2)}}</span></p> 
+
+                                            <p style="text-align:center"> <label class="content_levelA_input text-center">
+                                              
+                                                <input type="radio" name="radio" v-model="contentLevelADetails" :value="levelA" >
+                                                <span class="checkmark"></span>
+                                              </label></p>
+
+                                              <p style="font-weight:bold">
+                                                
+                                                <span style="font-size:1.8rem; color:white">{{levelA.deadline}}</span><span style="color:white">Hours</span>
+                                              </p>
+                                        
+                                              
+                                      </Card>
+                                    
+                                  </label> 
+
+              
+                                  </carousel>
+                                  
+                                  <div class="mx-auto p-2" v-else>
+                                      <Spin fix size="large"></Spin>
+                                      
+                                  </div>
+                                  
+                                  <Row v-if="contentlevelA && contentlevelA.length">
+                                  <Divider dashed/>
+                                  <Col span="10" offset="2">
+                                    <div style="line-height:10px; font-weight:bold">
+                                      <span>Total price: </span>
+                                      <span style="color:#5cadff">$</span>
+                                      <span style="font-size:1.8rem; color:#5cadff">{{Number(contentLevelADetails.price).toFixed(2)}}</span>
+                                    </div>
+                                  </Col>
+
+                                  <Col span="12">
+                                    <Button type="primary" @click="next" :disabled="nextDisabled()" v-show="this.current!=4">Continue</Button>
+                                  </Col>
+
+                                  </Row>
+                                </TabPane>
                                 
-                                  <Card title="Options" icon="ios-options" :padding="0"  shadow style="background:#eee" >
-                                      <CellGroup>
-                                          <Cell title="Only show titles" />
-                                          <Cell title="Display label content" label="label content" />
-                                          
-                                      </CellGroup>
-                                     </Card>
-                                 
-                              </div>
-
-          
-                          </carousel>
-                        </TabPane>
-                        <TabPane label="601-1000 Words">
-                          <carousel :nav="false" :rtl="true" :items="4" :margin="10">
-                              <div class="item">
-                                
-                                  <Card title="Options" icon="ios-options" :padding="0"  shadow style="background:#eee">
-                                      <CellGroup>
-                                          <Cell title="Only show titles" />
-                                          <Cell title="Display label content" label="label content" />
-                                          
-                                      </CellGroup>
-                                     </Card>
-                                 
-                              </div>
-
-                              <div class="item">
-                                 
-                                  <Card title="Options" icon="ios-options" :padding="0"  shadow style="background:#eee">
-                                      <CellGroup>
-                                          <Cell title="Only show titles" />
-                                          <Cell title="Display label content" label="label content" />
-                                          
-                                      </CellGroup>
-                                     </Card>
-                                 
-                              </div>
-
-                              <div class="item">
-                                 
-                                  <Card title="Options" icon="ios-options" :padding="0"  shadow style="background:#eee">
-                                      <CellGroup>
-                                          <Cell title="Only show titles" />
-                                          <Cell title="Display label content" label="label content" />
-                                          
-                                      </CellGroup>
-                                     </Card>
-                                 
-                              </div>
-
-                              <div class="item">
-                                <Card title="Options" icon="ios-options" :padding="0"  shadow style="background:#eee">
-                                      <CellGroup>
-                                          <Cell title="Only show titles" />
-                                          <Cell title="Display label content" label="label content" />
-                                          
-                                      </CellGroup>
-                                     </Card>
-                                 
-                              </div>
-          
-                          </carousel>
-                        </TabPane>
-                       </Tabs>
-                    </Col>
-                  </Row>
+                              </Tabs>
+                            </Col>
+                          </Row> -->
                          
                   </Form>
                   
@@ -210,7 +199,7 @@
                       <editor
                        
                        api-key="no-api-key"
-                       v-model="form2.instructions"
+                       v-model="instructions"
                        :init="{
                          height: 300,
                          menubar: false,
@@ -235,7 +224,7 @@
                 <!-- End form for step 2 -->
 
                    <!--- Form for step 3 -->
-                     <Form :model="form3" @submit.prevent="" v-show="current==2">
+                     <Form  @submit.prevent="" v-show="current==2">
                        <Row :gutter="32">
                          <Col span="24">
                            <Alert closable banner split="false">
@@ -284,13 +273,13 @@
                    <!--- End Form for step 3 --->
 
                    <!-- Form paypal step 4 -->
-                   <Form :model="formPaypal" @submit.prevent="" v-show="current==3">
+                   <Form  v-show="current==3">
                       <Row  v-if="!paidFor">
 
                         <Col span="20" offset="2">
                             <Alert type="info" show-icon>
 
-                                      <span slot="desc"><strong>Pay ${{amountToPay}} USD</strong>, 14% service fee included. <br>Please Click on the <strong>Paypal</strong> button below to make payment.</span>
+                                      <span slot="desc"><strong>Pay $10 USD</strong>, 14% service fee included. <br>Please Click on the <strong>Paypal</strong> button below to make payment.</span>
                             </Alert>
                         </Col>
 
@@ -338,18 +327,18 @@
                           <TimelineItem color="green">
                             <Icon type="md-checkmark-circle-outline" slot="dot"/>
                               <p class="time">Words</p>
-                              <p class="content"><Tag type="dot" closable color="success">{{contentLevelADetails.words}} Words</Tag></p>
+                              <!-- <p class="content"><Tag type="dot" closable color="success">{{contentLevelADetails.words}} Words</Tag></p> -->
                           </TimelineItem>
                           <TimelineItem color="green">
                             <Icon type="md-checkmark-circle-outline" slot="dot"/>
                               <p class="time">Urgency</p>
-                              <p class="content"><Tag type="dot" closable color="success">{{contentLevelADetails.deadline}} hours</Tag></p>
+                              <!-- <p class="content"><Tag type="dot" closable color="success">{{contentLevelADetails.deadline}} hours</Tag></p> -->
                           </TimelineItem>
-                          <TimelineItem color="green" v-if="form2.instructions">
+                          <TimelineItem color="green" v-if="instructions">
                             <Icon type="md-checkmark-circle-outline" slot="dot"/>
                                <p class="time">Instructions</p>
 
-                                <p class="content border col-10 p-2 mx-2" v-html="form2.instructions" ></p>
+                                <p class="content border col-10 p-2 mx-2" v-html="instructions" ></p>
                               
                           </TimelineItem>
                           <TimelineItem color="red" v-else>
@@ -383,7 +372,7 @@
                        </Col>
                        <Divider dashed/>
                        <Col span="20" offset="2">
-                         <Button type="primary" @click="submitOrder" :loading="submitLoading" :disabled="submitLoading">{{loading ? 'Submitting...' : 'Submit Order'}}</Button>
+                         <Button type="primary" @click="submitOrder" :loading="submitLoading" :disabled="submitLoading">{{submitLoading ? 'Submitting...' : 'Submit Order'}}</Button>
                        </Col>
                      </Row>
                    </Form>
@@ -434,14 +423,22 @@ export default {
     'contentTypes',
     'workFlows',
     'currentUser',
-    'levelAprice'
+    'contentDetails'
 
           ]),
 
-      amountToPay(){
-            this.totalAmount =Number(this.contentLevelADetails.price*this.tax).toFixed(2)
-            return this.totalAmount
-            },
+      // amountToPay(){
+      //       this.totalAmount =Number(this.contentLevelADetails.price*this.tax).toFixed(2)
+      //       return this.totalAmount
+      //       },
+      // contentlevels(){
+      //   if(this.contentDetailsByWord!=null){
+      //       return this.contentDetails.filter(element=>element.id==this.contentDetailsByWord);
+      //   }
+       
+      // },
+
+    
 
       },
       
@@ -450,6 +447,8 @@ export default {
       'editor': Editor,
        carousel,
   },
+
+ 
 
       data () {
                 return {
@@ -461,11 +460,10 @@ export default {
                     totalAmount:0,
                     tax:1.14,
                     submitLoading:false,
-                    contentLevelADetails:{
-                     price:0
-                   },
+                   instructions:'',
                    active:null,
-
+                   selectedPlan:[],
+                   contentDetailsByWord:null,
                     paidFor:false,
                     uploadList:[],
                     upload:{
@@ -477,17 +475,7 @@ export default {
                         language:'',
                         
                     },
-                    form2:{
-                      instructions:''
-                    },
-                    form3:{
-
-                    },
-                    formPaypal:{
-
-                    },
-
-
+                    
                 }
             },
 
@@ -540,8 +528,8 @@ export default {
                             contentType:this.documentForm.contentType,
                              workflowType:this.documentForm.workflowType,
                              language:this.documentForm.language,
-                             words:this.contentLevelADetails.words,
-                             deadline:this.contentLevelADetails.deadline,
+                            //  words:this.contentLevelADetails.words,
+                            //  deadline:this.contentLevelADetails.deadline,
                              instructions:this.form2.instructions ? this.form2.instructions :'',
                              upload_id:this.upload.file ? this.upload.id : '',
                              amountPaid:Number(this.totalAmount),
@@ -665,9 +653,17 @@ label.active .text-center.ivu-card {
      -webkit-transform: scale(0.8);
         -ms-transform: scale(0.8);
         transform: scale(0.8);
+
+        & .ivu-card .ivu-card-body p span{
+          color:#2b85e4 !important;
+        }
        
     }
    
+  }
+
+  label#pricing_card.active .ivu-card .ivu-card-body p span {
+
   }
  
  .content_levelA_input{

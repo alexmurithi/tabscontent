@@ -17,15 +17,18 @@ export const store =new Vuex.Store({
     workFlows:[],
     languages:[],
     contentTypes:[],
-    contentOrders:[],
-    levelAprice:[],
-    userContOrders:[]
+    userContOrders:[],
+    contentDetails:[]
+   
    },
    //GETTERS//
 
    getters:{
         loading:state=>{
           return state.loading
+      },
+      contentDetails:state=>{
+        return state.contentDetails
       },
       isLoggedIn:state=>{
           return state.isLoggedIn
@@ -45,6 +48,10 @@ export const store =new Vuex.Store({
       return state.contentTypes
     },
 
+    contentDetails:state=>{
+      return state.contentDetails
+    },
+
     languages:state=>{
       return state.languages;
     },
@@ -57,12 +64,7 @@ export const store =new Vuex.Store({
       return state.contentOrders
     },
 
-    //Content Pricing//
    
-    levelAprice:state=>{
-     return state.levelAprice
-   },
-
    userContOrders:state=>{
      return state.userContOrders
    }
@@ -121,9 +123,10 @@ export const store =new Vuex.Store({
     },
 
     //Content Pricing//
-    levelAprice:(state,payload)=>{
-      state.levelAprice =payload
+    contentDetails:(state,payload)=>{
+      state.contentDetails =payload
     },
+   
     userContentOrders:(state,payload)=>{
       state.userContOrders =payload
     }
@@ -135,16 +138,16 @@ export const store =new Vuex.Store({
     login:context=>{
       context.commit("login");
   },
-  // logout:({commit})=>{
-  //   axios.post(`/api/auth/logout`)
-  //     .then((res)=>{
-  //       if(res.status==200){
-  //         commit('logout')
-  //       }
-  //     }).catch((err)=>{
-  //       console.log( "Logout ERR "+err)
-  //     })
-  // },
+  logout:({commit})=>{
+    axios.post(`/api/auth/logout`)
+      .then((res)=>{
+        if(res.status==200){
+          commit('logout')
+        }
+      }).catch((err)=>{
+        console.log( "Logout ERR "+err)
+      })
+  },
      getUsers:({commit})=>{
        axios.get(`/api/admin/users`)
         .then((res)=>{
@@ -233,16 +236,7 @@ export const store =new Vuex.Store({
     },
 
     //Content Pricing//
-     level_A_Price:({commit})=>{
-      axios.get(`/api/content/levelAprice`)
-        .then((res)=>{
-          if(res.status==200){
-            commit('levelAprice',res.data)
-          }
-        }).catch((err)=>{
-          console.log("levelAprice err: "+err)
-        })
-     },
+  
 
      userContentOrders:({commit,state})=>{
        axios.get(`/api/content/${state.currentUser.id}/userOrders`)
@@ -253,6 +247,15 @@ export const store =new Vuex.Store({
          }).catch((err)=>{
            console.log("userContentOrders err: "+err)
          })
+     },
+
+     getContentDetails:({commit})=>{
+        axios.get(`/api/content/details`)
+          .then((res)=>{
+            commit('contentDetails',res.data)
+          }).catch((err)=>{
+            console.log("content details "+err)
+          })
      }
    
    }

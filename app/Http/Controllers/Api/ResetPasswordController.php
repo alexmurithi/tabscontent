@@ -23,7 +23,7 @@ class ResetPasswordController extends Controller
 
     protected function sendResetResponse(Request $request, $response)
     {
-        return response(['message'=> trans($response),'statusCode'=>200],200);
+        return response(['message'=> trans($response)],200);
 
     }
 

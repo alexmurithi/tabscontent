@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Upload;
 use App\ContentOrder;
-use App\Content_LevelA_Price;
+use App\ContentLevel;
 
 class ContentController extends Controller
 
@@ -64,13 +64,14 @@ class ContentController extends Controller
        return response()->json($content_orders); 
     }
 
-    public function getLevelAPrices(){
-      $prices =Content_LevelA_Price::orderBy('id','ASC')->get();
-      return response()->json($prices);
-    }
-
+    
     public function getUserOrders($id){
       $user_orders =ContentOrder::where('user_id',$id)->orderBy('created_at','DESC')->get();
       return response()->json($user_orders);
+    }
+
+    public function getContentDetails(){
+      $details =ContentLevel::orderBy('id','ASC')->with('contentDetails')->get();
+      return response()->json($details);
     }
 }

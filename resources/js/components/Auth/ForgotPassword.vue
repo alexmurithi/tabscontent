@@ -1,12 +1,11 @@
 <template>
 <div>
    <header-section/>
-   <div class="container" style="padding-top:130px">
-      
-        <!-- Outer Row -->
+      <section class="home">
+           <!-- Outer Row -->
         <Row :gutter="32" v-if="resetLink==false">
           <Col :xs="{span:24}" :sm="{span:24}" :md="{span:24}" :lg="{span:12,offset:6}">
-         <div style="background:#eee;padding: 20px">
+         <div style="background:#eee;padding: 20px; ">
             <Card  :padding="10" shadow >
                 <div slot="title">
                   <h5><strong>Forgot Password</strong></h5>
@@ -36,65 +35,7 @@
                    </Alert>
           </Col>
         </Row>
-         <!-- <div class="row justify-content-center">
-
-          <div class="col-xl-10 col-lg-12 col-md-9">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-0">
-               
-                <div class="row" v-if="resetLink==false">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                  <div class="col-lg-6">
-                    <div class="p-5">
-                      <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Send Reset Link</h1>
-                      </div>
-                      <form class="user" @submit.prevent="sendResetLink">
-                        <div class="form-group">
-                        
-                          <Input type="email" placeholder="email" size="large" v-model="user.email">
-                            <span slot="prepend"><Icon type="ios-mail" /></span>
-                          </Input>
-                        </div>
-                        
-                        <Button type="primary" long @click="sendResetLink" :loading="loading">{{loading ? 'Sending Link ...' : 'Send Reset Link'}}</Button>
-                        
-                      </form>
-                    
-                    </div>
-                  </div>
-                </div>
-                <div class="row" v-else>
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                  <div class="col-lg-6">
-                      <Alert type="success" show-icon>
-                        A success prompt
-                        <span slot="desc">A password reset link was sent to <strong>{{user.email}}</strong> Please check your email to reset password!</span>
-                      </Alert>
-
-                       <form class="user" @submit.prevent="sendResetLink">
-                        <div class="form-group">
-                        
-                          <Input type="email" placeholder="email" size="large" v-model="user.email">
-                            <span slot="prepend"><Icon type="ios-mail" /></span>
-                          </Input>
-                        </div>
-                        
-                        <Button type="primary" long @click="sendResetLink" :loading="loading">{{loading ? 'Sending Link ...' : 'Resend Reset Link'}}</Button>
-                        
-                      </form>
-                  </div>
-                </div>
-              
-              </div>
-            </div>
-
-          </div>
-
-         </div> -->
-
-    </div>
+      </section>
 </div>
    
 </template>
@@ -103,6 +44,12 @@
 import HeaderSection from '../SectionWelcome/HeaderSection.vue';
 export default {
  name:'send-reset-link',
+ mounted(){
+   this.$Notice.config({
+    top: 130,
+    
+});
+ },
  data:function(){
      return{
          user:{
@@ -125,14 +72,41 @@ export default {
            this.resetLink=true
           //  this.user.email=''
         }).catch((err)=>{
-          this.loading=false
-          this.resetLink=false
-            console.log(err)
+          console.log(err.response.data.errors)
+           if(err.response.status==422){
+            for(let i in err.response.data.errors){
+                  this.loading=false
+                   this.resetLink=false
+                  this.warning(err.response.data.errors[i][0])
+                }
+          }else{
+            this.loading=false
+            this.$Notice.error({
+              title:'Error!',
+              desc:"OOPS! Something wrong happened!"
+            })
+          }
         })
      }
  }
 }
 </script>
 
+<style scoped>
+@media (min-width: 991px){
+  .home{
+  background: url();
+  padding-top: 135px;
+}
+}
+
+
+
+ 
+sidebar-overlay .home {
+    padding-top: 0px;
+    background-position: 0px -121px;
+}
+</style>
 
  
