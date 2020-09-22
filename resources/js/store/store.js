@@ -18,7 +18,8 @@ export const store =new Vuex.Store({
     languages:[],
     contentTypes:[],
     userContOrders:[],
-    contentDetails:[]
+    contentDetails:[],
+    contentPricing:[]
    
    },
    //GETTERS//
@@ -50,6 +51,10 @@ export const store =new Vuex.Store({
 
     contentDetails:state=>{
       return state.contentDetails
+    },
+    
+    contentPricing:state=>{
+      return state.contentPricing
     },
 
     languages:state=>{
@@ -122,9 +127,13 @@ export const store =new Vuex.Store({
       state.contentOrders =payload.data
     },
 
-    //Content Pricing//
+   
     contentDetails:(state,payload)=>{
       state.contentDetails =payload
+    },
+
+    contentPricing:(state,payload)=>{
+      state.contentPricing =payload
     },
    
     userContentOrders:(state,payload)=>{
@@ -256,7 +265,16 @@ export const store =new Vuex.Store({
           }).catch((err)=>{
             console.log("content details "+err)
           })
-     }
+     },
+
+     getContentPricing:({commit})=>{
+      axios.get(`/api/content/pricing`)
+        .then((res)=>{
+          commit('contentPricing',res.data)
+        }).catch((err)=>{
+          console.log("content pricing "+err)
+        })
+   }
    
    }
 });

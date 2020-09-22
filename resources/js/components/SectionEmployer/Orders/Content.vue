@@ -69,7 +69,7 @@
                                          v-model="contentDetailsByWord"
                                         >
                                          
-                                            <Option  v-for="(contentLevel,index) in contentDetails" :key="index" :value="contentLevel">{{contentLevel.words}} Words</Option>
+                                            <Option  v-for="(contentLevel,index) in contentDetails" :key="index" :value="contentLevel.id">{{contentLevel.words}} Words</Option>
 
                                         </Select>
                                     </FormItem>
@@ -80,7 +80,7 @@
 
                             </FormItem>
 
-                          <Row :gutter="32" v-show="contentDetailsByWord">
+                          <!-- <Row :gutter="32" v-show="contentDetailsByWord">
                             <Col span="20" offset="2">
                                <carousel 
                                   :nav="false" 
@@ -121,71 +121,9 @@
                              <Col span="20" offset="2">
                                     <Button type="primary" @click="next" :disabled="nextDisabled()" v-show="this.current!=4">Continue</Button>
                                   </Col>
-                          </Row>
-
-                          <!--<Row :gutter="32">
-                            <Col span="24">
-                              <Tabs type="card">
-                                <TabPane label="100-300 Words">
-                                  <carousel 
-                                  :nav="false" 
-                                  :rtl="true" 
-                                  :items="4" 
-                                  :margin="10"
-                                  v-if="contentlevelA && contentlevelA.length"
-                                  > 
-
-                                  <label v-for="(levelA,index) in contentlevelA" :key="index"   id="pricing_card" @click="setActive(index)" :class="{active:index===active}">
-                                    
-                                      <Card :padding="10" class="text-center" :bordered="false"  style="background:#17233d;">
-                                        
-                                          <p style="font-weight:bold;"><span style="color:white">$</span>
-                                              <span style="font-size:2rem; color:white">{{Number(levelA.price).toFixed(2)}}</span></p> 
-
-                                            <p style="text-align:center"> <label class="content_levelA_input text-center">
-                                              
-                                                <input type="radio" name="radio" v-model="contentLevelADetails" :value="levelA" >
-                                                <span class="checkmark"></span>
-                                              </label></p>
-
-                                              <p style="font-weight:bold">
-                                                
-                                                <span style="font-size:1.8rem; color:white">{{levelA.deadline}}</span><span style="color:white">Hours</span>
-                                              </p>
-                                        
-                                              
-                                      </Card>
-                                    
-                                  </label> 
-
-              
-                                  </carousel>
-                                  
-                                  <div class="mx-auto p-2" v-else>
-                                      <Spin fix size="large"></Spin>
-                                      
-                                  </div>
-                                  
-                                  <Row v-if="contentlevelA && contentlevelA.length">
-                                  <Divider dashed/>
-                                  <Col span="10" offset="2">
-                                    <div style="line-height:10px; font-weight:bold">
-                                      <span>Total price: </span>
-                                      <span style="color:#5cadff">$</span>
-                                      <span style="font-size:1.8rem; color:#5cadff">{{Number(contentLevelADetails.price).toFixed(2)}}</span>
-                                    </div>
-                                  </Col>
-
-                                  <Col span="12">
-                                    <Button type="primary" @click="next" :disabled="nextDisabled()" v-show="this.current!=4">Continue</Button>
-                                  </Col>
-
-                                  </Row>
-                                </TabPane>
-                                
-                              </Tabs>
-                            </Col>
                           </Row> -->
+
+                         
                          
                   </Form>
                   
@@ -431,9 +369,9 @@ export default {
       //       this.totalAmount =Number(this.contentLevelADetails.price*this.tax).toFixed(2)
       //       return this.totalAmount
       //       },
-      // contentlevels(){
+      // content_pricing(){
       //   if(this.contentDetailsByWord!=null){
-      //       return this.contentDetails.filter(element=>element.id==this.contentDetailsByWord);
+      //       return this.contentPricing.filter(element=>element.id==this.contentDetailsByWord);
       //   }
        
       // },
@@ -463,16 +401,16 @@ export default {
                    instructions:'',
                    active:null,
                    selectedPlan:[],
-                   contentDetailsByWord:null,
+                   contentDetailsByWord:1,
                     paidFor:false,
                     uploadList:[],
                     upload:{
 
                     },
                     documentForm: {
-                        contentType: '',
-                        workflowType: '',
-                        language:'',
+                        contentType: 'Blog Post',
+                        workflowType: 'New Content',
+                        language:'American English',
                         
                     },
                     

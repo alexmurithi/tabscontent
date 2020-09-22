@@ -15,6 +15,7 @@
             this.$store.dispatch('workFlows');
             this.$store.dispatch('contentOrders');
             this.$store.dispatch('getContentDetails');
+            this.$store.dispatch('getContentPricing');
            
 
         }

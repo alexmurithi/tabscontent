@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Upload;
 use App\ContentOrder;
 use App\ContentLevel;
+use App\ContentDetail;
 
 class ContentController extends Controller
 
@@ -71,7 +72,12 @@ class ContentController extends Controller
     }
 
     public function getContentDetails(){
-      $details =ContentLevel::orderBy('id','ASC')->with('contentDetails')->get();
+      $details =ContentLevel::orderBy('id','ASC')->get();
       return response()->json($details);
+    }
+
+    public function getContentPricing(){
+      $pricing =ContentDetail::orderBy('id','ASC')->with('contentLevel')->get();
+      return response()->json($pricing);
     }
 }
