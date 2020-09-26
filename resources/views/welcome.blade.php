@@ -8,7 +8,7 @@
 
     <title>{{config('app.name')}}</title>
 
-
+    <link rel="shortcut icon" type="image/png" href="/assets/img/tabscontent-icon.png"/>
     
   
     
