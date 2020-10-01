@@ -25,7 +25,7 @@ Route::group([
   Route::post('logout', 'Api\AuthController@logout');
   Route::post('refresh', 'Api\AuthController@refresh');
   Route::post('me', 'Api\AuthController@me');
-  Route::post('register-employer', 'Api\AuthController@registerEmployer');
+  Route::post('register', 'Api\AuthController@register');
    // Send reset password mail
    Route::post('forgot-password', 'Api\ForgotPasswordController@sendResetLinkEmail');
         
@@ -51,5 +51,7 @@ Route::group(['middleware'=>'api','prefix'=>'content'],function(){
  Route::get('details','Api\ContentController@getContentDetails');
  Route::get('pricing','Api\ContentController@getContentPricing');
  Route::get('{id}/userOrders','Api\ContentController@getUserOrders');
+
+ Route::get('blog_basics','Api\ContentController@blogBasics');
 });
 

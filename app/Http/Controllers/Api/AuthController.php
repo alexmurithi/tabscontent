@@ -21,7 +21,7 @@ class AuthController extends Controller
         $this->middleware('auth:api', [
             'except' => [
                 'login',
-                'registerEmployer',
+                'register',
                 
             ]]);
     }
@@ -45,9 +45,8 @@ class AuthController extends Controller
         }
 
         $loginCredentials = $request->only('email', 'password');
-        $remember_me = $request->has('remember') ? true : false; 
-
-        if ($token = $this->guard()->attempt($loginCredentials,$remember_me)) {
+       
+        if ($token = $this->guard()->attempt($loginCredentials)) {
             return $this->respondWithToken($token);
             
         }
@@ -55,13 +54,13 @@ class AuthController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-    public function registerEmployer(Request $request){
+    public function register(Request $request){
         $validator = Validator::make($request->all(), [
-            'firstName' => 'required|string|between:2,100',
-            'lastName' => 'required|string|between:2,100',
+            'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:8',
-            'password_confirmation' => 'required|same:password',
+            'password_confirm' => 'required|same:password',
+            'phone'=>'required|string|max:20'
             
             
         ]);
@@ -74,24 +73,10 @@ class AuthController extends Controller
             [
                 'password' => bcrypt($request->password),
                 'role_id'=>4,
-                'country'=>$request->country,
-                'phoneNumber'=>$request->phoneNumber
+                'phoneNumber'=>$request->phone
             ]
         ));
 
-        $email =$user->email;
-        $password=$user->password;
-
-        // return response()->json([$email,$password],200);
-        $token = auth()->login($user);
-
-        return $this->respondWithToken($token);
-
-        // $this->login($user->email,$user->password);
-        // return response()->json([
-        //     'message' => 'User successfully registered',
-        //     'user' => $user
-        // ], 201);
 
     }
 

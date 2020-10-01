@@ -4,7 +4,7 @@
             <div class="collapse navbar-collapse" id="menu">
                 <ul class="nav navbar-nav flex-grow-1 justify-content-between">
                     <li class="nav-item d-none d-xs-block d-md-block" role="presentation"><a class="nav-link" href="#"><i class="far fa-edit apple-logo"></i></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item" role="presentation"><router-link class="nav-link" :to="{name:'welcome'}">Home</router-link></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Blog</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">Services</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="#">About Us</a></li>

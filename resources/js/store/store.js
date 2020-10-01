@@ -14,12 +14,11 @@ export const store =new Vuex.Store({
     loading:false,
     auth_error:null,
     users:[],
-    workFlows:[],
-    languages:[],
-    contentTypes:[],
-    userContOrders:[],
-    contentDetails:[],
-    contentPricing:[]
+    
+
+    //CONTENT STATES//
+
+    blogBasics:[],
    
    },
    //GETTERS//
@@ -28,9 +27,7 @@ export const store =new Vuex.Store({
         loading:state=>{
           return state.loading
       },
-      contentDetails:state=>{
-        return state.contentDetails
-      },
+      
       isLoggedIn:state=>{
           return state.isLoggedIn
       },
@@ -40,39 +37,18 @@ export const store =new Vuex.Store({
       authErrors:state=>{
         return state.auth_error
     },
-   
-      users:state=>{
-        return state.users;
-      },
-   
-    contentTypes:state=>{
-      return state.contentTypes
-    },
-
-    contentDetails:state=>{
-      return state.contentDetails
-    },
-    
-    contentPricing:state=>{
-      return state.contentPricing
-    },
-
-    languages:state=>{
-      return state.languages;
-    },
-
-    workFlows:state=>{
-      return state.workFlows
-    },
   
-    contentOrders:state=>{
-      return state.contentOrders
-    },
 
-   
-   userContOrders:state=>{
-     return state.userContOrders
+  //CONTENT GETTERS//
+
+   blogBasics:state=>{
+    return state.blogBasics
+   },
+
+   currentUser:state=>{
+     return state.currentUser
    }
+    
   
    },
 
@@ -106,39 +82,12 @@ export const store =new Vuex.Store({
 
   
     
-     getUsers:(state,payload)=>{
-      state.users=payload
-     },
-   
      //CONTENT MUTATIONS//
 
-     getLanguages:(state,payload)=>{
-       state.languages =payload
+     blogBasics:(state,payload)=>{
+      state.blogBasics =payload
      },
-     getContentTypes:(state,payload)=>{
-       state.contentTypes =payload
-     },
-     workFlows:(state,payload)=>{
-       state.workFlows =payload
-     },
-    
-    
-    contentOrders:(state,payload)=>{
-      state.contentOrders =payload.data
-    },
 
-   
-    contentDetails:(state,payload)=>{
-      state.contentDetails =payload
-    },
-
-    contentPricing:(state,payload)=>{
-      state.contentPricing =payload
-    },
-   
-    userContentOrders:(state,payload)=>{
-      state.userContOrders =payload
-    }
    
    },
    //ACTIONS//
@@ -157,124 +106,24 @@ export const store =new Vuex.Store({
         console.log( "Logout ERR "+err)
       })
   },
-     getUsers:({commit})=>{
-       axios.get(`/api/admin/users`)
-        .then((res)=>{
-           if(res.status==200){
-            commit('getUsers',res.data);
-            
-           }
-          
-        }).catch((err)=>{
-          console.log(err)
-        })
-     },
-
-     getLanguages:({commit})=>{
-       axios.get(`/api/admin/languages`)
-         .then((res)=>{
-           if(res.status==200){
-             commit('getLanguages',res.data)
-           }
-         }).catch((err)=>{
-           console.log(err)
-         })
-     },
-
-     getContentTypes:({commit})=>{
-       axios.get(`/api/admin/content_types`)
-       .then((res)=>{
-         if(res.status==200){
-           commit('getContentTypes',res.data)
-         }
-       }).catch((err)=>{
-         console.log(err)
-       })
-     },
-     workFlows:({commit})=>{
-       axios.get(`/api/admin/workflows`)
-        .then((res)=>{
-          if(res.status==200){
-            commit('workFlows',res.data)
-          }
-        }).catch((err)=>{
-          console.log(err)
-        })
-     },
-
-     wordsCount:({commit})=>{
-       axios.get(`/api/admin/words_count`)
-        .then((res)=>{
-          if(res.status ==200){
-            commit('wordsCount',res.data)
-          }
-        }).catch((err)=>{
-          console.log(err)
-        })
-     },
-     deliveryTime:({commit})=>{
-       axios.get(`/api/admin/delivery_time`)
-         .then((res)=>{
-           if(res.status ==200){
-             commit('deliveryTime',res.data)
-           }
-         }).catch((err)=>{
-           console.log(err)
-         })
-     },
-     contentPricing:({commit})=>{
-      axios.get(`/api/admin/content_pricing`)
-        .then((res)=>{
-          if(res.status ==200){
-            commit('contentPricing',res.data)
-          }
-        }).catch((err)=>{
-          console.log(err)
-        })
-    },
-   
-    contentOrders:({commit})=>{
-      axios.get(`/api/content/content_orders`)
-        .then((res)=>{
-          if(res.status==200){
-            commit('contentOrders',res)
-          }
-        }).catch((err)=>{
-          console.log("contentOrders err: "+err)
-        })
-    },
+     
 
     //Content Pricing//
   
+   //CONTENT ACTIONS//
 
-     userContentOrders:({commit,state})=>{
-       axios.get(`/api/content/${state.currentUser.id}/userOrders`)
+  
+     blogBasics:({commit})=>{
+       axios.get(`/api/content/blog_basics`)
          .then((res)=>{
            if(res.status==200){
-             commit('userContentOrders',res.data)
+             commit('blogBasics',res.data)
            }
          }).catch((err)=>{
-           console.log("userContentOrders err: "+err)
+           console.log("blogBasics err: "+err)
          })
-     },
-
-     getContentDetails:({commit})=>{
-        axios.get(`/api/content/details`)
-          .then((res)=>{
-            commit('contentDetails',res.data)
-          }).catch((err)=>{
-            console.log("content details "+err)
-          })
-     },
-
-     getContentPricing:({commit})=>{
-      axios.get(`/api/content/pricing`)
-        .then((res)=>{
-          commit('contentPricing',res.data)
-        }).catch((err)=>{
-          console.log("content pricing "+err)
-        })
-   }
+     }
+   
    
    }
 });

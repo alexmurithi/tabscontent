@@ -1,15 +1,145 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Noto Serif');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import '~bootstrap-vue/src/index.scss';
+
 
 
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css';
+
+body{
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: 'Robot';
+  
+}
+
+html{
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: 'Robot';
+  
+}
+
+#packages.blog-section{
+  border: 1px solid #a8a8a8;
+  margin: 0 0 25px;
+  padding:10px;
+  
+  & .package_accordin .ivu-collapse>.ivu-collapse-item>.ivu-collapse-header{
+    background: #f0f0f0;
+    color: #000;
+    font-size: 24px;
+    height: 50px;
+    line-height: 50px;
+    font-family: 'Roboto';
+    
+    & .ivu-icon-ios-arrow-forward:before{
+      font-weight: bolder;
+      
+    }
+  }
+  
+    .row.packages_list .card.basic_package{
+      
+      & .card-header{
+        background: #223791;
+        &:after{
+          content: "";
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-color: #0b1b5d transparent transparent #0b1b5d;
+          border-width: 10px 260px 0 0;
+          position: absolute;
+          left: 0;
+          top: 45px;
+        }
+      }
+      & .card-body{
+        .inputs{
+          padding-top: 15px;
+        }
+        & .package-desc{
+           ul{
+             padding: 8px 4px;
+              li{
+                list-style-type: none;
+                font-size: 14px;
+                padding: 8px 0;
+
+                &:before{
+                  content: '✓';
+                  font-size: 14px;
+                }
+              }
+          }
+        }
+      }
+
+      & .package-pricing{
+        position: absolute;
+        right: -10px;
+        line-height: 100px;
+        top: -40px;
+        width: 100px;
+        height: 100px;
+        background: #fff;
+        border-radius: 50%;
+        border: 2px solid #000;
+
+        .price{
+          color: #000;
+          font-size: 20px;
+          text-align: center;
+          padding: 0;
+          letter-spacing: -1.5px;
+        }
+
+        .words-badge{
+          background: #ff8118;
+          line-height: normal;
+          padding: 0;
+          width: 90px;
+          height: auto;
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          right: 0;
+          text-align: center;
+          font-size: 14px;
+          font-weight: bold;
+          border-radius: 12px;
+          margin: auto;
+          border: 2px solid #fc6000;
+          color: #fff;
+        }
+
+      }
+      
+    }
+  
+   
+}
+
+
+
+
+// #accordion-packages{
+//   padding: 10px;
+
+//   & .ivu-collapse>.ivu-collapse-item>.ivu-collapse-header{
+//     font-size: 1.5rem;
+//     padding: 10px;
+//     height: 50px;
+//     font-weight: bold;
+//   }
+// }
+
 
 
 .order-link{

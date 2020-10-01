@@ -11,17 +11,24 @@ export function initialize(store, router) {
       } else if(to.path == '/auth/login' && currentUser) {
           next('/');
       } else if(requiresEmployer){
-             if(currentUser.role_id ==4){
+             if(currentUser.role_id ==4){// $email =$user->email;
+              // $password=$user->password;
+      
+              // return response()->json([$email,$password],200);
+              // $token = auth()->login($user);
+      
+              // return $this->respondWithToken($token);
+      
+              // $this->login($user->email,$user->password);
+              // return response()->json([
+              //     'message' => 'User successfully registered',
+              //     'user' => $user
+              // ], 201);
+      
                next()
              }else{
                next('/')
              }
-      }else if(to.path =='/app/register-employer'){
-          if(currentUser && currentUser.role_id==4){
-            next('/app/employer/make-order/content')
-          }else{
-            next()
-          }
       }
       else{
         next()
@@ -31,7 +38,6 @@ export function initialize(store, router) {
   axios.interceptors.response.use(null, (error) => {
       if (error.response.status == 401) {
           store.commit('logout');
-          router.push('/auth/login');
       }
 
       return Promise.reject(error);

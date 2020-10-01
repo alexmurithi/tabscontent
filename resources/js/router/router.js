@@ -1,14 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import MainApp from '../components/MainApp.vue';
 
 // Import Routes //
 import Welcome from '../components/Welcome.vue';
-import Employer from '../components/Employer.vue';
 
-import Admin from '../components/Admin.vue';
-
-import EmployerPageContent from '../components/SectionEmployer/EmployerPageContent.vue';
-import EmployerContentOrder from '../components/SectionEmployer/Orders/Content.vue';
 
 
 import Authentication from '../components/Authentication.vue';
@@ -17,13 +13,15 @@ import Signup from '../components/Auth/Signup.vue';
 import ForgotPassword from '../components/Auth/ForgotPassword.vue';
 import ResetPassword from '../components/Auth/ResetPassword.vue';
 
-import MyContentOrders from '../components/SectionEmployer/Orders/MyContentOrders.vue'
 
-import AdminDashBoard from '../components/SectionAdmin/PageContent.vue';
-import AdminContentOrders from '../components/SectionAdmin/Orders/Content.vue';
 import NotFound from '../components/NotFound.vue';
 
-import RegisterEmployer from '../components/SectionEmployer/RegisterEmployer';
+
+
+import ContentIndex from '../components/Content/index.vue';
+import BlogPosts from '../components/Content/BlogPosts.vue';
+import Articles from  '../components/Content/Articles.vue';
+import MakeOrder from '../components/Content/Orders/MakeOrder.vue';
 
 
 Vue.use(VueRouter);
@@ -31,10 +29,36 @@ Vue.use(VueRouter);
 export const router =new VueRouter({
    mode:'history',
    routes:[
+    {
+      path:'/',
+      name:'welcome',
+      component:Welcome
+    },
+
      {
-       path: '/',
-       name:'home',
-       component:Welcome
+       path:'/packages/',
+       name:'packages',
+       component:ContentIndex,
+       children:[
+         {
+          path:'blog-posts',
+          name:'blog-posts',
+          component:BlogPosts
+         },
+         {
+          path:'articles',
+          name:'articles',
+          component:Articles
+         }
+        
+        
+       ]
+     },
+
+     {
+       path:'/content/make-order',
+       component:MakeOrder,
+       props:route=>({query:route.query})
      },
      {
        path:'/404',
@@ -69,61 +93,7 @@ export const router =new VueRouter({
        ]
 
      },
-     {
-       path: '/app/employer',
-       component:Employer,
-       meta: {
-        requiresAuth: true,
-        // requiresEmployer:true
-      
-    },
-       
-       children:[
-         {
-           path:'',
-           name:'employer-dashboard',
-           component:EmployerPageContent,
-           
-          
-         },
-        {   
-          path:'make-order/content',
-          name:'make-order',
-          component:EmployerContentOrder,
-          
-        },
-
-        {
-          path:':id/my-orders',
-          name:'my-orders',
-          component:MyContentOrders
-        }
-       
-        
-       
-       ]
-     },
-     {
-       path:'/app/register-employer',
-       name:'register-employer',
-       component:RegisterEmployer,
-       requiresAuth:false
-     },
-     
-     {
-       path:'/app/admin',
-       component:Admin,
-       children:[
-          {
-            path:'',
-            component:AdminDashBoard
-          },
-          {
-            path:'orders/content',
-            component:AdminContentOrders
-          }
-       ]
-     },
+    
      
      
    ]

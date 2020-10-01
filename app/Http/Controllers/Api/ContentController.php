@@ -9,6 +9,8 @@ use App\ContentOrder;
 use App\ContentLevel;
 use App\ContentDetail;
 
+use App\BlogBasic;
+
 class ContentController extends Controller
 
 {
@@ -79,5 +81,10 @@ class ContentController extends Controller
     public function getContentPricing(){
       $pricing =ContentDetail::orderBy('id','ASC')->with('contentLevel')->get();
       return response()->json($pricing);
+    }
+
+    public function blogBasics(){
+      $blog_basics =BlogBasic::orderBy('words','ASC')->get();
+      return response()->json($blog_basics);
     }
 }

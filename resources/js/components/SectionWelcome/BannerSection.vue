@@ -7,7 +7,7 @@
                         <h1 class="text-uppercase" id="intro-heading" style="font-family: 'Abril Fatface', cursive;">Professional Content Writing Services</h1>
                         <p id="intro-paragraph" style="font-family: Adamina, serif;">When you try to grow your online business, therefore, you need a <strong>Content Writing Service</strong><br> to advertise your services on your business website. If you want to <br>achieve success in your business, then you too
                             have to search for the <br>best <strong>content writer</strong> for your online business website so that your online business level can be high<br><br></p>
-                        <p><button class="btn btn-primary" data-bs-hover-animate="pulse" type="button">ORder Content Now!</button></p>
+                        <p><button class="btn btn-primary" data-bs-hover-animate="pulse" @click="navToBlog" type="button">ORder Content Now!</button></p>
                     </div>
                 </div>
                 <div class="col d-none col-md-4">
@@ -37,7 +37,7 @@
                                         <div class="carousel-item">
                                             <div class="jumbotron pulse animated hero-technology carousel-hero" style="background-image: url(&quot;assets/img/content-women.png&quot;);background-repeat: no-repeat;background-size: cover;">
                                                 <h3 class="text-uppercase hero-title carousel-heading">PROFESSIONAL ARTICLE WRITING SERVICES</h3>
-                                                <p><a class="btn btn-primary text-uppercase hero-button plat" role="button" href="#">Order Content Now!</a></p>
+                                                <p><router-link class="btn btn-primary text-uppercase hero-button plat" role="button" :to="{name:'blog-post-packages'}">Order Content Now!</router-link></p>
                                             </div>
                                         </div>
                                     </div>
@@ -62,6 +62,12 @@
 <script>
 export default {
   name:'banner-section',
+
+  methods:{
+      navToBlog:function(){
+          this.$router.push({name:'blog-posts'})
+      }
+  }
 }
 </script>
 

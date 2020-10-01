@@ -356,14 +356,14 @@ export default {
   },
 
  computed:{
-    ...mapGetters([
-    'languages',
-    'contentTypes',
-    'workFlows',
-    'currentUser',
-    'contentDetails'
+    // ...mapGetters([
+    // 'languages',
+    // 'contentTypes',
+    // 'workFlows',
+    // 'currentUser',
+    // 'contentDetails'
 
-          ]),
+    //       ]),
 
       // amountToPay(){
       //       this.totalAmount =Number(this.contentLevelADetails.price*this.tax).toFixed(2)

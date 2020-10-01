@@ -90,55 +90,7 @@ export default {
  },
  methods:{
      //this method will register employers//
-   registerEmployer:function(){
-       this.registerLoading=true
-       axios.post('/api/auth/register-employer',{
-           firstName:this.firstName,
-           lastName:this.lastName,
-           email:this.email,
-           password:this.password,
-           password_confirmation:this.password_confirmation,
-           country:this.country,
-           phoneNumber:this.phoneNumber
-       }).then((res)=>{
-           if(res.status==200){
-            this.registerLoading=false
-            
-            let user ={email:this.email,password:this.password}
-             login(user)
-             .then((res) => {
-                        this.$store.commit("loginSuccess", res);
-                          if(this.$store.getters.currentUser.role_id==4){
-                             this.$router.push({path: '/app/employer'});
-                            
-                          }else{
-                              this.$router.push({path: '/'});
-                          }
-                       
-                    })
-                    .catch((error) => {
-                        this.$store.commit("loginFailed", {error});
-                        this.errors(this.authErrors.error)
-                    });
-           }
-       }).catch((err)=>{
-           if(err.response.status==422){
-               this.registerLoading=false
-               console.log(err.response)
-               for(let i in err.response.data){
-                  this.$Notice.warning({
-                      title:'Warning!',
-                      desc:err.response.data[i][0]
-                  })
-                }
-           }else{
-              this.$Notice.warning({
-                      title:'Warning!',
-                      desc:err.response.data ? err.response.data : err.response.statusText
-                  }) 
-           }
-       })
-   }
+
  }
 
 }
