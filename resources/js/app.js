@@ -3,13 +3,14 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue';
+import MainApp from './components/MainApp.vue';
 
 // import routes //
 import {router} from './router/router.js';
 import {store} from './store/store.js';
 
-import Vue from 'vue'
+
 import ViewUI from 'view-design';
 
 import 'view-design/dist/styles/iview.css';
@@ -52,12 +53,19 @@ router.afterEach(route => {
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('main-app', require('./components/MainApp.vue').default);
+// Vue.component('main-app', require('./components/MainApp.vue').default);
 
 
-const app = new Vue({
-    el: '#app',
-    // Require this router in our app//
-    router,
-    store,
-});
+// const app = new Vue({
+//     el: '#app',
+//     // Require this router in our app//
+//     router,
+//     store,
+    
+// });
+
+new Vue({
+  render: h => h(MainApp),
+  router,
+  store
+}).$mount("#app");

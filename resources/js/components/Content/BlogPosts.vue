@@ -61,7 +61,8 @@
                                                          package:'basic',
                                                          words:this.basicPackage.words,
                                                          quality:this.basicPackage.quality_1,
-                                                         amount:this.basicPackage.price_1
+                                                         amount:this.basicPackage.price_1,
+                                                         urgency:'48hours'
                                                          }}">
                                                        <Icon type="md-cart" />
                                                      Order Now

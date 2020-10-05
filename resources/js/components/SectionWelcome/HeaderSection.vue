@@ -1,19 +1,52 @@
 <template>
-      <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark navbar--apple">
-        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#menu"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span></button>
-            <div class="collapse navbar-collapse" id="menu">
-                <ul class="nav navbar-nav flex-grow-1 justify-content-between">
-                    <li class="nav-item d-none d-xs-block d-md-block" role="presentation"><a class="nav-link" href="#"><i class="far fa-edit apple-logo"></i></a></li>
-                    <li class="nav-item" role="presentation"><router-link class="nav-link" :to="{name:'welcome'}">Home</router-link></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Blog</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Services</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">About Us</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Contact</a></li>
-                    <li class="nav-item d-none d-xs-block d-md-block" role="presentation"><a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-                </ul>
+  <header id="header-section">
+    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+    <div class="container">
+      <div class="navbar-brand-wrapper d-flex w-100">
+        <img src="images/Group2.svg" alt="">
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="mdi mdi-menu navbar-toggler-icon"></span>
+        </button> 
+      </div>
+      <div class="collapse navbar-collapse navbar-menu-wrapper" id="navbarSupportedContent">
+        <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
+          <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
+            <div class="navbar-collapse-logo">
+              <img src="images/Group2.svg" alt="">
             </div>
-        </div>
-    </nav>
+            <button class="navbar-toggler close-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Blog</a>  
+          </li>
+          
+          <li class="nav-item">
+
+            <a class="nav-link" href="#features-section">Services</a>
+          </li>
+
+          <li class="nav-item">
+
+            <a class="nav-link" href="#">Login</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#">AboutUs</a>
+          </li>
+          <li class="nav-item btn-contact-us pl-4 pl-lg-0">
+            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Order Contact Now</button>
+          </li>
+        </ul>
+      </div>
+    </div> 
+    </nav>   
+  </header>
 </template>
 
 <script>

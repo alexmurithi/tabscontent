@@ -3,9 +3,9 @@
    <nav-bar/>
     <div class="container" style="padding-top:50px">
         <div class="row py-2">
-           <div class="col col-sm-12 col-md-8">
+           <div class="col col-sm-12 col-md-12">
                <div class="order-section">
-                  <div class="card">
+                  <div class="card" ref="orderForm">
                     <div class="card-header d-none">
                       <Steps :current="current">
                           <Step title="Order Details"></Step>
@@ -59,7 +59,9 @@
                                               <Button type="primary"
                                                @click="signUp('validateClientNew')" 
                                                :loading="accountLoading" 
+                                               long
                                                :disabled="accountLoading">
+                                               
                                                 {{accountLoading ? 'Please wait...':'Create account'}}
                                                 </Button>
                                             </FormItem>
@@ -95,6 +97,7 @@
                                               <Button type="primary" 
                                               :loading="loginLoading" 
                                               :disabled="loginLoading"
+                                              long
                                               @click="login('validateClient')"
                                               >Login
                                               </Button>
@@ -136,7 +139,7 @@
                        <Row :gutter="32" v-show="current==1">
                          <Col span="24" class="pb-2">
                             <label for="">Title</label>
-                            <Input placeholder="Title"></Input>
+                            <Input placeholder="Title" v-model="title"></Input>
                          </Col>
                          <Col span="24">
                           <p class="py-2" style="color:#000">
@@ -207,15 +210,37 @@
                        </Row>
 
                        <Row :gutter="32" v-show="current==3">
-                         <Col span="24">
+                         <div v-if="!paidFor"> 
+                           <Col span="24">
                             <Alert type="info" show-icon>
 
-                                      <span slot="desc"><strong>Pay ${{totalAmount}} USD</strong>, 14% service fee included. <br>Please Click on the <strong>Paypal</strong> button below to make payment.</span>
+                                      <span slot="desc"> Please Pay <span style="color:#000">${{totalAmount}} USD</span> to complete your order, 14% service fee included. <br>Click on the <strong style="color:#000">Paypal</strong> button below to make payment.</span>
                             </Alert>
                         </Col>
                          <Col span="24">
                            <div ref="paypal"></div>
                          </Col>
+                         </div>
+
+                         <div v-else>
+                           <div class="row">
+                             <div class="col-sm-12" >
+                            <Alert type="success" show-icon>
+                              Success
+                                      <span slot="desc">Thank You <span style="color:#000">{{currentUser.name}}</span> for choosing to work with us! <br> We have received your <strong>${{totalAmount}} USD</strong> payment. To complete your order request, please click on submit order button below.</span>
+                            </Alert>
+                           </div>
+
+                          
+                           </div>
+
+                           <div class="row">
+                             <div class="col sm-12 col-md-12">
+                                
+                             </div>
+                           </div>
+                         </div>
+                         
                         </Row>
                       
 
@@ -223,10 +248,10 @@
                      <div class="card-footer">
                        
                         
-                          <Button type="primary"><Icon type="ios-skip-backward" /> Back</Button>
+                          <Button type="primary" :disabled="isBackDisabled" v-show="current!=0"><Icon type="ios-skip-backward" /> Back</Button>
                        
                          
-                           <Button type="success" @click="next"><Icon type="ios-skip-forward"  /> Continue</Button>
+                           <Button type="success" @click="next" :disabled="isNextDisabled" :loading="submitOrder"><Icon type="ios-skip-forward"  /> {{current!=3 ? 'Continue' : 'Submit Order'}}</Button>
                         
                        
                        
@@ -234,18 +259,16 @@
                   </div>
                </div>
            </div><!--END COL-SM-12 COL-MD-7-->
-           <div class="col col-sm-12 col-md-4">
-               <div class="card">
-                  <h4>Total Amount</h4>
-                 </div> 
-           </div><!--END COL-SM-12 COL-MD-5-->
+          
         </div><!--END ROW-->
     </div><!--End CONTAINER-->
+    <Footer/>
   </div>
 </template>
 
 <script>
 import NavBar from '../../SectionWelcome/HeaderSection.vue';
+import Footer from '../../SectionWelcome/Footer.vue';
 import Editor from '@tinymce/tinymce-vue';
 import {login} from '../../../helper/auth.js';
 import {mapGetters} from 'vuex';
@@ -259,6 +282,11 @@ export default {
     document.body.appendChild(script);
 
     this.amount=this.$route.query.amount
+    this.contentType =this.$route.query.type
+    this.package =this.$route.query.package
+    this.quality =this.$route.query.quality
+    this.words =this.$route.query.words
+    this.urgency =this.$route.query.urgency
     this.totalAmount =Number(this.amount*this.tax).toFixed(2)
 
  },
@@ -274,6 +302,28 @@ export default {
      'currentUser',
      'isLoggedIn'
    ]),
+
+   isNextDisabled:function(){
+      if(this.current==0){
+        if(this.isLoggedIn){
+          return false
+        }else{
+          return true
+        }
+      }else if(this.current==1){
+        if(this.title=='' || this.instructions==''){
+          return true
+        }else{
+          return false
+        }
+      }else if (this.current==3){
+        if(!this.paidFor){
+          return true
+        }else{
+          return false
+        }
+      }
+    },
  },
 
  data:function(){
@@ -281,8 +331,18 @@ export default {
      current:0,
      accountLoading:false,
      amount:0,
+     contentType:'',
+     quality:0,
+     urgency:'',
+     words:0,
      tax:1.14,
      totalAmount:0,
+     upload:[],
+     title:'',
+     paidFor:false,
+     submitOrder:false,
+     paypalData:[],
+     paypalOrder:[],
      loginLoading:false,
      instructions:'',
      validateClient:{
@@ -336,19 +396,50 @@ export default {
   components:{
       NavBar,
       'editor': Editor,
+      Footer,
      
   },
+
+  
 
   methods:{
     next:function(){
       if(this.current!==3){
         this.current+=1
+      }else if(this.current==3){
+        this.submitOrder();
       }
     },
 
-    logout(){
-      this.$store.dispatch('logout');
+    submitOrder:function(){
+     this.submitOrder=true
+     axios.post(`/api/content/submit_order`,{
+       orderID:this.paypalData.orderID,
+       status:this.paypalOrder.status,
+       amount:this.totalAmount,
+       type:this.contentType,
+       words:this.words,
+       package:this.package,
+       user_id:this.currentUser.id,
+       title:this.title,
+       instructions:this.instructions,
+       upload_id:this.upload ? this.upload.id : '',
+       quality:this.quality,
+       urgency:this.urgency
+     }).then((res)=>{
+
+     })
     },
+
+    logout(){
+      if(this.currentUser){
+        this.$store.dispatch('logout');
+        this.$toastr.s("Logged out Successfully")
+      }
+      
+    },
+
+    
 
     signUp:function(name){
       
@@ -436,10 +527,10 @@ export default {
             return actions.order.create({
             purchase_units: [
                 {
-                  description: 'Payment',
+                  description: 'Payment For ' + this.contentType,
                    amount: {
                    currency_code: "USD",
-                    value:13.25
+                    value:this.totalAmount
                                       }
                                     }
                                   ]
@@ -447,7 +538,8 @@ export default {
                               },
             onApprove: async (data, actions) => {
             const order = await actions.order.capture();
-            // this.data;
+            this.paypalData=data;
+            this.paypalOrder =order
             this.paidFor = true;
 
             console.log(order);

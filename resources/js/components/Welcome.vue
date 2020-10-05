@@ -7,9 +7,7 @@
 
     <content-section/>
 
-    <features/>
 
-    <landing-footer/>
     
   </div>
 </template>

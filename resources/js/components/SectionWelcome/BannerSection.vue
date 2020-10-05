@@ -1,77 +1,176 @@
 <template>
-   <div class="highlight-phone">
-        <div class="container-fluid">
-            <div class="row py-2">
-                <div class="col px-5 col-md-5">
-                    <div class="intro">
-                        <h1 class="text-uppercase" id="intro-heading" style="font-family: 'Abril Fatface', cursive;">Professional Content Writing Services</h1>
-                        <p id="intro-paragraph" style="font-family: Adamina, serif;">When you try to grow your online business, therefore, you need a <strong>Content Writing Service</strong><br> to advertise your services on your business website. If you want to <br>achieve success in your business, then you too
-                            have to search for the <br>best <strong>content writer</strong> for your online business website so that your online business level can be high<br><br></p>
-                        <p><button class="btn btn-primary" data-bs-hover-animate="pulse" @click="navToBlog" type="button">ORder Content Now!</button></p>
-                    </div>
-                </div>
-                <div class="col d-none col-md-4">
-                    <div class="d-md-block iphone-mockup"><img class="device" src="assets/img/IMac_Pro.svg">
-                        <div class="screen">
-                            <section id="carousel">
-                                <div class="carousel slide carousel-fade" data-ride="carousel" id="carousel-1">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="carousel-item active">
-                                            <div class="jumbotron pulse animated hero-nature carousel-hero" style="background-image: url(&quot;assets/img/SEO-IMAGE.png&quot;);background-repeat: no-repeat;background-position: center;background-size: cover;">
-                                                <h3 class="text-uppercase hero-title carousel-heading">Professional Copywriting Services</h3>
-                                                <p><a class="btn btn-primary text-uppercase hero-button plat" role="button" href="#">Order content now!</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="jumbotron pulse animated hero-photography carousel-hero" style="background-image: url(&quot;assets/img/Web%20Content.png&quot;);background-repeat: no-repeat;background-position: center;background-size: cover;">
-                                                <h3 class="text-uppercase hero-title carousel-heading">Blog Post Writing Services</h3>
-                                                <p><a class="btn btn-primary text-uppercase hero-button plat" role="button" href="#">Order Content Now!</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="jumbotron pulse animated hero-technology carousel-hero" style="background-image: url(&quot;assets/img/content-women.png&quot;);background-repeat: no-repeat;background-size: cover;">
-                                                <h3 class="text-uppercase hero-title carousel-heading">Professional Web Content Writing</h3>
-                                                <p><a class="btn btn-primary text-uppercase hero-button plat" role="button" href="#">Order content now!</a></p>
-                                            </div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            <div class="jumbotron pulse animated hero-technology carousel-hero" style="background-image: url(&quot;assets/img/content-women.png&quot;);background-repeat: no-repeat;background-size: cover;">
-                                                <h3 class="text-uppercase hero-title carousel-heading">PROFESSIONAL ARTICLE WRITING SERVICES</h3>
-                                                <p><router-link class="btn btn-primary text-uppercase hero-button plat" role="button" :to="{name:'blog-post-packages'}">Order Content Now!</router-link></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div><a class="carousel-control-prev text-primary" href="#carousel-1" role="button" data-slide="prev" data-bs-hover-animate="flash"><i class="fa fa-chevron-left"></i><span class="sr-only">Previous</span></a><a class="carousel-control-next text-primary"
-                                            href="#carousel-1" role="button" data-slide="next" data-bs-hover-animate="flash"><i class="fa fa-chevron-right"></i><span class="sr-only">Next</span></a></div>
-                                    <ol class="carousel-indicators d-none">
-                                        <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
-                                        <li data-target="#carousel-1" data-slide-to="1"></li>
-                                        <li data-target="#carousel-1" data-slide-to="2"></li>
-                                        <li data-target="#carousel-1" data-slide-to="3"></li>
-                                    </ol>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+   <div class="banner" >
+    <div class="container">
+      <h1 class="font-weight-semibold">Professional Content Writings Services.
+</h1>
+      <h6 class="font-weight-normal text-muted pb-3 py-2">
+        We have got your back! We are professionals who understand exactly what is needed to have your website top-ranked on Google searches. 
+
+        </h6>
+      <div>
+        <!-- <button class="btn btn-opacity-light mr-1">Get started</button> -->
+        <!-- <button class="btn btn-opacity-success ml-1">Order Content Now!</button> -->
+      </div>
+      <!-- <img src="images/Group171.svg" alt="" class="img-fluid"> -->
     </div>
+     <section class="contact-us " id="contact-section">
+        <div class="contact-us-bgimage grid-margin" >
+            <div class="container"> 
+              
+
+                  <div class="custom-order-section" id="custom-order-section">
+                    <div class="card">
+                      <div class="card-header">
+                        <div class="row">
+                          <h4 class="mx-auto">Get Started On Your Custom Content</h4>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                         <div class="form-group row">
+                       <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Content Type</label>
+                       <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                           <Select v-model="content.type" >
+                             <Option :value="content.type">Web Page</Option>
+                             <Option :value="content.type">Blog or Article</Option>
+                           </Select>
+                       </div>
+                    </div>
+
+                     <div class="form-group row">
+                       <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Quality</label>
+                       <div class="col-12 col-sm-12 col-md-9 col-lg-9" id="input">
+                           <Input :value="content.quality + ' Star'">
+                              <span slot="prepend">
+                                  <Icon type="md-remove-circle" />
+                                </span>
+                              <span slot="append">
+                                 <Icon type="md-add-circle" />
+                              </span>
+                          </Input>
+                       </div>
+                    </div>
+
+                     <div class="form-group row">
+                       <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Word Count</label>
+                       <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                           <Input v-model="content.word_count">
+                              <span slot="prepend">
+                                  <Icon type="md-remove-circle" />
+                                </span>
+                              <span slot="append">
+                                 <Icon type="md-add-circle" />
+                              </span>
+                           </Input>
+                       </div>
+                    </div>
+
+                     <div class="form-group row">
+                       <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">No. of Content</label>
+                       <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                           <Input v-model="content.number" number>
+                             <span slot="prepend">
+                                  <Icon type="md-remove-circle" />
+                                </span>
+                              <span slot="append">
+                                 <Icon type="md-add-circle" />
+                              </span>
+                           </Input>
+                       </div>
+                    </div>
+
+                     <div class="form-group row">
+                       <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Urgency</label>
+                       <div class="col-12 col-sm-12 col-md-9 col-lg-9 text-left">
+                              
+                                <Checkbox border name="urgency" v-model="content.urgency" :value="24">24 Hours</Checkbox>
+                                <Checkbox border name="urgency" v-model="content.urgency" :value="12">12 Hours</Checkbox>
+                                <Checkbox border name="urgency" v-model="content.urgency" :value="8">8 Hours</Checkbox>
+                              
+                          
+                       </div>
+                    </div>
+                      </div>
+                      <div class="card-footer">
+                         <div class="form-group row" >
+              
+                          <div class="col-12 col-sm-12 col-md-5 col-lg-5 order-total"> 
+                            Order Total <span>$3.75</span>
+                          </div>
+                          <div class="col-12 col-sm-12 md-7 col-lg-7">
+                            <Button type="warning" size="large">Order Now</Button>
+                          </div>
+                       
+                    </div>
+                      </div>
+                    </div>
+                    
+
+                    
+
+                    
+
+                  </div>
+             
+            </div>
+
+       </div>
+      </section>
+  </div>
+  
 </template>
 
 <script>
 export default {
   name:'banner-section',
 
+  data:function(){
+    return{
+      content:{
+        quality:3,
+        type:'Web Page',
+        word_count:100,
+        urgency:24,
+        number:1
+      },
+    }
+  },
+
   methods:{
-      navToBlog:function(){
-          this.$router.push({name:'blog-posts'})
-      }
+      
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+ #custom-order-section.custom-order-section{
+   .card{
+      background: transparent;
+      border-radius: 0;
+      border:2px solid #000;
+
+      .card-body{
+        
+      }
+
+      .card-header{
+        border-bottom: 2px solid #000;
+      }
+
+      .card-footer{
+        border-top:2px solid #000;
+        .order-total{
+         font-size: 35px;
+        
+          span{
+            color: #ff6000;
+            
+            font-weight: 900;
+          }
+        }
+      }
+   }
+ }
+
  
   
 </style>
