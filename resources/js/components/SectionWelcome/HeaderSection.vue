@@ -40,7 +40,7 @@
             <a class="nav-link" href="#">AboutUs</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Order Contact Now</button>
+            <a class="btn btn-info"  href="#contact-section">Order Contact Now</a>
           </li>
         </ul>
       </div>
