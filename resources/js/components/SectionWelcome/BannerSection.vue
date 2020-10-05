@@ -22,7 +22,7 @@
                     <div class="card">
                       <div class="card-header">
                         <div class="row">
-                          <h4 class="mx-auto">Get Started On Your Custom Content</h4>
+                          <h4 class="mx-auto">Get Started On Your Custom Content Now!</h4>
                         </div>
                       </div>
                       <div class="card-body">
