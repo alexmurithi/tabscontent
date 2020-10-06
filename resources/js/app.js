@@ -14,12 +14,22 @@ import {store} from './store/store.js';
 import ViewUI from 'view-design';
 
 import 'view-design/dist/styles/iview.css';
+
 import locale from 'view-design/dist/locale/en-US';
 import common from './common.js';
 import {initialize} from './helper/general.js';
 
 import VueTelInput from "vue-tel-input";
 import VueToastr from "vue-toastr"
+
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 
 

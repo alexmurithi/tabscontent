@@ -13,7 +13,7 @@
       </div>
       <!-- <img src="images/Group171.svg" alt="" class="img-fluid"> -->
     </div>
-     <section class="contact-us " id="contact-section">
+     <section class="contact-us " id="order-form">
         <div class="contact-us-bgimage grid-margin" >
             <div class="container"> 
               
@@ -30,51 +30,100 @@
                        <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Content Type</label>
                        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
                            <Select v-model="content.type" >
-                             <Option :value="content.type">Web Page</Option>
+                             <Option :value="content.type">Web Content</Option>
                              <Option :value="content.type">Blog or Article</Option>
+                             <Option :value="content.type">Press Release</Option>
                            </Select>
                        </div>
-                    </div>
+                         </div>
+                          <div class="form-group row">
+                       <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Language</label>
+                       <div class="col-12 col-sm-12 col-md-9 col-lg-9">
+                           <Select v-model="content.type" >
+                             <Option :value="content.type">English (US)</Option>
+                             <Option :value="content.type">English (Uk)</Option>
+                           </Select>
+                       </div>
+                         </div>
 
                      <div class="form-group row">
                        <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Quality</label>
-                       <div class="col-12 col-sm-12 col-md-9 col-lg-9" id="input">
-                           <Input :value="content.quality + ' Star'">
-                              <span slot="prepend">
+                       <div class="col-12 col-sm-12 col-md-9 col-lg-9 text-left" id="input">
+                           <!-- <Input :value="content.quality + ' Star'">
+                             
+                              <span slot="prepend" @click="decrementQuality" style="cursor:pointer">
                                   <Icon type="md-remove-circle" />
                                 </span>
-                              <span slot="append">
+                              <span slot="append" @click="incrementQuality" style="cursor:pointer">
                                  <Icon type="md-add-circle" />
                               </span>
-                          </Input>
+                          </Input> -->
+                          <b-form-group>
+                            <b-form-radio-group
+                              id="urgency"
+                              v-model="content.quality"
+                              :options="quality"
+                              
+                              buttons
+                              button-variant="outline-primary"
+                              size="sm"
+                              name="quality"
+                            ></b-form-radio-group>
+                          </b-form-group>
                        </div>
                     </div>
 
                      <div class="form-group row">
                        <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Word Count</label>
                        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                           <Input v-model="content.word_count">
-                              <span slot="prepend">
-                                  <Icon type="md-remove-circle" />
-                                </span>
-                              <span slot="append">
-                                 <Icon type="md-add-circle" />
-                              </span>
-                           </Input>
+                            <b-input-group size="sm">
+                              <b-input-group-prepend >
+                                <b-button variant="primary" @click="decrementWords"><Icon type="md-remove-circle" /></b-button>
+                              </b-input-group-prepend>
+
+                              <b-form-input 
+                              type="number" 
+                              min="100" max="6000"
+                              style="text-align:center;" 
+                              step="100"
+                              pattern="[0-9]"
+              
+                              v-model="content.word_count">
+                              </b-form-input>
+
+                              <b-input-group-append >
+                                <b-button variant="primary" @click="incrementWords"><Icon type="md-add-circle" />
+                                </b-button>
+                              </b-input-group-append>
+                            </b-input-group>
                        </div>
                     </div>
 
                      <div class="form-group row">
                        <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">No. of Content</label>
                        <div class="col-12 col-sm-12 col-md-9 col-lg-9">
-                           <Input v-model="content.number" number>
-                             <span slot="prepend">
+                           <b-input-group size="sm">
+                              <b-input-group-prepend>
+                                <b-button variant="primary" @click="decrementContentNo">
                                   <Icon type="md-remove-circle" />
-                                </span>
-                              <span slot="append">
-                                 <Icon type="md-add-circle" />
-                              </span>
-                           </Input>
+                                  </b-button>
+                              </b-input-group-prepend>
+
+                              <b-form-input 
+                              type="number"
+                              min="1" max="1000"
+                              style="text-align:center"
+                              v-model="content.number">
+
+                              </b-form-input>
+
+                              <b-input-group-append>
+                                <b-button variant="primary" @click="incrementContentNo">
+                                  <Icon type="md-add-circle" />
+                                  </b-button>
+                              
+                              </b-input-group-append>
+                            </b-input-group>
                        </div>
                     </div>
 
@@ -82,11 +131,17 @@
                        <label for="" class="col-12 col-sm-12 col-md-3 col-lg-3">Urgency</label>
                        <div class="col-12 col-sm-12 col-md-9 col-lg-9 text-left">
                               
-                                <Checkbox border name="urgency" v-model="content.urgency" :value="24">24 Hours</Checkbox>
-                                <Checkbox border name="urgency" v-model="content.urgency" :value="12">12 Hours</Checkbox>
-                                <Checkbox border name="urgency" v-model="content.urgency" :value="8">8 Hours</Checkbox>
-                              
-                          
+                          <b-form-group>
+                            <b-form-radio-group
+                              id="urgency"
+                              v-model="content.urgency"
+                              :options="urgency"
+                              buttons
+                              button-variant="outline-primary"
+                              size="sm"
+                              name="urgency"
+                            ></b-form-radio-group>
+                          </b-form-group>
                        </div>
                     </div>
                       </div>
@@ -94,10 +149,10 @@
                          <div class="form-group row" >
               
                           <div class="col-12 col-sm-12 col-md-5 col-lg-5 order-total"> 
-                            Order Total <span>$3.75</span>
+                            Order Total <span>${{getTotalPrice}}</span>
                           </div>
                           <div class="col-12 col-sm-12 md-7 col-lg-7">
-                            <Button type="warning" size="large">Order Now</Button>
+                            <Button type="warning" size="large"><Icon type="md-cart" /> Order Now</Button>
                           </div>
                        
                     </div>
@@ -126,17 +181,99 @@ export default {
   data:function(){
     return{
       content:{
-        quality:3,
+        quality:{"star":2,"amount":0},
         type:'Web Page',
         word_count:100,
-        urgency:24,
-        number:1
+        urgency:{"time":24,"amount":0},
+        number:1,
+        price_per_word:0.04,
+
+        totalPrice:0
       },
+      
+        urgency: [
+          { text: '24 Hours', value: {"time":24,"amount":0} },
+          { text: '12 Hours', value: {"time":12,"amount":2}},
+          { text: '8 Hours', value: {"time":8,"amount":5}},
+          { text: '6 Hours', value: {"time":6,"amount":9} }
+        ],
+        quality:[
+          { text: '2 Star', value: {"star":2,"amount":0}},
+          { text: '3 Star', value: {"star":3,"amount":2}},
+          { text: '4 Star', value: {"star":4,"amount":3} },
+          { text: '5 Star', value: {"star":5,"amount":4} },
+          
+        ]
     }
   },
 
+  watch:{
+    'content.word_count':function(newVal, oldVal){
+       this.content.word_count =parseInt(newVal)
+       
+    },
+
+    'content.number':function(newVal,oldVal){
+      this.content.number =parseInt(newVal)
+    },
+
+    
+    
+  },
+
   methods:{
+      incrementQuality:function(){
+       if(this.content.quality!=5){
+        
+       }
+      },
+
+      parseThisInt(words){
+        console.log(parseInt(words))
+      },
+
+      decrementQuality:function(){
+        if(this.quality!=3){
+          
+        }
+      },
+
+      incrementWords:function(){
+        if(this.content.word_count<=6000){
+          this.content.word_count =this.content.word_count+=100
+        }
+      },
+
+      decrementWords:function(){
+         if(this.content.word_count!=100){
+          this.content.word_count =this.content.word_count+-100
+        }
+      },
+
+      incrementContentNo:function(){
+        this.content.number =this.content.number+=1
+      },
+
+      decrementContentNo:function(){
+        if(this.content.number!=1){
+          this.content.number =this.content.number-=1
+        }
+      },
+
       
+  },
+  computed:{
+    getTotalPrice:function(){
+     return this.content.totalPrice
+     =parseFloat((this.content.word_count*this.content.price_per_word*this.content.number)
+     +
+     this.content.quality.amount
+     +
+     this.content.urgency.amount).toFixed(2)
+    },
+
+
+    
   }
 }
 </script>
@@ -159,7 +296,7 @@ export default {
       .card-footer{
         border-top:2px solid #000;
         .order-total{
-         font-size: 35px;
+         font-size: 25px;
         
           span{
             color: #ff6000;

@@ -6,17 +6,32 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index.scss';
+// @import '~bootstrap-vue/dist';
 
 
 
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css';
 
-.ivu-input-group .ivu-input, .ivu-select-item{
+.ivu-input-group .ivu-input, .ivu-select-item, .b-form-spinbutton.form-control.d-flex.align-items-stretch{
   text-align:center !important;
   font-family: Poppins,sans-serif !important;
   font-size: 1rem !important;
   color: #212529 !important;
   
+}
+.b-form-spinbutton.form-control.d-flex.align-items-stretch{
+  background: #fff;
+  border:1px solid #ddd;
+}
+
+.input-group.input-group-sm  input{
+  background: white; 
+  border:2px solid #ddd;
+}
+
+fieldset{
+  border:0px !important;
 }
 
 

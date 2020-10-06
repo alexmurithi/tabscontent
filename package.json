@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@tinymce/tinymce-vue": "^3.2.2",
+        "bootstrap-vue": "^2.17.3",
         "view-design": "^4.3.2",
         "vue-owl-carousel": "^2.0.3",
         "vue-router": "^3.4.3",
