@@ -35,8 +35,70 @@ fieldset{
 }
 
 
+#adv_details.ivu-collapse{
+  border-radius: 0;
+  border:2px solid #E7E4EA;
+  background:white;
+  font-family: Poppins,sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #212529;
+  >.ivu-collapse-item.ivu-collapse-item-active>.ivu-collapse-header{
+   color:#000;
+   font-weight: 400 !important;
+   
+  } 
+}
+
+.details-card, .account_page{
+  .card{
+   background: white;
+   border-radius: 0px;
+   border:2px solid #E7E4EA;
+   .card-header{
+       border-bottom: 2px solid #E7E4EA;
+   }
+   .card-body{
+       .advanced-details{
+           border-top:4px solid #ddd;
+       }
+       .js-toggle-advanced{
+           cursor: pointer;
+       }
+   }
+  }
+}
 
 
+#custom-order-section.custom-order-section{
+  .card{
+     background: transparent;
+     border-radius: 0;
+     border:2px solid #E7E4EA;
+
+     .card-body{
+       
+     }
+
+     .card-header{
+       border-bottom: 2px solid #E7E4EA;
+     }
+
+     .card-footer{
+       border-top:2px solid #E7E4EA;
+       .order-total{
+        font-size: 25px;
+       
+         span{
+           color: #ff6000;
+           
+           font-weight: 900;
+         }
+       }
+     }
+  }
+}
 
 
 

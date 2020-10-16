@@ -23,6 +23,8 @@ import BlogPosts from '../components/Content/BlogPosts.vue';
 import Articles from  '../components/Content/Articles.vue';
 import MakeOrder from '../components/Content/Orders/MakeOrder.vue';
 
+import OrderDetails from '../components/Content/Orders/details.vue';
+
 
 Vue.use(VueRouter);
 
@@ -33,6 +35,13 @@ export const router =new VueRouter({
       path:'/',
       name:'welcome',
       component:Welcome
+    },
+
+    {
+      path:'/order/details',
+      name:'order_details',
+      props:route=>({query:route.query}),
+      component:OrderDetails
     },
 
      {

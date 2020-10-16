@@ -1,6 +1,6 @@
 <template>
   <header id="header-section">
-    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+    <nav class="fixed-top navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
         <img src="images/Group2.svg" alt="">
@@ -19,7 +19,11 @@
             </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
+            <router-link :to="{path:'/'}" class="nav-link">
+               Home
+              <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+            </router-link>
+            
           </li>
 
           <li class="nav-item">

@@ -10,6 +10,7 @@
     <script src="{{asset('assets/js/owl.carousel.js')}}" defer></script>
     <script src="{{asset('assets/js/aos.js')}}" defer></script>
     <script src="{{asset('assets/js/landingpage.js')}}" defer></script>
+    <script src="{{asset('assets/js/toggle.js')}}" defer></script>
     
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/owl.carousel.css')}}" rel="stylesheet">
@@ -21,7 +22,7 @@
 
 
     </head>
-    <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100" >
+    <body id="body" class=" header-small" data-spy="scroll" data-target=".navbar" data-offset="100" >
       
       <div id="app" v-cloak>
         

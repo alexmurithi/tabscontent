@@ -14316,6 +14316,67 @@ fieldset {
   border: 0px !important;
 }
 
+#adv_details.ivu-collapse {
+  border-radius: 0;
+  border: 2px solid #E7E4EA;
+  background: white;
+  font-family: Poppins, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: #212529;
+}
+
+#adv_details.ivu-collapse > .ivu-collapse-item.ivu-collapse-item-active > .ivu-collapse-header {
+  color: #000;
+  font-weight: 400 !important;
+}
+
+.details-card .card,
+.account_page .card {
+  background: white;
+  border-radius: 0px;
+  border: 2px solid #E7E4EA;
+}
+
+.details-card .card .card-header,
+.account_page .card .card-header {
+  border-bottom: 2px solid #E7E4EA;
+}
+
+.details-card .card .card-body .advanced-details,
+.account_page .card .card-body .advanced-details {
+  border-top: 4px solid #ddd;
+}
+
+.details-card .card .card-body .js-toggle-advanced,
+.account_page .card .card-body .js-toggle-advanced {
+  cursor: pointer;
+}
+
+#custom-order-section.custom-order-section .card {
+  background: transparent;
+  border-radius: 0;
+  border: 2px solid #E7E4EA;
+}
+
+#custom-order-section.custom-order-section .card .card-header {
+  border-bottom: 2px solid #E7E4EA;
+}
+
+#custom-order-section.custom-order-section .card .card-footer {
+  border-top: 2px solid #E7E4EA;
+}
+
+#custom-order-section.custom-order-section .card .card-footer .order-total {
+  font-size: 25px;
+}
+
+#custom-order-section.custom-order-section .card .card-footer .order-total span {
+  color: #ff6000;
+  font-weight: 900;
+}
+
 [v-cloak] > * {
   display: none;
 }

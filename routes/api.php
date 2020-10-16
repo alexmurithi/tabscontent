@@ -52,6 +52,12 @@ Route::group(['middleware'=>'api','prefix'=>'content'],function(){
  Route::get('pricing','Api\ContentController@getContentPricing');
  Route::get('{id}/userOrders','Api\ContentController@getUserOrders');
 
- Route::get('blog_basics','Api\ContentController@blogBasics');
+ 
+ Route::get('types','Api\ContentController@contentTypes');
+ Route::get('languages','Api\ContentController@languages');
+ Route::get('categories','Api\ContentController@contentCategories');
+ Route::get('audiences','Api\ContentController@contentAudience');
+ Route::get('grammatic_people','Api\ContentController@contentGrammaticPeople');
+ Route::get('vocabularies','Api\ContentController@contentVocabularies');
 });
 

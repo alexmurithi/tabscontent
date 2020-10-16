@@ -1,267 +1,163 @@
 <template>
-  <div>
-     
-      <section id="packages" class="blog-section">
-                            <div class="package_accordin">
-                              <Collapse v-model="value1">
-                                  <Panel name="1">
-                                      Basic Packages
-                                      <div slot="content">
-                                        <div class="row packages_list py-2">
-                                          <p class="px-2 pb-5">
-                                            Below are some of our Begginer Packages. Select the best package that suites your needs! 
-                                            Or switch to our custom order below
-                                            </p>
-                                          <div class="col-md-4">
-                                             <div class="card basic_package">
+    
+            <div class="content-details py-5">
+                <div class="row clearfix">
+                    <div class="col-12 col-md-9">
+                        <div class="details-card">
+                            
+                            <!-- ADVANCED DETAILS BEGIN HERE -->
+                              <div class="advanced_details py-4">
+                                  <div class="row">
+                                      <div class="col-12 div col-md-12">
+                                          <Collapse accordin v-model="adv_details" id="adv_details">
+                                            <Panel name="1">
+                                               Advanced Details
+                                               <div slot="content">
+                                                   <div class="form-group row">
+                                                       <div class="col-12 col-md-4">
+                                                           <label for="keyword">Keyword</label>
+                                                           <Input v-model="keyword" placeholder="Enter Keyword"></Input>
+                                                       </div>
+                                                       <div class="col-12 col-md-4 d-flex flex-column">
+                                                           <label for="density">Density</label>
+                                                           <div class="inputs d-flex flex-row justify-content-between">
+                                                             <InputNumber :max="10" :min="1" :step="1" v-model="density_min" placeholder="Min"></InputNumber>
+                                                             <InputNumber :max="10" :min="1" :step="1" v-model="density_max" placeholder="Max"></InputNumber>
+                                                           </div>
+                                                           
+                                        
+                                                           
+                                                       </div>
 
-                                               <!--BLOG BASIC CARD HEADER-->
-                                               <div class="card-header text-white">
-                                                 <span>1</span>
-                                                 Custom Blog Post
-
-                                                </div>
-                                                 <!--END BLOG BASIC CARD HEADER-->
-
-                                                 <!-- START BLOG POST CARD BODY-->
-                                               <div class="card-body">
-
-                                                   <!-- BLOG POST INPUTS-->
-                                                   
-                                                   <div class="inputs">
-                                                      <Input  :value="basicPackage.quality_1 + ' '+'Star'" name="basic">
-                                                        <span slot="prepend" @click="removePrice_1">
-                                                          <Icon type="md-remove-circle" />
-                                                        </span>
-                                                        <span slot="append" @click="addPrice_1">
-                                                          <Icon type="md-add-circle" />
-                                                        </span>
-                                                        
-                                                      </Input>
+                                                       <div class="col-12 col-md-4 pt-4">
+                                                           <Button type="warning" size="large" @click.prevent="addKeyword(keyword,density)">Add Keyword</Button>
+                                                           
+                                                       </div>
+                                                       
                                                    </div>
-                                                    <!--END BLOG POST INPUTS-->
-                                                    
 
-                                                    <div class="package-desc">
-                                                      <ul>
-                                                        <li>Within 48 hours</li>
-                                                        <li>100% Satistaftion Guaranteed</li>
-                                                        <li>SEO friendly</li>
-                                                      </ul>
-                                                    </div>
-
-                                                </div>
-
-                                                <!-- END BLOG POST CARD BODY-->
-
-                                                <div class="card-footer text-center">
-                                                   <Button type="warning" >
-                                                     <router-link :to="{path:'/content/make-order',query:{
-                                                         type:'blog-post',
-                                                         package:'basic',
-                                                         words:this.basicPackage.words,
-                                                         quality:this.basicPackage.quality_1,
-                                                         amount:this.basicPackage.price_1,
-                                                         urgency:'48hours'
-                                                         }}">
-                                                       <Icon type="md-cart" />
-                                                     Order Now
-                                                     </router-link>
-                                                     
-                                                   </Button>
-                                                </div>
-                                               
-                                               <div class="package-pricing">
-                                                <div class="price">
-                                                   ${{Number(basicPackage.price_1).toFixed(2)}}
-                                                </div>
-                                                <div class="words-badge">100 Words</div>
-                                               </div>
-                                             </div>
-                                          </div>
-
-                                          <!-- <div class="col-md-4">
-                                             <div class="card basic_package">
-                                               <div class="card-header text-white">
-                                                 <span>1</span>
-                                                 Custom Blog Post
-
-                                               </div>
-
-                                               <div class="card-body">
-                                                   <div class="inputs">
-                                                      <Input  :value="qualityStar + ' '+'Star'" name="basic">
-                                                        <span slot="prepend">
-                                                          <Icon type="md-remove-circle" />
-                                                          </span>
-                                                        <span slot="append" @click="addStar">
-                                                          <Icon type="md-add-circle" />
-                                                          </span>
-                                                        
-                                                    </Input>
+                                                   <div class="form-group row">
+                                                       <div class="col-12">
+                                                           <Tag  color="primary" 
+                                                           closable v-for="(keyword,index) in orderKeywords"
+                                                           @on-close="deleteKeyword(keyword,index)" 
+                                                           :key="index">
+                                                           <span style="font-weight:bold"> {{keyword.keyword}}</span> 
+                                                           <span style="font-weight:bold;"> ({{keyword.density}}) </span>
+                                                           </Tag>
+                                                           
+                                                           
+                                                       </div>
+                                                       
                                                    </div>
-                                                    
 
-                                                    <div class="package-desc">
-                                                      <ul>
-                                                        <li>Within 48 hours</li>
-                                                        <li>100% Satistaftion Guaranteed</li>
-                                                        <li>SEO friendly</li>
-                                                      </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="card-footer text-center">
-                                                   <Button type="warning">
-                                                     <Icon type="md-cart" />
-                                                     Order Now
-                                                   </Button>
-                                                </div>
-                                               
-                                               <div class="package-pricing">
-                                                <div class="price">
-                                                   $6.50
-                                                </div>
-                                                <div class="words-badge">200 Words</div>
-                                               </div>
-                                             </div>
-                                          </div> -->
+                                                   <div class="form-group row">
+                                                       <div class="col-12 col-md-6">
+                                                           <label for="">Meta Description 
+                                                               <Tooltip max-width="200">
+                                                                  <Icon type="md-help-circle" />
+                                                                   <div slot="content">
+                                                                       The meta description is an HTML attribute that provides a brief summary of a web page. Search engines such as Google often display the meta description in search results, which can influence click-through rates.
+                                                                   </div>
+                                                               </Tooltip>
+                                                           
+                                                           </label>
+                                                           <b-form-radio-group
+                                                            v-model="meta_checkbox"
+                                                            :options="meta_options"
+                                                            name="meta_checkbox"
+                                                            stacked
+                                                        ></b-form-radio-group>
+                                                       </div>
 
-                                          <!-- <div class="col-md-4">
-                                             <div class="card basic_package">
-                                               <div class="card-header text-white">
-                                                 <span>1</span>
-                                                 Custom Blog Post
-
-                                               </div>
-
-                                               <div class="card-body">
-                                                   <div class="inputs">
-                                                      <Input  :value="qualityStar + ' '+'Star'" name="basic">
-                                                        <span slot="prepend">
-                                                          <Icon type="md-remove-circle" />
-                                                          </span>
-                                                        <span slot="append" @click="addStar">
-                                                          <Icon type="md-add-circle" />
-                                                          </span>
-                                                        
-                                                    </Input>
+                                                       <div class="col-12 col-md-6">
+                                                           <label for="">Royatly-free images 
+                                                               <Tooltip max-width="200">
+                                                                  <Icon type="md-help-circle" />
+                                                                   <div slot="content">
+                                                                       The meta description is an HTML attribute that provides a brief summary of a web page. Search engines such as Google often display the meta description in search results, which can influence click-through rates.
+                                                                   </div>
+                                                               </Tooltip>
+                                                               </label>
+                                                           <b-form-radio-group
+                                                            v-model="free_images_checkbox"
+                                                            :options="free_images_options"
+                                                            name="free_imagesCheckbox"
+                                                            stacked
+                                                        ></b-form-radio-group>
+                                                       </div>
                                                    </div>
-                                                    
 
-                                                    <div class="package-desc">
-                                                      <ul>
-                                                        <li>Within 48 hours</li>
-                                                        <li>100% Satistaftion Guaranteed</li>
-                                                        <li>SEO friendly</li>
-                                                      </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="card-footer text-center">
-                                                   <Button type="warning">
-                                                     <Icon type="md-cart" />
-                                                     Order Now
-                                                   </Button>
-                                                </div>
-                                               
-                                               <div class="package-pricing">
-                                                <div class="price">
-                                                   $9.75
-                                                </div>
-                                                <div class="words-badge">300 Words</div>
+                                                   <div class="form-group row">
+                                                       <div class="col-12 col-md-6">
+                                                           <label for="category">Category</label>
+                                                           <Select>
+                                                               <Option>Tourism</Option>
+                                                           </Select>
+                                                       </div>
+
+                                                       <div class="col-12 col-md-6">
+                                                           <label for="category">Vocabulary Type</label>
+                                                           <Select>
+                                                               <Option>Tourism</Option>
+                                                           </Select>
+                                                       </div>
+                                                   </div>
+
+                                                   <div class="form-group row">
+                                                       <div class="col-12 col-md-6">
+                                                           <label for="target-audience">Target Audience</label>
+                                                           <Select>
+                                                               <Option>Tourism</Option>
+                                                           </Select>
+                                                       </div>
+                                                       <div class="col-12 col-md-6">
+                                                           <label for="target-audience">Grammatical Person</label>
+                                                           <Select>
+                                                               <Option>Tourism</Option>
+                                                           </Select>
+                                                       </div>
+                                                   </div>
                                                </div>
-                                             </div>
-                                          </div> -->
-
-                                        </div>
+                                            </Panel>
+                                          </Collapse>
                                       </div>
-                                  </Panel>
-                                  <Panel name="2">
-                                      Intermediate Packages
-                                      <p slot="content">斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
-                                  </Panel>
-                                  <Panel name="3">
-                                     Expert Packages
-                                      <p slot="content">乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
-                                  </Panel>
-                                </Collapse>
-                            </div>
-      </section>
-
-                           <section class="custom-blog" style=" background: url(/assets/img/pattern-bg.jpg);">
-                              <div class="custom-order clearfix" id="myorder">
-                                 <h3>Get Started Now!
-                                   <span>Order Custom Blog Post Content</span>
-                                 </h3>
-
-                                 <div class="row">
-                                   <div class="col-md-7 col-sm-7">
-                                     <div class="custom-order-form-blog">
-                                         <div class="desired-package">
-                                           <div class="row py-2">
-                                             <div class="col-md-4 colsm-4">
-                                               <p class="clearfix">Quality</p>
-                                             </div>
-                                             <div class="col-md-8 colsm-8">
-                                               <Input >
-                                                 <span slot="prepend"><Icon type="md-remove-circle" /></span>
-                                                 <span slot="append"><Icon type="md-add-circle" /></span>
-                                               </Input>
-                                             </div>
-                                           </div>
-                                           <div class="row py-2">
-                                             <div class="col-md-4 colsm-4">
-                                               <p class="clearfix">Word Count</p>
-                                             </div>
-                                             <div class="col-md-8 colsm-8">
-                                               <Input>
-                                                 <span slot="prepend"><Icon type="md-remove-circle" /></span>
-                                                 <span slot="append"><Icon type="md-add-circle" /></span>
-                                               </Input>
-                                             </div>
-                                           </div>
-                                           <div class="row py-2">
-                                             <div class="col-md-4 colsm-4">
-                                               <p class="clearfix">No. of Posts</p>
-                                             </div>
-                                             <div class="col-md-8 colsm-8">
-                                               <Input>
-                                                 <span slot="prepend"><Icon type="md-remove-circle" /></span>
-                                                 <span slot="append"><Icon type="md-add-circle" /></span>
-                                               </Input>
-                                             </div>
-                                           </div>
-                                           <div class="row py-2">
-                                             <div class="col-md-4 colsm-4">
-                                               <p class="clearfix">Urgency</p>
-                                             </div>
-                                             <div class="col-md-8 colsm-8">
-                                               <label ><Checkbox  name="urgency">24 Hours</Checkbox></label>
-                                               <label ><Checkbox  name="urgency">12 Hours</Checkbox></label>
-                                               <label ><Checkbox  name="urgency">8 Hours</Checkbox></label>
-                                                <label ><Checkbox  name="urgency">48 Hours</Checkbox></label>
-                                             </div>
-                                           </div>
-                                           <div class="row bottom-order clearfix">
-                                             <div class="col-md-6 float-left">
-                                               <div class="order-total">
-                                                 Total:
-                                                 <span id="custom-output">$115.22</span>
-                                               </div>
-                                             </div>
-                                             <div class="col-md-6 float-right">
-                                               <div class="order-btn">
-                                                 <Button type="warning" class="btn-order"><Icon type="md-cart" /> Order Now</Button>
-                                               </div>
-                                             </div>
-                                           </div>
-                                         </div>
-                                     </div>
-                                   </div>
-                                   <div class="col-md-5 col-sm-5"></div>
-                                 </div>
+                                  </div>
                               </div>
-                           </section>
-  </div>
+                            <!-- ADVANCED DETAILS END HERE-->
+
+                           
+
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <!-- ORDER SUMMARY BEGINS HERE-->
+                       <div class="summary_sidebar_container">
+                          <div class="sidebar_pricebox">
+                            <div class="row">
+                                <div class="col-12 text-center">ORDER SUMMARY</div>
+                            </div>
+                            <div class="row p-2 border-bottom">
+                                <div class="col-5 text-left">Urgency</div>
+                                <div class="col-7 text-right">48 Hours</div>
+                            </div>
+                            <div class="row my-2" style="background-color: #fbeccd;font-weight: bold;color: #f9b000;font-size: 42px;">
+                                <div class="col-12 text-center">
+                                    $<span>20</span>
+                                </div>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-12 text-center px-4">
+                                    <Button type="warning" size="large" long>Continue</Button>
+                                </div>
+                            </div>
+                          </div>
+                       </div>
+                        <!-- ORDER SUMMARRY ENDS HERE -->
+                    </div>
+                </div>
+            </div>
 </template>
 
 <script>

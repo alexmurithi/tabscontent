@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Upload;
 use App\ContentOrder;
-use App\ContentLevel;
-use App\ContentDetail;
+use App\Language;
+use App\ContentType;
+use App\ContentAudience;
+use App\ContentCategory;
+use App\ContentGrammaticPerson;
+use App\ContentVocabulary;
 
-use App\BlogBasic;
 
 class ContentController extends Controller
 
@@ -86,5 +89,35 @@ class ContentController extends Controller
     public function blogBasics(){
       $blog_basics =BlogBasic::orderBy('words','ASC')->get();
       return response()->json($blog_basics);
+    }
+
+    public function contentTypes(){
+      $content_types =ContentType::all()->sortBy('type');
+      return response()->json($content_types);
+    }
+
+    public function languages(){
+      $languages =Language::all()->sortBy('name');
+      return response()->json($languages);
+    }
+
+    public function contentCategories(){
+      $categories =ContentCategory::orderBy('name','ASC')->get();
+      return response()->json($categories);
+    }
+
+    public function contentAudience(){
+      $audience =ContentAudience::all()->sortBy('audience');
+      return response()->json($audience);
+    }
+
+    public function contentGrammaticPeople(){
+      $person = ContentGrammaticPerson::all()->sortBy('person');
+      return response()->json($person);
+    }
+
+    public function contentVocabularies(){
+      $vocabularies =ContentVocabulary::all()->sortBy('type');
+      return response()->json($vocabularies);
     }
 }
