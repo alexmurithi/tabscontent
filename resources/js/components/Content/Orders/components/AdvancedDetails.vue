@@ -194,6 +194,15 @@ export default {
       }
   },
 
+  watch:{
+      meta_checkbox:function(newVal){
+         
+            this.$store.commit('addMetaDesc',newVal)
+         
+         
+      }
+  },
+
   computed:{
       ...mapGetters([
         'orderKeywords',

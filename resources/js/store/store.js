@@ -22,6 +22,7 @@ export const store =new Vuex.Store({
     content_audiences:[],
     content_grammatic_people:[],
     content_vocabularies:[],
+    content_meta_desc_box:0,
     
 
     //CONTENT STATES//
@@ -84,7 +85,11 @@ export const store =new Vuex.Store({
 
    currentUser:state=>{
      return state.currentUser
-   }
+   },
+
+   content_meta_desc_box:state=>{
+     return state.content_meta_desc_box
+   },
     
   
    },
@@ -158,6 +163,13 @@ export const store =new Vuex.Store({
      content_grammatic_people:(state,payload)=>{
        state.content_grammatic_people =payload
      },
+
+     addMetaDesc:(state,payload)=>{
+       
+         state.content_meta_desc_box =payload
+       
+       
+     }
    
    },
    //ACTIONS//

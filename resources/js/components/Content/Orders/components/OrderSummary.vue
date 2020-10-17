@@ -57,12 +57,13 @@ export default {
      this.content.quality =this.$route.query.quality
  },
 
- props:['no_of_content','total_price','urgency'],
+
 
  data:function(){
      return{
          content:{
            totalPrice:0,
+           new:0,
            word_count:0,
            content_no:0,
            urgency:0,
@@ -74,14 +75,23 @@ export default {
 
  computed:{
    ...mapGetters([
-       'orderFormStep'
+       'orderFormStep',
+       'content_meta_desc_box'
    ]),
+
+   
  },
+
+ 
 
  methods:{
      continueStep:function(){
          this.$store.commit('nextOrderFormStep',this.orderFormStep)
-     }
+     },
+
+     newTotalPrice:function(){
+         alert(1)
+    },
  }
 }
 </script>
